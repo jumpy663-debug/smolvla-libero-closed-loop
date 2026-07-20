@@ -1,0 +1,13 @@
+suite,task_id,task_name,episode_index,init_state_index,seed,success,steps,sum_reward,max_reward,terminated_before_limit,video
+libero_spatial,5,pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate,0,0,1000,False,280,0.0,0.0,False,outputs/stage9_task5_finetune_eval/videos/task_05/episode_00.mp4
+libero_spatial,5,pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate,1,1,1001,False,280,0.0,0.0,False,outputs/stage9_task5_finetune_eval/videos/task_05/episode_01.mp4
+libero_spatial,5,pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate,2,2,1002,False,280,0.0,0.0,False,outputs/stage9_task5_finetune_eval/videos/task_05/episode_02.mp4
+libero_spatial,4,pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate,0,0,1000,True,124,1.0,1.0,True,outputs/stage9_task5_finetune_eval/videos/task_04/episode_00.mp4
+libero_spatial,4,pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate,1,1,1001,False,280,0.0,0.0,False,outputs/stage9_task5_finetune_eval/videos/task_04/episode_01.mp4
+libero_spatial,4,pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate,2,2,1002,True,131,1.0,1.0,True,outputs/stage9_task5_finetune_eval/videos/task_04/episode_02.mp4
+libero_spatial,7,pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate,0,0,1000,True,112,1.0,1.0,True,outputs/stage9_task5_finetune_eval/videos/task_07/episode_00.mp4
+libero_spatial,7,pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate,1,1,1001,True,114,1.0,1.0,True,outputs/stage9_task5_finetune_eval/videos/task_07/episode_01.mp4
+libero_spatial,7,pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate,2,2,1002,False,280,0.0,0.0,False,outputs/stage9_task5_finetune_eval/videos/task_07/episode_02.mp4
+libero_spatial,8,pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate,0,0,1000,True,91,1.0,1.0,True,outputs/stage9_task5_finetune_eval/videos/task_08/episode_00.mp4
+libero_spatial,8,pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate,1,1,1001,True,97,1.0,1.0,True,outputs/stage9_task5_finetune_eval/videos/task_08/episode_01.mp4
+libero_spatial,8,pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate,2,2,1002,False,280,0.0,0.0,False,outputs/stage9_task5_finetune_eval/videos/task_08/episode_02.mp4

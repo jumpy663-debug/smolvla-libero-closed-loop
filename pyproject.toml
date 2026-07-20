@@ -1,0 +1,20 @@
+[project]
+name = "smolvla-libero-closed-loop"
+version = "0.1.0"
+description = "SmolVLA 在 LIBERO 中的闭环复现、动作窗口消融与 PEFT 对照"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "Apache-2.0"
+dependencies = [
+    "lerobot[smolvla,libero,evaluation,training,peft] @ git+https://github.com/huggingface/lerobot.git@b8ad81bf397d59dda69ccfc7e74e847f0a9d4fbf",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

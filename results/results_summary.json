@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "project": "SmolVLA LIBERO 闭环复现与 PEFT 对照",
+  "hardware": "NVIDIA GeForce RTX 4060 Laptop GPU, 8 GB",
+  "policy": {
+    "repo_id": "lerobot/smolvla_libero",
+    "revision": "31d453f7edd78c839a8bbc39744a292686daf0de"
+  },
+  "backbone": {
+    "repo_id": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+    "revision": "7b375e1b73b11138ff12fe22c8f2822d8fe03467"
+  },
+  "full_spatial_baseline": {
+    "tasks": 10,
+    "episodes": 30,
+    "successes": 18,
+    "success_rate": 0.6,
+    "source_report": "outputs/stage6_full_spatial_benchmark/report.json",
+    "source_report_sha256": "e903f2c9ca78ed61d1a6c733786441dd1ae51a1d48f01608d3c40cb17addeb3a"
+  },
+  "action_horizon_ablation": {
+    "tasks": [4, 5, 7, 8],
+    "episodes_per_horizon": 12,
+    "results": [
+      {"horizon": 50, "successes": 2, "success_rate": 0.16666666666666666},
+      {"horizon": 25, "successes": 6, "success_rate": 0.5},
+      {"horizon": 10, "successes": 7, "success_rate": 0.5833333333333334}
+    ],
+    "source_report": "outputs/stage7_action_horizon_ablation/report.json",
+    "source_report_sha256": "f146b3d24df8c54ba1146bd55e68ad45d20d89c265fa352fdbdb40833461070b"
+  },
+  "adaptation_control": {
+    "task": 5,
+    "train_episodes": 31,
+    "validation_episodes": 8,
+    "train_frames": 3563,
+    "validation_frames": 909,
+    "steps": 1000,
+    "batch_size": 4,
+    "peak_learning_rate": 0.00001,
+    "decay_learning_rate": 0.000001,
+    "warmup_steps": 100,
+    "closed_loop_tasks": [5, 4, 7, 8],
+    "episodes_per_task": 3,
+    "action_horizon": 10
+  },
+  "expert_only": {
+    "trainable_parameters": 99880992,
+    "initial_validation_loss": 0.06633893284015357,
+    "final_validation_loss": 0.06479698396287858,
+    "peak_allocated_cuda_bytes": 2194676736,
+    "training_seconds": 324.3855546620034,
+    "model_artifact_bytes": 906712520,
+    "closed_loop_successes": 6,
+    "closed_loop_episodes": 12,
+    "success_to_failure": 1,
+    "training_report_sha256": "3fd873727c4b51e89073d6788ad389d58466c3aa4022895afec010992cefd151",
+    "evaluation_report_sha256": "a8967ca3f4ede056b23321a3e60f58ac6596f04e1173eeb321395f1bcfe89a47"
+  },
+  "lora": {
+    "rank": 16,
+    "alpha": 16,
+    "dropout": 0.0,
+    "trainable_parameters": 742656,
+    "initial_validation_loss": 0.06633893284015357,
+    "final_validation_loss": 0.06468639546073973,
+    "peak_allocated_cuda_bytes": 1737131008,
+    "training_seconds": 279.24270375999913,
+    "adapter_artifact_bytes": 3002444,
+    "closed_loop_successes": 7,
+    "closed_loop_episodes": 12,
+    "success_to_failure": 0,
+    "training_report_sha256": "5af8e3bd35eb2f2993019d0d450410d5928bb671547618d71c3b3272e23df194",
+    "evaluation_report_sha256": "53404122805afc482d0a0fec9c7a051cbca876f4d8341a873ca546e9f22852ee"
+  },
+  "published_evidence": {
+    "full_spatial_episodes": "results/episodes/full_spatial_baseline.csv",
+    "action_horizon_episodes": "results/episodes/action_horizon_ablation.csv",
+    "expert_only_episodes": "results/episodes/expert_only_eval.csv",
+    "lora_episodes": "results/episodes/lora_eval.csv",
+    "expert_only_validation": "results/training/expert_only_validation.json",
+    "lora_validation": "results/training/lora_validation.json"
+  },
+  "portfolio_media": {
+    "paired_video": "media/task7_paired_comparison.mp4",
+    "paired_video_sha256": "6778f184da8a5e0f0444e141f62cd2489378962e46c4a864fa6b1c3d3b877eed",
+    "poster": "media/task7_paired_comparison.jpg",
+    "poster_sha256": "367ccbf40d60a42afcde557f191ea662ae4af2b764a1bfdce7891a8cbf2e34f9",
+    "results_figure": "media/results_overview.svg",
+    "results_figure_sha256": "a397e772dd94bf0331c54eac29568c6b51fd58297c200174f21a145d42069b6c",
+    "results_figure_png": "media/results_overview.png",
+    "results_figure_png_sha256": "283b1a3a104a0fb9f60e70df83713144eb8e7599ecbca748f37b1eb8d90dae13"
+  },
+  "claim_boundary": "本地配对复现；不等同于官方论文 benchmark 或真机评测。"
+}

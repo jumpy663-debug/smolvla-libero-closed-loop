@@ -1,0 +1,25 @@
+# uv / Python
+.venv/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+
+# Experiment artifacts and downloaded assets
+outputs/
+artifacts/
+checkpoints/
+*.safetensors
+*.ckpt
+*.pth
+*.pt
+*.npz
+
+# Hugging Face and experiment trackers
+.cache/
+wandb/
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
