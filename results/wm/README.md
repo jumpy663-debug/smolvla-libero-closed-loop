@@ -13,6 +13,8 @@
   action-conditioned/no-action 一步预测、动作反事实、训练曲线和 episode-cluster bootstrap。
 - [`stage15_multistep_rollout`](stage15_multistep_rollout)：公共 validation 窗口上的
   1/5/10/25 步递归 rollout、teacher-forced 对照、分任务结果和 bootstrap。
+- [`stage16_closed_loop_recollection`](stage16_closed_loop_recollection)：12 个完整观测闭环
+  回合的标签、步数、模态可用性、文件哈希和容器无关内容哈希。
 
 实验设置、限制和字段解释见：
 
@@ -21,3 +23,4 @@
 - [`docs/WM_STAGE13_FULL_FEATURE_CACHE.md`](../../docs/WM_STAGE13_FULL_FEATURE_CACHE.md)
 - [`docs/WM_STAGE14_NEXT_LATENT_BASELINE.md`](../../docs/WM_STAGE14_NEXT_LATENT_BASELINE.md)
 - [`docs/WM_STAGE15_MULTISTEP_ROLLOUT.md`](../../docs/WM_STAGE15_MULTISTEP_ROLLOUT.md)
+- [`docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md`](../../docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md)
