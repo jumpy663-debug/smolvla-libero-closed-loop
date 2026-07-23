@@ -11,6 +11,8 @@
   episode 的分片 manifest、库存哈希、全量特征统计和 resume 性能。
 - [`stage14_next_latent_baseline`](stage14_next_latent_baseline)：严格配对的
   action-conditioned/no-action 一步预测、动作反事实、训练曲线和 episode-cluster bootstrap。
+- [`stage15_multistep_rollout`](stage15_multistep_rollout)：公共 validation 窗口上的
+  1/5/10/25 步递归 rollout、teacher-forced 对照、分任务结果和 bootstrap。
 
 实验设置、限制和字段解释见：
 
@@ -18,3 +20,4 @@
 - [`docs/WM_STAGE12_REPRESENTATION_PILOT.md`](../../docs/WM_STAGE12_REPRESENTATION_PILOT.md)
 - [`docs/WM_STAGE13_FULL_FEATURE_CACHE.md`](../../docs/WM_STAGE13_FULL_FEATURE_CACHE.md)
 - [`docs/WM_STAGE14_NEXT_LATENT_BASELINE.md`](../../docs/WM_STAGE14_NEXT_LATENT_BASELINE.md)
+- [`docs/WM_STAGE15_MULTISTEP_ROLLOUT.md`](../../docs/WM_STAGE15_MULTISTEP_ROLLOUT.md)

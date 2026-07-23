@@ -24,19 +24,22 @@ GeForce RTX 4060 Laptop GPU（8 GB）上完成，没有使用真机或租用云�
 
 ## World Model 扩展进度
 
-当前已完成 WM 阶段 0—4：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
+当前已完成 WM 阶段 0—5：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
 episode，生成按任务分层、episode 级互斥的 346/43/43 训练/验证/测试划分，并跑通冻结
 DINOv2-S/14 双相机表征 pilot 及全量缓存。最终以 episode 级原子分片处理 389 个
 train/validation episode、47,822 帧和 95,644 张图像，完整缓存约 1.10 GiB；389/389 shard
 通过 resume、哈希、模态对齐和确定性重算验证。在此基础上训练 0.566M 参数的一步 latent
 dynamics：严格同初始化、同 batch schedule 下，动作条件模型相对 no-action 降低 0.697%
 validation raw MSE，正确动作相对置零/打乱动作分别改善 1.961%/3.470%；episode-cluster
-bootstrap 95% CI 为 `[0.484%, 0.916%]`。43 个 test episode 始终零进入。现有 78 个闭环
-rollout 因缺少同步双相机观测和 proprioception，仅作为回采索引。详见
+bootstrap 95% CI 为 `[0.484%, 0.916%]`。冻结 checkpoint 的 oracle-state 递归评测进一步
+发现，动作模型相对 no-action 的优势从 H1 的 0.570% 增至 H25 的 5.852%，但 H25 绝对误差
+已经是 teacher-forced 的 5.30 倍，且 Task 1 出现负增益。43 个 test episode 始终零进入。
+现有 78 个闭环 rollout 因缺少同步双相机观测和 proprioception，仅作为回采索引。详见
 [数据审计](docs/WM_STAGE11_DATA_AUDIT.md)与
 [冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)、
 [全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)、
-[动作条件 Next-Latent Baseline](docs/WM_STAGE14_NEXT_LATENT_BASELINE.md)。
+[动作条件 Next-Latent Baseline](docs/WM_STAGE14_NEXT_LATENT_BASELINE.md)与
+[多步 Latent Rollout](docs/WM_STAGE15_MULTISTEP_ROLLOUT.md)。
 
 ## 系统闭环
 
@@ -211,6 +214,7 @@ adapter 重载前后的参数哈希及固定验证 loss 完全一致。
 - [WM 阶段 2：冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)
 - [WM 阶段 3：全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)
 - [WM 阶段 4：动作条件 Next-Latent Baseline](docs/WM_STAGE14_NEXT_LATENT_BASELINE.md)
+- [WM 阶段 5：多步 Latent Rollout](docs/WM_STAGE15_MULTISTEP_ROLLOUT.md)
 - [结果与媒体来源说明](media/README.md)
 - [第三方项目、模型和数据说明](THIRD_PARTY_NOTICES.md)
 
