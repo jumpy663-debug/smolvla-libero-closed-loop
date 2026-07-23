@@ -1,0 +1,19 @@
+{
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "loading_seconds": 0.33720204500014006,
+  "peak_gpu_memory_bytes": 241809408,
+  "schema_version": 1,
+  "variants": [
+    {
+      "peak_gpu_memory_bytes": 241809408,
+      "training_seconds": 50.075850313000046,
+      "variant": "action_conditioned"
+    },
+    {
+      "peak_gpu_memory_bytes": 241809408,
+      "training_seconds": 50.316196822000165,
+      "variant": "no_action"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "interpretation": "The paired action-conditioned gain is positive across the 95% episode-cluster bootstrap interval, but remains small in absolute percentage terms.",
+  "method": {
+    "float_reduction": "float64",
+    "metric": "frame-and-token-weighted raw MSE improvement percent",
+    "resampling": "sample 43 validation episodes with replacement",
+    "unit": "episode cluster"
+  },
+  "result": {
+    "aggregate_improvement_percent_float64": 0.6962689366199578,
+    "bootstrap_probability_positive": 1.0,
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 1423,
+    "conditioned_better_episodes": 36,
+    "conditioned_raw_mse_float64": 0.17145692112012625,
+    "conditioned_worse_episodes": 7,
+    "episodes": 43,
+    "improvement_percent_ci95": [
+      0.48362462760317015,
+      0.9157945250735262
+    ],
+    "improvement_percent_mean": 0.6963729174318605,
+    "median_episode_raw_mse_delta": 0.0011632514945764671,
+    "no_action_raw_mse_float64": 0.1726590927491887,
+    "tied_episodes": 0
+  },
+  "schema_version": 1,
+  "source": {
+    "conditioned_checkpoint_sha256": "3d500085c2838e5594da3c1970f2bfb672fa2fb169b6ffa61b59dbce646e3ac7",
+    "no_action_checkpoint_sha256": "3e09e0ba289f9ebd59667e4391b1076b766509a67a138fc8e7733a2f067010a4",
+    "stage14_report": "results/wm/stage14_next_latent_baseline/report.json",
+    "stage14_report_sha256": "179bb80ef8ccf10fcdc97095d4d694c50f1de0f28a6c5838182b8ca216577b5d",
+    "test_episodes_used": 0,
+    "validation_episodes": 43,
+    "validation_transitions": 5168
+  },
+  "stage": "WM Stage 14 episode-cluster bootstrap",
+  "status": "passed"
+}

@@ -1,0 +1,195 @@
+{
+  "artifacts": {
+    "normalization": "normalization.json",
+    "normalization_sha256": "749161e0a78b04a0a8717bb7eba64d30c4817d9e8c21418a7781653d58729aaf",
+    "training_curve": "training_curve.csv",
+    "training_curve_sha256": "ca0c69f6ced9fad41b658a90ced147120f17907523f892dac5af889d87b515eb"
+  },
+  "conditioned_counterfactual": {
+    "correct_action": {
+      "high_motion_raw_mse": 0.2352008502,
+      "improvement_vs_persistence_percent": 21.7635695565,
+      "normalized_mse": 0.10014907,
+      "per_task_raw_mse": {
+        "0": 0.1734323704,
+        "1": 0.1635364038,
+        "2": 0.1691490737,
+        "3": 0.176523206,
+        "4": 0.1752670896,
+        "5": 0.1624124035,
+        "6": 0.1812641012,
+        "7": 0.170121937,
+        "8": 0.1607509084,
+        "9": 0.1833924046
+      },
+      "persistence_normalized_mse": 0.1287608601,
+      "persistence_raw_mse": 0.21915213,
+      "raw_mse": 0.1714568037,
+      "token_cosine_similarity": 0.9737463322
+    },
+    "shuffled_action": {
+      "high_motion_raw_mse": 0.2429402945,
+      "improvement_vs_persistence_percent": 18.9514905564,
+      "normalized_mse": 0.1036551363,
+      "per_task_raw_mse": {
+        "0": 0.1819785949,
+        "1": 0.1691015485,
+        "2": 0.1755613585,
+        "3": 0.1846556565,
+        "4": 0.1794497954,
+        "5": 0.1681133087,
+        "6": 0.1886870701,
+        "7": 0.1748749826,
+        "8": 0.1673739971,
+        "9": 0.1889561288
+      },
+      "persistence_normalized_mse": 0.1287608601,
+      "persistence_raw_mse": 0.21915213,
+      "raw_mse": 0.1776195347,
+      "token_cosine_similarity": 0.9727960356
+    },
+    "zero_action": {
+      "high_motion_raw_mse": 0.2404352524,
+      "improvement_vs_persistence_percent": 20.1990290186,
+      "normalized_mse": 0.1020909656,
+      "per_task_raw_mse": {
+        "0": 0.1791658186,
+        "1": 0.1663804847,
+        "2": 0.1726091018,
+        "3": 0.1808630111,
+        "4": 0.1773397765,
+        "5": 0.1651363838,
+        "6": 0.1855966665,
+        "7": 0.1722162718,
+        "8": 0.1647072773,
+        "9": 0.1869991703
+      },
+      "persistence_normalized_mse": 0.1287608601,
+      "persistence_raw_mse": 0.21915213,
+      "raw_mse": 0.1748855276,
+      "token_cosine_similarity": 0.9732186403
+    }
+  },
+  "counterfactual_action_permutation_seed": 1417,
+  "data": {
+    "high_motion_definition": "top validation quartile by raw persistence MSE",
+    "high_motion_threshold": 0.2717869281768799,
+    "normalization_source": "train frames only",
+    "source_shard_manifest": "results/wm/stage13_full_feature_cache/shards.csv",
+    "source_shard_manifest_sha256": "ac6f02890e946714dc28af88b1329b709786bb3682b118782df0c8036c2d3bbc",
+    "test_episodes_used": 0,
+    "train_episodes": 346,
+    "train_frames": 42611,
+    "train_transitions": 42265,
+    "validation_episodes": 43,
+    "validation_frames": 5211,
+    "validation_transitions": 5168
+  },
+  "model": {
+    "architecture": "token-wise residual MLP with global latent/state/action context",
+    "depth": 2,
+    "hidden_dimension": 192,
+    "initialization_sha256": "ce5211a7325246bafb66875dd54420a8e992e99862fb46b2219835377f0ebbab",
+    "parameter_count": 566046,
+    "same_architecture_and_initialization_for_both_variants": true,
+    "zero_initialized_output_equals_persistence": true
+  },
+  "paired_comparison": {
+    "conditioned_vs_no_action_high_motion_improvement_percent": 0.5299051025,
+    "conditioned_vs_no_action_raw_mse_improvement_percent": 0.6967556704,
+    "correct_vs_shuffled_action_raw_mse_improvement_percent": 3.4696245735,
+    "correct_vs_zero_action_raw_mse_improvement_percent": 1.9605532598
+  },
+  "schema_version": 1,
+  "software": {
+    "numpy": "2.2.6",
+    "safetensors": "0.7.0",
+    "torch": "2.11.0+cu128"
+  },
+  "stage": "WM Stage 14 paired next-latent baseline",
+  "stage15_readiness": {
+    "action_conditioning_signal_detected": true,
+    "decision_rule": "Proceed to multi-step rollout only if correct actions outperform the paired no-action model and degrade under zeroed or shuffled action counterfactuals.",
+    "multi_step_rollout_ready": true,
+    "multi_step_rollout_started": false,
+    "one_step_dynamics_trained": true,
+    "test_split_remains_held_out": true
+  },
+  "status": "passed",
+  "training": {
+    "batch_schedule_sha256": "7e8f2437872ff0a3b416d6f7ab361308626c953cb6ce1b59492f980a84f3895f",
+    "batch_size": 128,
+    "checkpoint_selection": "lowest validation normalized MSE",
+    "eval_batch_size": 256,
+    "gradient_clip_norm": 1.0,
+    "learning_rate": 0.001,
+    "precision": "BF16 autocast training; FP32 validation",
+    "same_batch_schedule_for_both_variants": true,
+    "seed": 1400,
+    "steps": 5000,
+    "validation_interval": 250,
+    "weight_decay": 0.0001
+  },
+  "variants": {
+    "action_conditioned": {
+      "best_step": 4500,
+      "best_validation_normalized_mse": 0.10014907,
+      "checkpoint": "outputs/wm/stage14_next_latent_baseline/action_conditioned_best.safetensors",
+      "checkpoint_bytes": 2266528,
+      "checkpoint_reload_exact_metrics": true,
+      "checkpoint_sha256": "3d500085c2838e5594da3c1970f2bfb672fa2fb169b6ffa61b59dbce646e3ac7",
+      "validation": {
+        "high_motion_raw_mse": 0.2352008502,
+        "improvement_vs_persistence_percent": 21.7635695565,
+        "normalized_mse": 0.10014907,
+        "per_task_raw_mse": {
+          "0": 0.1734323704,
+          "1": 0.1635364038,
+          "2": 0.1691490737,
+          "3": 0.176523206,
+          "4": 0.1752670896,
+          "5": 0.1624124035,
+          "6": 0.1812641012,
+          "7": 0.170121937,
+          "8": 0.1607509084,
+          "9": 0.1833924046
+        },
+        "persistence_normalized_mse": 0.1287608601,
+        "persistence_raw_mse": 0.21915213,
+        "raw_mse": 0.1714568037,
+        "token_cosine_similarity": 0.9737463322
+      },
+      "variant": "action_conditioned"
+    },
+    "no_action": {
+      "best_step": 4500,
+      "best_validation_normalized_mse": 0.1008128255,
+      "checkpoint": "outputs/wm/stage14_next_latent_baseline/no_action_best.safetensors",
+      "checkpoint_bytes": 2266520,
+      "checkpoint_reload_exact_metrics": true,
+      "checkpoint_sha256": "3e09e0ba289f9ebd59667e4391b1076b766509a67a138fc8e7733a2f067010a4",
+      "validation": {
+        "high_motion_raw_mse": 0.2364538311,
+        "improvement_vs_persistence_percent": 21.2146280097,
+        "normalized_mse": 0.1008128255,
+        "per_task_raw_mse": {
+          "0": 0.176322117,
+          "1": 0.1641738845,
+          "2": 0.1702918692,
+          "3": 0.1779160761,
+          "4": 0.1759195541,
+          "5": 0.1635190053,
+          "6": 0.1832417089,
+          "7": 0.1705477517,
+          "8": 0.1618925387,
+          "9": 0.1845906093
+        },
+        "persistence_normalized_mse": 0.1287608601,
+        "persistence_raw_mse": 0.21915213,
+        "raw_mse": 0.1726598208,
+        "token_cosine_similarity": 0.9735764918
+      },
+      "variant": "no_action"
+    }
+  }
+}
