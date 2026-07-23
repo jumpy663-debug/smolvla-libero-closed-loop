@@ -1,0 +1,289 @@
+{
+  "existing_rollouts": {
+    "decision": "Existing rollout artifacts are excluded from WM-v1 training because they do not contain synchronized proprioception and dual-camera policy observations. They remain usable for visual-action-only pilots and as a deterministic recollection index.",
+    "episodes": 78,
+    "modality_audit": {
+      "actions": 78,
+      "dual_camera_observations": 0,
+      "observation_state": 0,
+      "render_video": 78,
+      "visual_action_only_candidates": 78,
+      "wm_v1_eligible": 0
+    },
+    "per_policy_horizon": {
+      "expert_only:h10": {
+        "episodes": 12,
+        "successes": 6
+      },
+      "lora_rank16:h10": {
+        "episodes": 12,
+        "successes": 7
+      },
+      "pretrained:h10": {
+        "episodes": 12,
+        "successes": 7
+      },
+      "pretrained:h25": {
+        "episodes": 12,
+        "successes": 6
+      },
+      "pretrained:h50": {
+        "episodes": 30,
+        "successes": 18
+      }
+    },
+    "selected_artifact_bytes": 8934162,
+    "source_reports": {
+      "stage10_task5_lora_eval": {
+        "episodes_csv_sha256": "34654fbf879a0e3892913a36a51814325714195bebde45d4ffe8827e77db1439",
+        "report_sha256": "53404122805afc482d0a0fec9c7a051cbca876f4d8341a873ca546e9f22852ee"
+      },
+      "stage6_full_spatial_benchmark": {
+        "episodes_csv_sha256": "987703355bdc450ddb9c2e4df23a412f7fea68f1baeb94b6a556faf185c67dec",
+        "report_sha256": "e903f2c9ca78ed61d1a6c733786441dd1ae51a1d48f01608d3c40cb17addeb3a"
+      },
+      "stage7_action_horizon_ablation": {
+        "episodes_csv_sha256": "62bc355b176eb95dfc12053e7933b7bf8a28b05522d2b9a85150a25d974a7741",
+        "report_sha256": "f146b3d24df8c54ba1146bd55e68ad45d20d89c265fa352fdbdb40833461070b"
+      },
+      "stage9_task5_finetune_eval": {
+        "episodes_csv_sha256": "2773dabab9d335f122cb3991bcff4718d7bef8ed19af45682906fcfa04413fcc",
+        "report_sha256": "a8967ca3f4ede056b23321a3e60f58ac6596f04e1173eeb321395f1bcfe89a47"
+      }
+    },
+    "unique_canonical_keys": 78
+  },
+  "expert_demonstrations": {
+    "dataset": {
+      "all_episodes": 1693,
+      "all_frames": 273465,
+      "all_tasks": 40,
+      "codebase_version": "v3.0",
+      "data_bytes": 20264464,
+      "data_file_mapping_source": "episode_index scanned from parquet fragments",
+      "data_files": 377,
+      "data_inventory_sha256": "c29b05906859a79ae5805da11b94d98f7dcf3adcf25f290dcab209eba046a0d2",
+      "fps": 10.0,
+      "metadata_data_file_mismatches": 1690,
+      "metadata_sha256": {
+        "meta/episodes/chunk-000/file-000.parquet": "539237daff5e109e8ddd193ab9c8e54b844444c976fb72cb2f34d975dd82aa3d",
+        "meta/info.json": "630630a1a4f07fc9fc1f1b2b7987ed3bd034bd8cffaaf8a0e6939ae9c468445d",
+        "meta/stats.json": "9d64d6a3a81bc4728d97c5c028d7655b0c8c4867f39afec41c453b5a898cbd04",
+        "meta/tasks.parquet": "80bbbcdf623b7447c0f187af8ea70aa3a5c0018aaf56adba1731aeddcf18f5ff"
+      },
+      "repo_id": "lerobot/libero",
+      "revision": "2e98211ba27db9322efbaa5ed108b34bb03ca163",
+      "snapshot_complete": true,
+      "video_bytes": 1915134134,
+      "video_files": 74,
+      "video_inventory_sha256": "f1acf3027de4951c945a6d4163e244a5ccc7aa9fda56939c95548cefe0bd6938"
+    },
+    "feature_cache_budget": {
+      "all_spatial_bytes": 1301790720,
+      "assumption": {
+        "bytes_per_frame": 24576,
+        "cameras": 2,
+        "dtype": "float16",
+        "latent_dimension": 384,
+        "tokens_per_camera": 16
+      },
+      "hard_subset_bytes": 517226496
+    },
+    "leakage_checks": {
+      "episode_level_split": true,
+      "frame_indices_contiguous_within_episode": true,
+      "note": "LIBERO metadata does not expose simulator initial-state identifiers for expert demonstrations, so overlap with benchmark init-state IDs cannot be audited.",
+      "train_test_disjoint": true,
+      "train_validation_disjoint": true,
+      "validation_test_disjoint": true
+    },
+    "per_task": {
+      "0": {
+        "dataset_task_index": 34,
+        "episodes": 45,
+        "frames": 4487,
+        "prompt": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+        "split_episodes": {
+          "test": 4,
+          "train": 37,
+          "validation": 4
+        }
+      },
+      "1": {
+        "dataset_task_index": 37,
+        "episodes": 45,
+        "frames": 5940,
+        "prompt": "pick up the black bowl next to the ramekin and place it on the plate",
+        "split_episodes": {
+          "test": 4,
+          "train": 37,
+          "validation": 4
+        }
+      },
+      "2": {
+        "dataset_task_index": 38,
+        "episodes": 46,
+        "frames": 5343,
+        "prompt": "pick up the black bowl from table center and place it on the plate",
+        "split_episodes": {
+          "test": 5,
+          "train": 36,
+          "validation": 5
+        }
+      },
+      "3": {
+        "dataset_task_index": 35,
+        "episodes": 43,
+        "frames": 4287,
+        "prompt": "pick up the black bowl on the cookie box and place it on the plate",
+        "split_episodes": {
+          "test": 4,
+          "train": 35,
+          "validation": 4
+        }
+      },
+      "4": {
+        "dataset_task_index": 31,
+        "episodes": 42,
+        "frames": 6257,
+        "prompt": "pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate",
+        "split_episodes": {
+          "test": 4,
+          "train": 34,
+          "validation": 4
+        }
+      },
+      "5": {
+        "dataset_task_index": 32,
+        "episodes": 39,
+        "frames": 4472,
+        "prompt": "pick up the black bowl on the ramekin and place it on the plate",
+        "split_episodes": {
+          "test": 4,
+          "train": 31,
+          "validation": 4
+        }
+      },
+      "6": {
+        "dataset_task_index": 30,
+        "episodes": 46,
+        "frames": 5775,
+        "prompt": "pick up the black bowl next to the cookie box and place it on the plate",
+        "split_episodes": {
+          "test": 5,
+          "train": 36,
+          "validation": 5
+        }
+      },
+      "7": {
+        "dataset_task_index": 33,
+        "episodes": 35,
+        "frames": 4747,
+        "prompt": "pick up the black bowl on the stove and place it on the plate",
+        "split_episodes": {
+          "test": 4,
+          "train": 27,
+          "validation": 4
+        }
+      },
+      "8": {
+        "dataset_task_index": 36,
+        "episodes": 47,
+        "frames": 5570,
+        "prompt": "pick up the black bowl next to the plate and place it on the plate",
+        "split_episodes": {
+          "test": 5,
+          "train": 37,
+          "validation": 5
+        }
+      },
+      "9": {
+        "dataset_task_index": 39,
+        "episodes": 44,
+        "frames": 6092,
+        "prompt": "pick up the black bowl on the wooden cabinet and place it on the plate",
+        "split_episodes": {
+          "test": 4,
+          "train": 36,
+          "validation": 4
+        }
+      }
+    },
+    "spatial_subset": {
+      "episodes": 432,
+      "frames": 52970,
+      "hard_subset_episodes": 163,
+      "hard_subset_frames": 21046,
+      "hard_subset_tasks": [
+        4,
+        5,
+        7,
+        8
+      ],
+      "task_mapping": {
+        "0": 34,
+        "1": 37,
+        "2": 38,
+        "3": 35,
+        "4": 31,
+        "5": 32,
+        "6": 30,
+        "7": 33,
+        "8": 36,
+        "9": 39
+      },
+      "tasks": 10
+    },
+    "splits": {
+      "test": {
+        "episodes": 43,
+        "frames": 5148,
+        "valid_windows": {
+          "10": 4718,
+          "25": 4073,
+          "50": 2998
+        }
+      },
+      "train": {
+        "episodes": 346,
+        "frames": 42611,
+        "valid_windows": {
+          "10": 39151,
+          "25": 33961,
+          "50": 25311
+        }
+      },
+      "validation": {
+        "episodes": 43,
+        "frames": 5211,
+        "valid_windows": {
+          "10": 4781,
+          "25": 4136,
+          "50": 3061
+        }
+      }
+    }
+  },
+  "horizons": [
+    10,
+    25,
+    50
+  ],
+  "published_manifests": {
+    "expert_episodes": "expert_episodes.csv",
+    "expert_episodes_sha256": "24353b9c541b72a3a2fdf8ca54bd8d52f4ac10471dd75f88131c5d3186809957",
+    "rollout_episodes": "rollout_episodes.csv",
+    "rollout_episodes_sha256": "8ff72195486f48f52eb20cfbb699e71e66d9a4a1f219ee2eb9900fd4182f5b2a",
+    "splits": "splits.json",
+    "splits_sha256": "f1e0d499f45a6613a759b9d5a88acd625062d290a18b78b3357bdf8650ad1bf4"
+  },
+  "schema_version": 1,
+  "stage": "WM Stage 11 dataset audit and episode-level split",
+  "stage12_readiness": {
+    "existing_rollouts_ready_for_wm_v1": false,
+    "expert_demonstrations_ready": true,
+    "feature_extraction_can_start_without_rollout_recollection": true,
+    "recommended_scope": "Start representation pilot on expert LIBERO Spatial demonstrations; defer rollout recollection until the frozen feature representation is selected."
+  },
+  "status": "passed"
+}

@@ -22,6 +22,13 @@ GeForce RTX 4060 Laptop GPU（8 GB）上完成，没有使用真机或租用云�
   峰值训练显存降低 20.9%，并避免了动作专家微调出现的闭环退化。
 - 对 checkpoint 重载、动作有限值、轨迹归档、视频哈希和视频可解码性进行完整审计。
 
+## World Model 扩展进度
+
+当前已完成 WM 阶段 0—1：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
+episode，并生成按任务分层、episode 级互斥的 346/43/43 训练/验证/测试划分。现有 78 个闭环
+rollout 因没有同步保存双相机观测和 proprioception，仅作为回采索引，不会被误用为 WM-v1
+训练数据。详细方法和边界见 [WM 阶段 0—1 数据审计](docs/WM_STAGE11_DATA_AUDIT.md)。
+
 ## 系统闭环
 
 ```mermaid
@@ -176,7 +183,7 @@ adapter 重载前后的参数哈希及固定验证 loss 完全一致。
 
 ```text
 .
-├── scripts/                         # 阶段 1—10 的复现与评测脚本
+├── scripts/                         # 阶段 1—10 复现脚本与 WM 扩展脚本
 ├── docs/                            # 各阶段实验设置、结果和边界
 ├── results/                         # 指标摘要、逐回合 CSV 与验证曲线
 ├── media/                           # 轻量结果图与严格配对视频
@@ -191,6 +198,7 @@ adapter 重载前后的参数哈希及固定验证 loss 完全一致。
 - [训练链路检查](docs/STAGE8_RESULTS.md)
 - [动作专家微调](docs/STAGE9_RESULTS.md)
 - [LoRA 对照](docs/STAGE10_RESULTS.md)
+- [WM 阶段 0—1：数据审计与确定性划分](docs/WM_STAGE11_DATA_AUDIT.md)
 - [结果与媒体来源说明](media/README.md)
 - [第三方项目、模型和数据说明](THIRD_PARTY_NOTICES.md)
 
