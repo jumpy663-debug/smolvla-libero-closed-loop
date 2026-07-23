@@ -24,13 +24,16 @@ GeForce RTX 4060 Laptop GPU（8 GB）上完成，没有使用真机或租用云�
 
 ## World Model 扩展进度
 
-当前已完成 WM 阶段 0—2：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
+当前已完成 WM 阶段 0—3：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
 episode，生成按任务分层、episode 级互斥的 346/43/43 训练/验证/测试划分，并跑通冻结
-DINOv2-S/14 双相机表征 pilot。Pilot 覆盖 train/validation 的全部 10 个任务，80 个对齐时刻的
-视觉 token、状态与动作均通过数值、重复前向和缓存重载验证。现有 78 个闭环 rollout 因没有同步
-保存双相机观测和 proprioception，仅作为回采索引，不会被误用为 WM-v1 训练数据。详见
+DINOv2-S/14 双相机表征 pilot 及全量缓存。最终以 episode 级原子分片处理 389 个
+train/validation episode、47,822 帧和 95,644 张图像，完整缓存约 1.10 GiB；389/389 shard
+通过 resume、哈希、模态对齐和确定性重算验证，43 个 test episode 零进入。现有 78 个闭环
+rollout 因没有同步保存双相机观测和 proprioception，仅作为回采索引，不会被误用为 WM-v1
+训练数据。详见
 [数据审计](docs/WM_STAGE11_DATA_AUDIT.md)与
-[冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)。
+[冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)、
+[全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)。
 
 ## 系统闭环
 
@@ -203,6 +206,7 @@ adapter 重载前后的参数哈希及固定验证 loss 完全一致。
 - [LoRA 对照](docs/STAGE10_RESULTS.md)
 - [WM 阶段 0—1：数据审计与确定性划分](docs/WM_STAGE11_DATA_AUDIT.md)
 - [WM 阶段 2：冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)
+- [WM 阶段 3：全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)
 - [结果与媒体来源说明](media/README.md)
 - [第三方项目、模型和数据说明](THIRD_PARTY_NOTICES.md)
 

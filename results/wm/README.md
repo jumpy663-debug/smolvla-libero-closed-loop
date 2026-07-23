@@ -7,8 +7,11 @@
   train/validation/test 划分、既有闭环 rollout 模态审计和 SHA-256 摘要。
 - [`stage12_representation_pilot`](stage12_representation_pilot)：冻结 DINOv2 双相机表征的
   80 样本 pilot、逐样本像素哈希、特征统计和缓存哈希。
+- [`stage13_full_feature_cache`](stage13_full_feature_cache)：389 个 train/validation
+  episode 的分片 manifest、库存哈希、全量特征统计和 resume 性能。
 
 实验设置、限制和字段解释见：
 
 - [`docs/WM_STAGE11_DATA_AUDIT.md`](../../docs/WM_STAGE11_DATA_AUDIT.md)
 - [`docs/WM_STAGE12_REPRESENTATION_PILOT.md`](../../docs/WM_STAGE12_REPRESENTATION_PILOT.md)
+- [`docs/WM_STAGE13_FULL_FEATURE_CACHE.md`](../../docs/WM_STAGE13_FULL_FEATURE_CACHE.md)

@@ -1,0 +1,22 @@
+{
+  "batch_size": 32,
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "driver_version": "596.08",
+  "first_full_extraction": {
+    "decoding_seconds": 105.00384490400052,
+    "encoding_seconds": 587.3226020760005,
+    "new_shards": 389,
+    "peak_gpu_memory_bytes": 306543104,
+    "resumed_shards": 0,
+    "total_seconds": 703.69931692
+  },
+  "note": "Local measurements; not a cross-machine benchmark.",
+  "resume_validation": {
+    "new_shards": 0,
+    "peak_gpu_memory_bytes": 306543104,
+    "resumed_shards": 389,
+    "total_seconds": 9.116244480999967
+  },
+  "schema_version": 1
+}
