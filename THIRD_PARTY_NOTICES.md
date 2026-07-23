@@ -10,6 +10,9 @@
 - [SmolVLM2-500M-Video-Instruct](https://huggingface.co/HuggingFaceTB/SmolVLM2-500M-Video-Instruct)：
   SmolVLA 使用的视觉语言主干，实验固定 revision
   `7b375e1b73b11138ff12fe22c8f2822d8fe03467`。
+- [DINOv2-Small](https://huggingface.co/facebook/dinov2-small)：WM 表征 pilot 使用的冻结视觉
+  编码器，实验固定 revision `ed25f3a31f01632728cabb09d1542f84ab7b0056`；模型权重不在
+  本仓库重新分发。
 - [LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO) 与
   [LeRobot LIBERO 数据集](https://huggingface.co/datasets/lerobot/libero)：分别提供仿真任务和
   demonstrations；数据实验固定 revision

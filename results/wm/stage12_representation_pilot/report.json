@@ -1,0 +1,150 @@
+{
+  "aligned_modalities": {
+    "action": [
+      80,
+      7
+    ],
+    "observation_state": [
+      80,
+      8
+    ],
+    "visual_tokens": [
+      80,
+      2,
+      16,
+      384
+    ]
+  },
+  "artifacts": {
+    "feature_cache": "outputs/wm/stage12_representation_pilot/pilot_features.safetensors",
+    "feature_cache_bytes": 1974480,
+    "feature_cache_sha256": "0a7cb5b0db7cd1a666e705df4e550883289eab01996b7a67fd5a48eff9e5314e",
+    "samples": "samples.csv",
+    "samples_sha256": "894f6aff0a4da9ecedc440c3f05b19084f8fdb9a673c4a0e5ec780bad3566be2"
+  },
+  "dataset": {
+    "manifest": "results/wm/stage11_data_audit/expert_episodes.csv",
+    "manifest_sha256": "24353b9c541b72a3a2fdf8ca54bd8d52f4ac10471dd75f88131c5d3186809957",
+    "repo_id": "lerobot/libero",
+    "revision": "2e98211ba27db9322efbaa5ed108b34bb03ca163"
+  },
+  "encoder": {
+    "input_shape": [
+      80,
+      2,
+      3,
+      256,
+      256
+    ],
+    "model_file_sha256": {
+      "config.json": "1809f83e3bdb1609a501a610ad4a742f4fd8ae44d72ca4aa0df52d1f2ac8628d",
+      "model.safetensors": "ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1",
+      "preprocessor_config.json": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828"
+    },
+    "model_id": "facebook/dinov2-small",
+    "native_patch_grid": [
+      16,
+      16
+    ],
+    "output_dtype": "float16",
+    "output_shape": [
+      80,
+      2,
+      16,
+      384
+    ],
+    "parameter_count": 22056576,
+    "patch_size": 14,
+    "pooling": "non-overlapping 4x4 mean pooling over 16x16 patch tokens",
+    "processor_output_resolution": [
+      224,
+      224
+    ],
+    "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "trainable_parameter_count": 0
+  },
+  "schema_version": 1,
+  "selection": {
+    "camera_images": 160,
+    "episodes": 20,
+    "episodes_per_task": 1,
+    "frames_per_episode": 4,
+    "samples": 80,
+    "samples_per_split": {
+      "train": 40,
+      "validation": 40
+    },
+    "seed": 1200,
+    "splits": [
+      "train",
+      "validation"
+    ],
+    "task_coverage": {
+      "train": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "validation": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    }
+  },
+  "software": {
+    "numpy": "2.2.6",
+    "safetensors": "0.7.0",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.5.4"
+  },
+  "stage": "WM Stage 12 frozen representation pilot",
+  "stage13_readiness": {
+    "decision": "The frozen dual-camera representation is finite, non-collapsed, deterministic within the tested hardware path, and aligned with state/action rows.",
+    "full_feature_extraction_ready": true,
+    "world_model_training_started": false
+  },
+  "status": "passed",
+  "validation": {
+    "action_finite": true,
+    "cache_reload_bit_exact": true,
+    "decoded_image_dtype": "uint8",
+    "decoded_image_shape": [
+      80,
+      2,
+      3,
+      256,
+      256
+    ],
+    "feature_statistics": {
+      "camera_embedding_cosine_maximum": 0.72493769,
+      "camera_embedding_cosine_mean": 0.48701927,
+      "camera_embedding_cosine_minimum": 0.23657428,
+      "finite": true,
+      "maximum": 15.5234375,
+      "mean": 0.06570309,
+      "mean_channel_standard_deviation": 0.43133491,
+      "minimum": -11.8203125,
+      "standard_deviation": 1.80467541,
+      "unique_sample_embeddings": 80
+    },
+    "repeat_first_batch_bit_exact": true,
+    "repeat_first_batch_max_abs_difference": 0.0,
+    "state_finite": true,
+    "video_decode_backend": "pyav"
+  }
+}

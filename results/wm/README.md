@@ -5,6 +5,10 @@
 
 - [`stage11_data_audit`](stage11_data_audit)：LIBERO Spatial 专家数据 manifest、确定性
   train/validation/test 划分、既有闭环 rollout 模态审计和 SHA-256 摘要。
+- [`stage12_representation_pilot`](stage12_representation_pilot)：冻结 DINOv2 双相机表征的
+  80 样本 pilot、逐样本像素哈希、特征统计和缓存哈希。
 
-实验设置、限制和字段解释见
-[`docs/WM_STAGE11_DATA_AUDIT.md`](../../docs/WM_STAGE11_DATA_AUDIT.md)。
+实验设置、限制和字段解释见：
+
+- [`docs/WM_STAGE11_DATA_AUDIT.md`](../../docs/WM_STAGE11_DATA_AUDIT.md)
+- [`docs/WM_STAGE12_REPRESENTATION_PILOT.md`](../../docs/WM_STAGE12_REPRESENTATION_PILOT.md)
