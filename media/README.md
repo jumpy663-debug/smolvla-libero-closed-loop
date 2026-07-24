@@ -44,3 +44,12 @@ cell。
 ```text
 941aeed8439973c991fede5a88dbb3633acc84fd9811cc187f13a6eebe1c1cf7  wm_stage18_initial_state_scout.svg
 ```
+
+`wm_stage19_balanced_cohort.svg` 根据
+[`../results/wm/stage19_balanced_cohort`](../results/wm/stage19_balanced_cohort)
+中的 Task 8 固定块扩展与三任务门槛审计结果绘制，展示为什么本阶段没有生成不满足预注册要求的
+calibration/test 队列。
+
+```text
+ff437eb6a42745c79f43879db95465424906ae0807afed864e7e96049af8a412  wm_stage19_balanced_cohort.svg
+```

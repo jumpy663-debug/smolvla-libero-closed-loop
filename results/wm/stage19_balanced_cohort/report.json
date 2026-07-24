@@ -1,0 +1,184 @@
+{
+  "artifacts": {
+    "balanced_cohort_csv": null,
+    "balanced_cohort_csv_sha256": null,
+    "raw_observations_committed": false,
+    "task5_stress_set_csv": "task5_stress_set.csv",
+    "task5_stress_set_csv_sha256": "f874e0aea19a79b80dfd6ab8fc8724fe2f9e7b8da6d6f9c8ffffadbc1c444e98",
+    "task8_extension_csv": "task8_extension.csv",
+    "task8_extension_csv_sha256": "5108864a13c899da6cc4c2f811bfad5b4dd58f50ad81b6faed2c859e4c5bfc46"
+  },
+  "cohort": {
+    "calibration_episodes": 0,
+    "calibration_test_episode_disjoint": false,
+    "episodes": 0,
+    "failures": 0,
+    "frozen": false,
+    "selection_rule": "Within each task and label, sort by SHA-256 of the fixed Stage 19 salt and canonical episode key; take three, assigning ranks 0-1 to calibration and rank 2 to test.",
+    "successes": 0,
+    "task_ids": [
+      4,
+      7,
+      8
+    ],
+    "test_episodes": 0
+  },
+  "cohort_readiness": {
+    "blocking_cells": [
+      {
+        "available": 2,
+        "benchmark_task_id": 8,
+        "deficit": 1,
+        "label": "failure",
+        "required": 3
+      }
+    ],
+    "per_task": {
+      "4": {
+        "failure": {
+          "available": 4,
+          "ready": true,
+          "required": 3
+        },
+        "success": {
+          "available": 8,
+          "ready": true,
+          "required": 3
+        }
+      },
+      "7": {
+        "failure": {
+          "available": 3,
+          "ready": true,
+          "required": 3
+        },
+        "success": {
+          "available": 9,
+          "ready": true,
+          "required": 3
+        }
+      },
+      "8": {
+        "failure": {
+          "available": 2,
+          "ready": false,
+          "required": 3
+        },
+        "success": {
+          "available": 22,
+          "ready": true,
+          "required": 3
+        }
+      }
+    },
+    "ready": false
+  },
+  "determinism_audit": {
+    "bit_exact_fields": [
+      "success",
+      "steps",
+      "initial_observation_sha256",
+      "action_sha256"
+    ],
+    "init_state_index": 15,
+    "passed": true,
+    "task_id": 8
+  },
+  "frozen_world_model": {
+    "failure_direction": "higher score means more likely failure",
+    "selection_uses_stage17_scores": false,
+    "stage17_primary_score": "h10_raw_mse",
+    "thresholds_fitted_in_stage19": 0,
+    "world_model_scores_computed_in_stage19": 0
+  },
+  "limitations": [
+    "The cohort is score-blind but label-aware by construction.",
+    "Task 5 is excluded from AUROC rather than converted into an artificial positive class.",
+    "No complete observations or world-model features are collected in this stage.",
+    "The test split remains untouched by world-model scoring and threshold calibration."
+  ],
+  "protocol": {
+    "backbone_sha256": "b9bfd456c9472c0acd5719d6e514c4b859891af205ee1a736552fd3497b8b0c3",
+    "calibration_per_task_label": 2,
+    "cohort_task_ids": [
+      4,
+      7,
+      8
+    ],
+    "episode_batch_size": 1,
+    "episode_seed_formula": "180000 + task_id * 100 + init_state_index",
+    "extension_initial_state_indices": [
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "extension_must_finish_full_block": true,
+    "extension_task_id": 8,
+    "n_action_steps": 10,
+    "policy_sha256": "9a9f6413e42c0f332fccbce9a0dc796af2790f82cf002f791cdbf7e01e1afca8",
+    "required_per_task_label": 3,
+    "resolution": 360,
+    "schema_version": 1,
+    "selection_salt": "stage19-three-task-balanced-cohort-v1",
+    "selection_uses_stage17_scores": false,
+    "stage17_report_sha256": "06859d1835154393488a678fda8fefb42f1ba48ea8bb0d07fef4be6802314e5a",
+    "stage18_episodes_sha256": "d98268c4ab3b43bdb646b8ff3f3855acb841dac065ed73eed129b590688d99d9",
+    "stage18_report_sha256": "4e97090db32baa6c58258c058606b669e8967712ad419325eebc17ac293d6f7a",
+    "stress_task_id": 5,
+    "stress_task_role": "policy-floor external stress set; excluded from within-task AUROC",
+    "suite": "libero_spatial",
+    "test_per_task_label": 1
+  },
+  "protocol_sha256": "231577f676e5191e2230638849c2b43a376b17cde41f3ba6c45bc5acd3837694",
+  "schema_version": 1,
+  "scope": {
+    "cohort_candidate_episodes": 48,
+    "complete_observations_saved": 0,
+    "extension_episodes": 12,
+    "extension_failures": 0,
+    "extension_initial_state_indices": [
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "extension_successes": 12,
+    "extension_task_id": 8,
+    "stress_episodes": 12,
+    "test_demonstration_episodes_used": 0
+  },
+  "stage": "WM Stage 19 score-blind balanced cohort freeze",
+  "stage20_readiness": {
+    "balanced_cohort_frozen": false,
+    "complete_observation_recollection_can_start": false,
+    "continued_natural_failure_search_recommended": false,
+    "paired_action_intervention_pilot_recommended": true,
+    "stage17_score_remains_frozen": true
+  },
+  "status": "insufficient_balance",
+  "task5_stress_set": {
+    "episodes": 12,
+    "failures": 12,
+    "included_in_balanced_cohort": false,
+    "reason": "Task 5 has no successes in official initial states 3-14 and cannot support within-task success/failure discrimination.",
+    "role": "policy-floor external stress set",
+    "successes": 0
+  }
+}

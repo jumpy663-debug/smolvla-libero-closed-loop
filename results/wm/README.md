@@ -19,6 +19,8 @@
   action disagreement、episode 级 AUROC、精确置换和多重比较校正。
 - [`stage18_initial_state_scout`](stage18_initial_state_scout)：48 个未见官方初始状态上的
   成功/失败标签、步数、观测与动作指纹，以及预注册任务内平衡门槛审计。
+- [`stage19_balanced_cohort`](stage19_balanced_cohort)：Task 8 官方状态 15—26 的固定块
+  扩展、Task 5 能力地板 stress set，以及三任务平衡队列可行性审计。
 
 实验设置、限制和字段解释见：
 
@@ -30,3 +32,4 @@
 - [`docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md`](../../docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md)
 - [`docs/WM_STAGE17_FAILURE_SIGNAL.md`](../../docs/WM_STAGE17_FAILURE_SIGNAL.md)
 - [`docs/WM_STAGE18_INITIAL_STATE_SCOUT.md`](../../docs/WM_STAGE18_INITIAL_STATE_SCOUT.md)
+- [`docs/WM_STAGE19_BALANCED_COHORT.md`](../../docs/WM_STAGE19_BALANCED_COHORT.md)
