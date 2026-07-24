@@ -121,3 +121,13 @@ EEF/视觉分叉；图中不包含任何 WM 分数。
 ```text
 64a18b9e10c79609af393b8475f446b09c0c94bf0e127a4e1e17c683f39afc3a  wm_stage26_hidden_dynamics_cohort.svg
 ```
+
+`wm_stage27_hidden_dynamics_residual.svg` 根据
+[`../results/wm/stage27_hidden_dynamics_residual`](../results/wm/stage27_hidden_dynamics_residual)
+中的 6-pair discovery 结果绘制。它同时保留预注册 WM relative residual 的 4/6 负结果、
+探索性 no-action residual 的 6/6 原始信号及 Holm `p=0.078125` 边界，并展示手工 pixel
+基线；没有把事后最优指标包装成独立确认。
+
+```text
+c52fbb83531dd2d6dc79b9f834c872d15ed85483e852cdbdb5b4c33bc9ef1699  wm_stage27_hidden_dynamics_residual.svg
+```

@@ -24,7 +24,7 @@ GeForce RTX 4060 Laptop GPU（8 GB）上完成，没有使用真机或租用云�
 
 ## World Model 扩展进度
 
-当前已完成 WM 阶段 0—16：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
+当前已完成 WM 阶段 0—17：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
 episode，生成按任务分层、episode 级互斥的 346/43/43 训练/验证/测试划分，并跑通冻结
 DINOv2-S/14 双相机表征 pilot 及全量缓存。最终以 episode 级原子分片处理 389 个
 train/validation episode、47,822 帧和 95,644 张图像，完整缓存约 1.10 GiB；389/389 shard
@@ -70,7 +70,11 @@ post gap 分别为 **0.00000 / +0.04018**，在线编码和 WM 评分各约 14 m
 0.5× arm actuator gain 为 **3/3 通过**，10× joint damping 只有 **1/3 通过**；冻结门控后
 得到 6 对隐藏动力学 discovery 数据，全部通过配对检查，H10 EEF 分叉中位数为 **15.26 mm**、
 observation 60 双相机像素 MAE 中位数为 **11.543**。15 条轨迹共 0 个 action-interface
-mismatch，且本阶段 WM 加载与评分数均为 0。详见
+mismatch，且该阶段 WM 加载与评分数均为 0。冻结 WM 随后首次对 6 对 hidden-dynamics
+discovery 数据评分：预注册的 `action-conditioned error − no-action error` 只有
+**4/6 同向、+0.132σ、p=0.296875**，明确拒绝；探索性的 no-action latent residual 为
+**6/6 同向、+0.631σ、raw p=0.015625**，但在 5 个辅助指标中事后选择后 Holm
+`p=0.078125`，只能冻结为下一批新数据候选，不能写成已确认 detector。详见
 [数据审计](docs/WM_STAGE11_DATA_AUDIT.md)与
 [冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)、
 [全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)、
@@ -86,11 +90,14 @@ mismatch，且本阶段 WM 加载与评分数均为 0。详见
 [独立确认 action-sensitivity](docs/WM_STAGE23_CONFIRMATORY_WM_SCORING.md)与
 [在线旁路接入](docs/WM_STAGE24_ONLINE_SIDECAR.md)、
 [独立 detector 校准](docs/WM_STAGE25_DETECTOR_CALIBRATION.md)与
-[隐藏动力学偏移队列](docs/WM_STAGE26_HIDDEN_DYNAMICS_COHORT.md)。
+[隐藏动力学偏移队列](docs/WM_STAGE26_HIDDEN_DYNAMICS_COHORT.md)、
+[隐藏动力学 Observation Residual](docs/WM_STAGE27_HIDDEN_DYNAMICS_RESIDUAL.md)。
 
 ![Stage 25 独立 detector 校准](media/wm_stage25_detector_calibration.svg)
 
 ![Stage 26 隐藏动力学偏移队列](media/wm_stage26_hidden_dynamics_cohort.svg)
+
+![Stage 27 隐藏动力学 Observation Residual](media/wm_stage27_hidden_dynamics_residual.svg)
 
 ## 系统闭环
 
@@ -282,6 +289,18 @@ MUJOCO_GL=egl uv run --no-sync python \
   scripts/wm/stage26_hidden_dynamics_cohort.py
 ```
 
+### 7. 隐藏动力学 Observation Residual
+
+Stage 27 首次在 6 对 discovery 数据上计算冻结 WM residual，并对 no-action dynamics、
+latent persistence、EEF 与像素运动做相同的 episode 内 pre 标准化。它不访问 Stage 25 的
+留出 test，也不拟合 detector threshold：
+
+```bash
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
+uv run --no-sync python \
+  scripts/wm/stage27_hidden_dynamics_residual.py
+```
+
 ## 项目结构
 
 ```text
@@ -317,6 +336,7 @@ MUJOCO_GL=egl uv run --no-sync python \
 - [WM 阶段 14：在线旁路接入](docs/WM_STAGE24_ONLINE_SIDECAR.md)
 - [WM 阶段 15：独立 detector 校准](docs/WM_STAGE25_DETECTOR_CALIBRATION.md)
 - [WM 阶段 16：隐藏动力学偏移队列](docs/WM_STAGE26_HIDDEN_DYNAMICS_COHORT.md)
+- [WM 阶段 17：隐藏动力学 Observation Residual](docs/WM_STAGE27_HIDDEN_DYNAMICS_RESIDUAL.md)
 - [结果与媒体来源说明](media/README.md)
 - [第三方项目、模型和数据说明](THIRD_PARTY_NOTICES.md)
 
@@ -332,8 +352,9 @@ MUJOCO_GL=egl uv run --no-sync python \
 - 两种微调方式都没有解决 Task 5。结论仅限于工程复现、参数效率以及本次配对实验中观察到的遗忘
   差异，不能宣称 LoRA 普遍优于完整微调。
 - Stage 25 detector 只针对 executed-action feedback 直接暴露的故障，简单 action mismatch
-  更优；Stage 26 已构建不由动作日志直接泄漏标签的 discovery 数据，但尚未在其上冻结或独立
-  测试 observation residual detector，因此仍不支持 online shield 结论。
+  更优；Stage 27 的预注册 action-relative residual 在隐藏动力学 discovery 上失败，探索性
+  no-action residual 也未通过辅助指标族 Holm 校正，尚未用新状态独立确认，因此仍不支持
+  online shield 结论。
 - 当前只有仿真闭环，没有覆盖真机感知、标定、控制延迟和安全问题。
 
 这些限制被明确保留，因为它们决定了实验结果能够支持哪些结论。
