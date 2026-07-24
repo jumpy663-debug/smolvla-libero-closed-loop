@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs>
+    <linearGradient id="bg23" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7fbff"/>
+      <stop offset="1" stop-color="#eef7f2"/>
+    </linearGradient>
+    <filter id="shadow23" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#17334b" flood-opacity=".12"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="700" fill="url(#bg23)"/>
+  <text x="60" y="58" font-family="sans-serif" font-size="30" font-weight="700" fill="#102a43">Stage 23｜独立确认 action-sensitivity</text>
+  <text x="60" y="88" font-family="sans-serif" font-size="16" fill="#52677b">新状态 + 新干预；6 个 initial-state pair 是主统计单位</text>
+
+  <g filter="url(#shadow23)">
+    <rect x="60" y="116" width="330" height="108" rx="16" fill="#fff"/>
+    <rect x="414" y="116" width="330" height="108" rx="16" fill="#fff"/>
+    <rect x="768" y="116" width="372" height="108" rx="16" fill="#fff"/>
+  </g>
+  <text x="84" y="149" font-family="sans-serif" font-size="14" fill="#65778a">Pair-averaged gap</text>
+  <text x="84" y="190" font-family="sans-serif" font-size="34" font-weight="700" fill="#087d70">+0.01532</text>
+  <text x="438" y="149" font-family="sans-serif" font-size="14" fill="#65778a">正方向 / 单侧精确 p</text>
+  <text x="438" y="190" font-family="sans-serif" font-size="34" font-weight="700" fill="#087d70">5/6 · 0.03125</text>
+  <text x="792" y="149" font-family="sans-serif" font-size="14" fill="#65778a">95% paired-bootstrap CI</text>
+  <text x="792" y="190" font-family="sans-serif" font-size="30" font-weight="700" fill="#087d70">[+0.00491, +0.02428]</text>
+
+  <rect x="60" y="250" width="590" height="365" rx="16" fill="#fff" filter="url(#shadow23)"/>
+  <text x="84" y="287" font-family="sans-serif" font-size="19" font-weight="700" fill="#18364f">六个 pair 的预注册主分数</text>
+  <text x="84" y="313" font-family="sans-serif" font-size="13" fill="#687b8e">两种干预的 post commanded-minus-executed gap 先在 pair 内平均</text>
+  <line x1="112" y1="505" x2="618" y2="505" stroke="#91a2b3" stroke-width="1.5"/>
+  <line x1="112" y1="352" x2="112" y2="535" stroke="#d7dee6"/>
+  <text x="76" y="359" font-family="sans-serif" font-size="12" fill="#78899a">+0.04</text>
+  <text x="91" y="509" font-family="sans-serif" font-size="12" fill="#78899a">0</text>
+  <rect x="138" y="400" width="48" height="105" rx="5" fill="#1c9487"/>
+  <rect x="218" y="435" width="48" height="70" rx="5" fill="#1c9487"/>
+  <rect x="298" y="477" width="48" height="28" rx="5" fill="#1c9487"/>
+  <rect x="378" y="505" width="48" height="26" rx="5" fill="#cf5b69"/>
+  <rect x="458" y="431" width="48" height="74" rx="5" fill="#1c9487"/>
+  <rect x="538" y="388" width="48" height="117" rx="5" fill="#1c9487"/>
+  <g font-family="sans-serif" font-size="11" text-anchor="middle" fill="#566b7e">
+    <text x="162" y="558">T4/i7</text>
+    <text x="242" y="558">T4/i12</text>
+    <text x="322" y="558">T7/i5</text>
+    <text x="402" y="558">T7/i9</text>
+    <text x="482" y="558">T8/i11</text>
+    <text x="562" y="558">T8/i26</text>
+  </g>
+  <text x="84" y="596" font-family="sans-serif" font-size="13" font-weight="700" fill="#087d70">预注册 decision rule：通过</text>
+
+  <rect x="674" y="250" width="466" height="365" rx="16" fill="#fff" filter="url(#shadow23)"/>
+  <text x="698" y="287" font-family="sans-serif" font-size="19" font-weight="700" fill="#18364f">支持性分层结果</text>
+  <text x="698" y="313" font-family="sans-serif" font-size="13" fill="#687b8e">两类干预不具有相同稳定性</text>
+  <line x1="724" y1="525" x2="1096" y2="525" stroke="#91a2b3" stroke-width="1.5"/>
+  <rect x="784" y="368" width="92" height="157" rx="7" fill="#319d91"/>
+  <rect x="944" y="467" width="92" height="58" rx="7" fill="#d5a04d"/>
+  <g font-family="sans-serif" font-size="19" font-weight="700" text-anchor="middle" fill="#fff">
+    <text x="830" y="401">+0.02242</text>
+    <text x="990" y="497">+0.00823</text>
+  </g>
+  <g font-family="sans-serif" font-size="12" text-anchor="middle" fill="#566b7e">
+    <text x="830" y="553">0.5× 衰减</text>
+    <text x="830" y="574">5/6 · p=0.031</text>
+    <text x="990" y="553">3-step 延迟</text>
+    <text x="990" y="574">4/6 · p=0.078</text>
+  </g>
+  <text x="698" y="600" font-family="sans-serif" font-size="12" fill="#8b641f">确认效应仅为强 dropout 发现效应的 9.46%</text>
+
+  <text x="60" y="662" font-family="sans-serif" font-size="14" fill="#587084">结论：action mismatch 候选信号得到独立确认；尚未校准阈值，也不是自然 VLA failure detector 或在线 shield。</text>
+</svg>

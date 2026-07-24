@@ -24,7 +24,7 @@ GeForce RTX 4060 Laptop GPU（8 GB）上完成，没有使用真机或租用云�
 
 ## World Model 扩展进度
 
-当前已完成 WM 阶段 0—12：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
+当前已完成 WM 阶段 0—13：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
 episode，生成按任务分层、episode 级互斥的 346/43/43 训练/验证/测试划分，并跑通冻结
 DINOv2-S/14 双相机表征 pilot 及全量缓存。最终以 episode 级原子分片处理 389 个
 train/validation episode、47,822 帧和 95,644 张图像，完整缓存约 1.10 GiB；389/389 shard
@@ -54,7 +54,11 @@ executed action，且六对干预前轨迹逐位一致。冻结 WM 随后在预�
 `p=0.125`，只保留为需要新数据验证的机制假设。为避免同数据发现与验证，随后排除 Stage 20
 筛选过的全部状态，score-blind 回采 6 个新 pair：0.5× 动作衰减与 3-step 动作延迟均产生
 6/6 非零 mismatch，同时三条件 **18/18 回合成功**；像素运动分别保留 nominal 的 84.1% 和
-94.5%，形成尚未查看 WM 分数的独立确认集。详见
+94.5%，形成尚未查看 WM 分数的独立确认集。冻结 WM 首次评分后，pair 内平均的
+`commanded error − executed error` 为 **+0.01532**、5/6 同向、单侧精确 `p=0.03125`，
+95% CI `[+0.00491, +0.02428]`，通过预注册确认；但 3-step 延迟单独仅 `p=0.078`，且确认
+效应只有强 dropout 发现效应的 9.46%，因此结论限于 action mismatch 候选信号，不宣称已得到
+自然 failure detector 或在线 shield。详见
 [数据审计](docs/WM_STAGE11_DATA_AUDIT.md)与
 [冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)、
 [全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)、
@@ -66,9 +70,10 @@ executed action，且六对干预前轨迹逐位一致。冻结 WM 随后在预�
 [平衡队列修订](docs/WM_STAGE19_BALANCED_COHORT.md)与
 [配对动作干预完整观测回采](docs/WM_STAGE20_PAIRED_INTERVENTIONS.md)、
 [冻结 WM 配对干预评分](docs/WM_STAGE21_PAIRED_WM_SCORING.md)、
-[独立温和干预确认集](docs/WM_STAGE22_CONFIRMATORY_INTERVENTIONS.md)。
+[独立温和干预确认集](docs/WM_STAGE22_CONFIRMATORY_INTERVENTIONS.md)、
+[独立确认 action-sensitivity](docs/WM_STAGE23_CONFIRMATORY_WM_SCORING.md)。
 
-![Stage 22 独立温和干预确认集](media/wm_stage22_confirmatory_interventions.svg)
+![Stage 23 独立确认 action-sensitivity](media/wm_stage23_confirmatory_wm_scoring.svg)
 
 ## 系统闭环
 
@@ -251,6 +256,7 @@ adapter 重载前后的参数哈希及固定验证 loss 完全一致。
 - [WM 阶段 10：配对动作干预完整观测回采](docs/WM_STAGE20_PAIRED_INTERVENTIONS.md)
 - [WM 阶段 11：冻结 WM 配对干预评分](docs/WM_STAGE21_PAIRED_WM_SCORING.md)
 - [WM 阶段 12：独立温和干预确认集](docs/WM_STAGE22_CONFIRMATORY_INTERVENTIONS.md)
+- [WM 阶段 13：独立确认 action-sensitivity](docs/WM_STAGE23_CONFIRMATORY_WM_SCORING.md)
 - [结果与媒体来源说明](media/README.md)
 - [第三方项目、模型和数据说明](THIRD_PARTY_NOTICES.md)
 

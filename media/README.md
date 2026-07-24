@@ -81,3 +81,12 @@ e477967f5b3eec28628321546158e617e6ee4c4bfa96cc8858edc9956db0193f  wm_stage21_pai
 ```text
 1b3442a53e4eba346d7471342d6f279e9c4a3173cf920614614c198371e74d7d  wm_stage22_confirmatory_interventions.svg
 ```
+
+`wm_stage23_confirmatory_wm_scoring.svg` 根据
+[`../results/wm/stage23_confirmatory_wm_scoring`](../results/wm/stage23_confirmatory_wm_scoring)
+中的六个 pair 级确认分数绘制。左图展示预注册主检验的 5/6 同向结果；右图区分 0.5× 衰减
+和 3-step 延迟的支持性结果，并保留效应 shrinkage 与不可直接外推为 shield 的边界。
+
+```text
+786b12032ec746de1a7b9d46516c922c46421d98b3a3202477d1c0cdeabb9e30  wm_stage23_confirmatory_wm_scoring.svg
+```
