@@ -15,6 +15,8 @@
   1/5/10/25 步递归 rollout、teacher-forced 对照、分任务结果和 bootstrap。
 - [`stage16_closed_loop_recollection`](stage16_closed_loop_recollection)：12 个完整观测闭环
   回合的标签、步数、模态可用性、文件哈希和容器无关内容哈希。
+- [`stage17_failure_signal`](stage17_failure_signal)：固定前 80 个起点上的 H1/H10 error、
+  action disagreement、episode 级 AUROC、精确置换和多重比较校正。
 
 实验设置、限制和字段解释见：
 
@@ -24,3 +26,4 @@
 - [`docs/WM_STAGE14_NEXT_LATENT_BASELINE.md`](../../docs/WM_STAGE14_NEXT_LATENT_BASELINE.md)
 - [`docs/WM_STAGE15_MULTISTEP_ROLLOUT.md`](../../docs/WM_STAGE15_MULTISTEP_ROLLOUT.md)
 - [`docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md`](../../docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md)
+- [`docs/WM_STAGE17_FAILURE_SIGNAL.md`](../../docs/WM_STAGE17_FAILURE_SIGNAL.md)

@@ -1,0 +1,201 @@
+{
+  "failure_is_positive_label": true,
+  "higher_score_is_prespecified_failure_direction": true,
+  "multiple_testing": {
+    "adjusted_p_values": {
+      "h10_action_advantage_vs_zero": 0.05681818181818182,
+      "h10_correct_no_action_disagreement": 0.1111111111111111,
+      "h10_correct_zero_disagreement": 1.0,
+      "h10_persistence_raw_mse": 0.23863636363636365,
+      "h1_raw_mse": 1.0
+    },
+    "family": [
+      "h1_raw_mse",
+      "h10_correct_zero_disagreement",
+      "h10_correct_no_action_disagreement",
+      "h10_action_advantage_vs_zero",
+      "h10_persistence_raw_mse"
+    ],
+    "method": "Holm family-wise error correction",
+    "raw_p_values": {
+      "h10_action_advantage_vs_zero": 0.011363636363636364,
+      "h10_correct_no_action_disagreement": 0.027777777777777776,
+      "h10_correct_zero_disagreement": 0.7765151515151515,
+      "h10_persistence_raw_mse": 0.07954545454545454,
+      "h1_raw_mse": 0.6691919191919192
+    },
+    "secondary_scores_below_0_05_after_correction": []
+  },
+  "primary_score": "h10_raw_mse",
+  "schema_version": 1,
+  "scores": {
+    "episode_steps_confound_reference": {
+      "auroc_stratified_bootstrap_ci95": [
+        1.0,
+        1.0
+      ],
+      "exact_permutation_assignments": 792,
+      "exact_permutation_two_sided_p": 0.0012626262626262627,
+      "failure_mean": 280.0,
+      "failure_minus_success_mean": 164.85714285714286,
+      "failure_over_success_ratio": 2.4317617866004966,
+      "hedges_g_failure_minus_success": 12.43814128028928,
+      "higher_score_failure_auroc": 1.0,
+      "mixed_tasks_4_8": {
+        "episodes": 6,
+        "exact_permutation_assignments": 15,
+        "exact_permutation_two_sided_p": 0.06666666666666667,
+        "failure_minus_success_mean": 169.0,
+        "failures": 2,
+        "higher_score_failure_auroc": 1.0,
+        "successes": 4
+      },
+      "success_mean": 115.14285714285714,
+      "task_centered_auroc": 0.9142857142857143
+    },
+    "h10_action_advantage_vs_zero": {
+      "auroc_stratified_bootstrap_ci95": [
+        0.0,
+        0.42857142857142855
+      ],
+      "exact_permutation_assignments": 792,
+      "exact_permutation_two_sided_p": 0.011363636363636364,
+      "failure_mean": 0.04813951998949051,
+      "failure_minus_success_mean": -0.062288680779082437,
+      "failure_over_success_ratio": 0.435935020714298,
+      "hedges_g_failure_minus_success": -1.858258098047296,
+      "higher_score_failure_auroc": 0.14285714285714285,
+      "mixed_tasks_4_8": {
+        "episodes": 6,
+        "exact_permutation_assignments": 15,
+        "exact_permutation_two_sided_p": 0.06666666666666667,
+        "failure_minus_success_mean": -0.08078562840819359,
+        "failures": 2,
+        "higher_score_failure_auroc": 0.0,
+        "successes": 4
+      },
+      "success_mean": 0.11042820076857295,
+      "task_centered_auroc": 0.08571428571428572
+    },
+    "h10_correct_no_action_disagreement": {
+      "auroc_stratified_bootstrap_ci95": [
+        0.6,
+        1.0
+      ],
+      "exact_permutation_assignments": 792,
+      "exact_permutation_two_sided_p": 0.027777777777777776,
+      "failure_mean": 0.1324388489127159,
+      "failure_minus_success_mean": 0.01704255576644624,
+      "failure_over_success_ratio": 1.1476872029575862,
+      "hedges_g_failure_minus_success": 1.4018076774997146,
+      "higher_score_failure_auroc": 0.8571428571428571,
+      "mixed_tasks_4_8": {
+        "episodes": 6,
+        "exact_permutation_assignments": 15,
+        "exact_permutation_two_sided_p": 0.3333333333333333,
+        "failure_minus_success_mean": 0.015726761892437935,
+        "failures": 2,
+        "higher_score_failure_auroc": 0.75,
+        "successes": 4
+      },
+      "success_mean": 0.11539629314626966,
+      "task_centered_auroc": 0.6857142857142857
+    },
+    "h10_correct_zero_disagreement": {
+      "auroc_stratified_bootstrap_ci95": [
+        0.11428571428571428,
+        0.8
+      ],
+      "exact_permutation_assignments": 792,
+      "exact_permutation_two_sided_p": 0.7765151515151515,
+      "failure_mean": 0.10664510130882263,
+      "failure_minus_success_mean": -0.007098529062100831,
+      "failure_over_success_ratio": 0.9375918542519508,
+      "hedges_g_failure_minus_success": -0.15834747069993665,
+      "higher_score_failure_auroc": 0.45714285714285713,
+      "mixed_tasks_4_8": {
+        "episodes": 6,
+        "exact_permutation_assignments": 15,
+        "exact_permutation_two_sided_p": 0.8,
+        "failure_minus_success_mean": -0.010831238701939583,
+        "failures": 2,
+        "higher_score_failure_auroc": 0.375,
+        "successes": 4
+      },
+      "success_mean": 0.11374363037092346,
+      "task_centered_auroc": 0.4
+    },
+    "h10_persistence_raw_mse": {
+      "auroc_stratified_bootstrap_ci95": [
+        0.0,
+        0.45714285714285713
+      ],
+      "exact_permutation_assignments": 792,
+      "exact_permutation_two_sided_p": 0.07954545454545454,
+      "failure_mean": 0.8026910305023194,
+      "failure_minus_success_mean": -0.17465016160692481,
+      "failure_over_success_ratio": 0.8213007258703541,
+      "hedges_g_failure_minus_success": -1.075479491756607,
+      "higher_score_failure_auroc": 0.17142857142857143,
+      "mixed_tasks_4_8": {
+        "episodes": 6,
+        "exact_permutation_assignments": 15,
+        "exact_permutation_two_sided_p": 0.06666666666666667,
+        "failure_minus_success_mean": -0.23074081540107727,
+        "failures": 2,
+        "higher_score_failure_auroc": 0.0,
+        "successes": 4
+      },
+      "success_mean": 0.9773411921092442,
+      "task_centered_auroc": 0.22857142857142856
+    },
+    "h10_raw_mse": {
+      "auroc_stratified_bootstrap_ci95": [
+        0.5428571428571428,
+        1.0
+      ],
+      "exact_permutation_assignments": 792,
+      "exact_permutation_two_sided_p": 0.16414141414141414,
+      "failure_mean": 0.8027288436889648,
+      "failure_minus_success_mean": 0.05066017082759311,
+      "failure_over_success_ratio": 1.0673610970057401,
+      "hedges_g_failure_minus_success": 0.8010897535771212,
+      "higher_score_failure_auroc": 0.8285714285714286,
+      "mixed_tasks_4_8": {
+        "episodes": 6,
+        "exact_permutation_assignments": 15,
+        "exact_permutation_two_sided_p": 1.0,
+        "failure_minus_success_mean": -0.0026441961526870728,
+        "failures": 2,
+        "higher_score_failure_auroc": 0.75,
+        "successes": 4
+      },
+      "success_mean": 0.7520686728613717,
+      "task_centered_auroc": 0.4857142857142857
+    },
+    "h1_raw_mse": {
+      "auroc_stratified_bootstrap_ci95": [
+        0.14285714285714285,
+        0.8285714285714286
+      ],
+      "exact_permutation_assignments": 792,
+      "exact_permutation_two_sided_p": 0.6691919191919192,
+      "failure_mean": 0.14584437906742095,
+      "failure_minus_success_mean": -0.004162202562604633,
+      "failure_over_success_ratio": 0.9722532003770992,
+      "hedges_g_failure_minus_success": -0.23698215253652152,
+      "higher_score_failure_auroc": 0.45714285714285713,
+      "mixed_tasks_4_8": {
+        "episodes": 6,
+        "exact_permutation_assignments": 15,
+        "exact_permutation_two_sided_p": 0.7333333333333333,
+        "failure_minus_success_mean": -0.005054924637079239,
+        "failures": 2,
+        "higher_score_failure_auroc": 0.375,
+        "successes": 4
+      },
+      "success_mean": 0.1500065816300256,
+      "task_centered_auroc": 0.4857142857142857
+    }
+  }
+}

@@ -26,3 +26,12 @@
 a397e772dd94bf0331c54eac29568c6b51fd58297c200174f21a145d42069b6c  results_overview.svg
 283b1a3a104a0fb9f60e70df83713144eb8e7599ecbca748f37b1eb8d90dae13  results_overview.png
 ```
+
+`wm_stage17_failure_signal.svg` 根据
+[`../results/wm/stage17_failure_signal`](../results/wm/stage17_failure_signal)
+中的 episode 级分数与统计量绘制，展示 pooled H10 error 的初步排序信号以及
+task-centered 后接近随机的限制。
+
+```text
+108f350819234d93434ba2e3d3823455c44561c0f206456f735f87f9c2267319  wm_stage17_failure_signal.svg
+```

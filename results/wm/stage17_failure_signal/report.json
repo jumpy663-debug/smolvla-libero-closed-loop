@@ -1,0 +1,108 @@
+{
+  "anti_confound_protocol": {
+    "episode_steps_reported_as_confound_reference": true,
+    "mixed_label_tasks": [
+      4,
+      8
+    ],
+    "required_valid_transitions": 89,
+    "same_prefix_length_for_every_episode": true,
+    "shortest_episode_valid_transitions": 90,
+    "single_label_tasks": {
+      "5": "failure only",
+      "7": "success only"
+    }
+  },
+  "artifacts": {
+    "episode_scores": "episode_scores.csv",
+    "episode_scores_sha256": "2806c58c120c2413317beb1c6e14ea7be1e232eda4dcf5ad1b47bbd3e4c7b46d",
+    "feature_manifest": "feature_manifest.csv",
+    "feature_manifest_sha256": "103a530693c6f03d8f1dd9aba6859a9fd28145481c3bc78434f6c7588a4a06bb",
+    "statistics": "statistics.json",
+    "statistics_sha256": "9153038cd4590637ff4b5eedd553961ed103bcafebd1eb91538eab6e05b997de",
+    "time_bins": "time_bins.csv",
+    "time_bins_sha256": "738efeb8d81c8a243d54732cab97f400b13407d7e9fdf20864f2b2c07c9e3e84",
+    "window_scores": "window_scores.csv",
+    "window_scores_sha256": "65424d969816f2b25db25deb168603803b7d18b6ab1f9bdfe0c04c3da2c788dc"
+  },
+  "dynamics": {
+    "action_conditioned_checkpoint_sha256": "3d500085c2838e5594da3c1970f2bfb672fa2fb169b6ffa61b59dbce646e3ac7",
+    "no_action_checkpoint_sha256": "3e09e0ba289f9ebd59667e4391b1076b766509a67a138fc8e7733a2f067010a4",
+    "normalization_recomputed_from_stage13_train_only": true,
+    "source_stage14_report_sha256": "179bb80ef8ccf10fcdc97095d4d694c50f1de0f28a6c5838182b8ca216577b5d"
+  },
+  "encoder": {
+    "batch_size": 16,
+    "camera_transform": "180-degree flip matching LiberoProcessorStep and Stage 13 videos",
+    "deterministic_recheck_bit_exact": true,
+    "deterministic_recheck_rollout_id": "pretrained-h10-task08-init00",
+    "feature_shards": 12,
+    "latent_dimension": 384,
+    "model_id": "facebook/dinov2-small",
+    "revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "tokens_per_camera": 16
+  },
+  "limitations": [
+    "Only 12 episodes and four tasks are available.",
+    "Task 5 contains only failures and Task 7 only successes.",
+    "The same exploratory cohort defines and evaluates all secondary scores.",
+    "Overlapping rollout windows are summarized at episode level, not treated as independent samples.",
+    "Oracle proprioceptive state is supplied at every recursive step.",
+    "No result is a held-out or calibrated failure detector."
+  ],
+  "primary_result": {
+    "auroc_stratified_bootstrap_ci95": [
+      0.5428571428571428,
+      1.0
+    ],
+    "exact_permutation_assignments": 792,
+    "exact_permutation_two_sided_p": 0.16414141414141414,
+    "failure_mean": 0.8027288436889648,
+    "failure_minus_success_mean": 0.05066017082759311,
+    "failure_over_success_ratio": 1.0673610970057401,
+    "hedges_g_failure_minus_success": 0.8010897535771212,
+    "higher_score_failure_auroc": 0.8285714285714286,
+    "mixed_tasks_4_8": {
+      "episodes": 6,
+      "exact_permutation_assignments": 15,
+      "exact_permutation_two_sided_p": 1.0,
+      "failure_minus_success_mean": -0.0026441961526870728,
+      "failures": 2,
+      "higher_score_failure_auroc": 0.75,
+      "successes": 4
+    },
+    "passes_exploratory_viability_rule": true,
+    "score": "h10_raw_mse",
+    "success_mean": 0.7520686728613717,
+    "task_centered_auroc": 0.4857142857142857
+  },
+  "schema_version": 1,
+  "scope": {
+    "episodes": 12,
+    "expert_test_episodes_used": 0,
+    "failure_classifier_trained": false,
+    "failures": 5,
+    "fixed_prefix_starts_per_episode": 80,
+    "horizons": [
+      1,
+      10
+    ],
+    "model_parameters_updated": false,
+    "state_context": "oracle ground-truth state at every rollout step",
+    "successes": 7,
+    "task_ids": [
+      4,
+      5,
+      7,
+      8
+    ],
+    "windows": 960
+  },
+  "stage": "WM Stage 17 exploratory closed-loop failure signal",
+  "stage18_readiness": {
+    "calibrated_failure_detector_ready": false,
+    "closed_loop_scores_computed": true,
+    "primary_signal_exploratorily_viable": true
+  },
+  "status": "passed"
+}

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Stage 17 闭环失败信号探索</title>
+  <desc id="desc">左侧展示十二个回合的 H10 latent MSE，右侧展示各分数的失败 AUROC，并强调任务混淆与统计边界。</desc>
+  <rect width="1100" height="620" fill="#f7f9fc"/>
+  <text x="550" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#17233c">Stage 17：闭环失败信号探索</text>
+  <text x="550" y="68" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#53627a">12 回合 · 每回合固定前 80 个起点 · H10 oracle-state latent rollout</text>
+
+  <rect x="35" y="94" width="510" height="466" rx="14" fill="#ffffff" stroke="#d9e1ee"/>
+  <text x="290" y="126" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#17233c">主指标：每回合 H10 raw latent MSE</text>
+  <line x1="95" y1="160" x2="95" y2="480" stroke="#8090a8"/>
+  <line x1="95" y1="480" x2="505" y2="480" stroke="#8090a8"/>
+  <g font-family="sans-serif" font-size="12" fill="#53627a" text-anchor="end">
+    <text x="86" y="484">0.65</text>
+    <text x="86" y="420">0.70</text>
+    <text x="86" y="356">0.75</text>
+    <text x="86" y="292">0.80</text>
+    <text x="86" y="228">0.85</text>
+    <text x="86" y="164">0.90</text>
+  </g>
+  <g stroke="#e7ebf2">
+    <line x1="95" y1="416" x2="505" y2="416"/>
+    <line x1="95" y1="352" x2="505" y2="352"/>
+    <line x1="95" y1="288" x2="505" y2="288"/>
+    <line x1="95" y1="224" x2="505" y2="224"/>
+    <line x1="95" y1="160" x2="505" y2="160"/>
+  </g>
+  <text x="230" y="505" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#17233c">成功（7）</text>
+  <text x="410" y="505" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#17233c">失败（5）</text>
+
+  <!-- Task 4 -->
+  <g fill="#2f6fed" stroke="#ffffff" stroke-width="2">
+    <circle cx="214" cy="327" r="7"/><circle cx="242" cy="177" r="7"/><circle cx="397" cy="302" r="7"/>
+  </g>
+  <!-- Task 5 -->
+  <g fill="#f28e2b" stroke="#ffffff" stroke-width="2">
+    <circle cx="391" cy="284" r="7"/><circle cx="410" cy="234" r="7"/><circle cx="430" cy="320" r="7"/>
+  </g>
+  <!-- Task 7 -->
+  <g fill="#27a56a" stroke="#ffffff" stroke-width="2">
+    <circle cx="205" cy="429" r="7"/><circle cx="230" cy="445" r="7"/><circle cx="256" cy="416" r="7"/>
+  </g>
+  <!-- Task 8 -->
+  <g fill="#9b59b6" stroke="#ffffff" stroke-width="2">
+    <circle cx="218" cy="341" r="7"/><circle cx="247" cy="311" r="7"/><circle cx="420" cy="283" r="7"/>
+  </g>
+  <line x1="185" y1="349" x2="275" y2="349" stroke="#17233c" stroke-width="5"/>
+  <line x1="365" y1="283" x2="455" y2="283" stroke="#17233c" stroke-width="5"/>
+  <text x="230" y="340" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#17233c">均值 0.752</text>
+  <text x="410" y="274" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#17233c">均值 0.803</text>
+  <g font-family="sans-serif" font-size="11" fill="#53627a">
+    <circle cx="115" cy="536" r="5" fill="#2f6fed"/><text x="125" y="540">Task 4</text>
+    <circle cx="195" cy="536" r="5" fill="#f28e2b"/><text x="205" y="540">Task 5</text>
+    <circle cx="275" cy="536" r="5" fill="#27a56a"/><text x="285" y="540">Task 7</text>
+    <circle cx="355" cy="536" r="5" fill="#9b59b6"/><text x="365" y="540">Task 8</text>
+    <text x="445" y="540">黑线：组均值</text>
+  </g>
+
+  <rect x="560" y="94" width="505" height="466" rx="14" fill="#ffffff" stroke="#d9e1ee"/>
+  <text x="812" y="126" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#17233c">失败为正类的 AUROC（高分 → 失败）</text>
+  <line x1="795" y1="150" x2="795" y2="500" stroke="#8090a8"/>
+  <line x1="915" y1="150" x2="915" y2="500" stroke="#9aa6b8" stroke-dasharray="5 5"/>
+  <text x="915" y="142" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#75839a">随机 0.5</text>
+  <g font-family="sans-serif" font-size="12" fill="#17233c" text-anchor="end">
+    <text x="785" y="183">H1 预测误差</text>
+    <text x="785" y="238">H10 预测误差（主指标）</text>
+    <text x="785" y="293">H10 correct–no-action 分歧</text>
+    <text x="785" y="348">H10 correct–zero 分歧</text>
+    <text x="785" y="403">H10 task-centered</text>
+    <text x="785" y="458">H10 Task 4/8 子集</text>
+  </g>
+  <g fill="#91a4c5">
+    <rect x="795" y="165" width="110" height="24" rx="4"/>
+    <rect x="795" y="330" width="110" height="24" rx="4"/>
+    <rect x="795" y="385" width="117" height="24" rx="4"/>
+  </g>
+  <g fill="#2f6fed">
+    <rect x="795" y="220" width="199" height="24" rx="4"/>
+    <rect x="795" y="440" width="180" height="24" rx="4"/>
+  </g>
+  <rect x="795" y="275" width="206" height="24" rx="4" fill="#f28e2b"/>
+  <g font-family="sans-serif" font-size="12" font-weight="700" fill="#17233c">
+    <text x="913" y="182">0.457</text>
+    <text x="1002" y="237">0.829</text>
+    <text x="1009" y="292">0.857</text>
+    <text x="913" y="347">0.457</text>
+    <text x="920" y="402">0.486</text>
+    <text x="983" y="457">0.750</text>
+  </g>
+  <text x="812" y="505" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#53627a">主指标精确置换 p=0.164；task-centered 接近随机</text>
+  <text x="812" y="529" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#53627a">次要指标经 Holm 校正后，无一低于 0.05</text>
+
+  <rect x="35" y="575" width="1030" height="30" rx="8" fill="#fff3cd" stroke="#f0d47a"/>
+  <text x="550" y="596" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#6b5500">结论：存在初步排序信号，但任务混淆明显；这不是独立测试或已校准的 failure detector。</text>
+</svg>
