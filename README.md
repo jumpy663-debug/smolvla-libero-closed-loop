@@ -24,7 +24,7 @@ GeForce RTX 4060 Laptop GPU（8 GB）上完成，没有使用真机或租用云�
 
 ## World Model 扩展进度
 
-当前已完成 WM 阶段 0—13：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
+当前已完成 WM 阶段 0—14：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
 episode，生成按任务分层、episode 级互斥的 346/43/43 训练/验证/测试划分，并跑通冻结
 DINOv2-S/14 双相机表征 pilot 及全量缓存。最终以 episode 级原子分片处理 389 个
 train/validation episode、47,822 帧和 95,644 张图像，完整缓存约 1.10 GiB；389/389 shard
@@ -58,7 +58,10 @@ executed action，且六对干预前轨迹逐位一致。冻结 WM 随后在预�
 `commanded error − executed error` 为 **+0.01532**、5/6 同向、单侧精确 `p=0.03125`，
 95% CI `[+0.00491, +0.02428]`，通过预注册确认；但 3-step 延迟单独仅 `p=0.078`，且确认
 效应只有强 dropout 发现效应的 9.46%，因此结论限于 action mismatch 候选信号，不宣称已得到
-自然 failure detector 或在线 shield。详见
+自然 failure detector 或在线 shield。最后将冻结 DINOv2 与 latent dynamics 作为只记录的
+sidecar 接入真实 SmolVLA/LIBERO 循环：18 条历史轨迹的 1,080 个注册窗口在线/离线最大分数差
+仅 **2.205×10⁻⁶**；一组正常/0.5× 衰减的 90 步实时配对中，控制输出均与原轨迹逐位一致，
+post gap 分别为 **0.00000 / +0.04018**，在线编码和 WM 评分各约 14 ms。详见
 [数据审计](docs/WM_STAGE11_DATA_AUDIT.md)与
 [冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)、
 [全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)、
@@ -71,9 +74,10 @@ executed action，且六对干预前轨迹逐位一致。冻结 WM 随后在预�
 [配对动作干预完整观测回采](docs/WM_STAGE20_PAIRED_INTERVENTIONS.md)、
 [冻结 WM 配对干预评分](docs/WM_STAGE21_PAIRED_WM_SCORING.md)、
 [独立温和干预确认集](docs/WM_STAGE22_CONFIRMATORY_INTERVENTIONS.md)、
-[独立确认 action-sensitivity](docs/WM_STAGE23_CONFIRMATORY_WM_SCORING.md)。
+[独立确认 action-sensitivity](docs/WM_STAGE23_CONFIRMATORY_WM_SCORING.md)与
+[在线旁路接入](docs/WM_STAGE24_ONLINE_SIDECAR.md)。
 
-![Stage 23 独立确认 action-sensitivity](media/wm_stage23_confirmatory_wm_scoring.svg)
+![Stage 24 WM 在线旁路接入](media/wm_stage24_online_sidecar.svg)
 
 ## 系统闭环
 
@@ -85,6 +89,11 @@ flowchart LR
     A --> C[50 步动作块]
     C --> H[执行前 H 步动作<br/>H = 50 / 25 / 10]
     H --> E
+
+    E -. 双相机 + state .-> W[冻结 DINOv2 + latent WM]
+    H -. commanded action .-> W
+    E -. executed feedback .-> W
+    W --> G[H10 gap 日志<br/>不修改动作]
 
     D[Task 5 demonstrations] --> F{微调方式}
     F --> X[动作专家微调<br/>99.9M 可训练参数]
@@ -225,6 +234,17 @@ HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl uv run --no-sync python \
 Stage 10 脚本会在训练前核对 Stage 9 的所有控制变量，只保存 LoRA adapter 和 optimizer，并要求
 adapter 重载前后的参数哈希及固定验证 loss 完全一致。
 
+### 4. WM 在线旁路接入
+
+Stage 24 默认先回放核对 18 条 Stage 23 轨迹，再运行 normal 与 0.5× 动作衰减各 90 步的真实
+SmolVLA/LIBERO 闭环。monitor 只输出日志和视频，不拟合 threshold，也不修改动作：
+
+```bash
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
+MUJOCO_GL=egl uv run --no-sync python \
+  scripts/wm/stage24_online_sidecar.py
+```
+
 ## 项目结构
 
 ```text
@@ -257,6 +277,7 @@ adapter 重载前后的参数哈希及固定验证 loss 完全一致。
 - [WM 阶段 11：冻结 WM 配对干预评分](docs/WM_STAGE21_PAIRED_WM_SCORING.md)
 - [WM 阶段 12：独立温和干预确认集](docs/WM_STAGE22_CONFIRMATORY_INTERVENTIONS.md)
 - [WM 阶段 13：独立确认 action-sensitivity](docs/WM_STAGE23_CONFIRMATORY_WM_SCORING.md)
+- [WM 阶段 14：在线旁路接入](docs/WM_STAGE24_ONLINE_SIDECAR.md)
 - [结果与媒体来源说明](media/README.md)
 - [第三方项目、模型和数据说明](THIRD_PARTY_NOTICES.md)
 

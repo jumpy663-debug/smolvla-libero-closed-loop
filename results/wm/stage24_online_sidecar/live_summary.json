@@ -1,0 +1,90 @@
+[
+  {
+    "condition": "nominal",
+    "control_comparison": {
+      "all_control_outputs_bit_exact": true,
+      "commanded_actions_bit_exact": true,
+      "executed_actions_bit_exact": true,
+      "prefix_steps": 90,
+      "reference_rollout_id": "task04-init07-nominal",
+      "rewards_bit_exact": true
+    },
+    "encoding_seconds": {
+      "count": 91,
+      "max": 0.07311276399923372,
+      "mean": 0.01408429834067407,
+      "median": 0.012256699999852572,
+      "min": 0.008124912999846856,
+      "total": 1.2816711490013404
+    },
+    "init_state_index": 7,
+    "post_h10_gap_mean": 0.0,
+    "post_minus_pre_gap": 0.0,
+    "pre_h10_gap_mean": 0.0,
+    "score_comparison": {
+      "maximum_absolute_score_difference": 1.2993812561035156e-05,
+      "registered_windows": 60,
+      "tolerance": 0.002,
+      "within_tolerance": true
+    },
+    "scoring_seconds": {
+      "count": 81,
+      "max": 0.03261469700009911,
+      "mean": 0.015302428999999437,
+      "median": 0.013963041999886627,
+      "min": 0.012767713000357617,
+      "total": 1.2394967489999544
+    },
+    "steps": 90,
+    "success_within_prefix": false,
+    "task_id": 4,
+    "trajectory": "outputs/wm/stage24_online_sidecar/nominal_trajectory.npz",
+    "trajectory_sha256": "842e5c8f743144c4961ba4a63a31c1f3c21fd3e2e106d43f76fd8b895ecee990",
+    "video": "media/wm_stage24_nominal_monitor.mp4",
+    "video_sha256": "1740ac09e7dadfbbfc9a6a5a28b8d36a98b9ac6d1b945d76bf17f6735bd9f0bf"
+  },
+  {
+    "condition": "motion_attenuation_0p5",
+    "control_comparison": {
+      "all_control_outputs_bit_exact": true,
+      "commanded_actions_bit_exact": true,
+      "executed_actions_bit_exact": true,
+      "prefix_steps": 90,
+      "reference_rollout_id": "task04-init07-motion_attenuation_0p5",
+      "rewards_bit_exact": true
+    },
+    "encoding_seconds": {
+      "count": 91,
+      "max": 0.06888702399919566,
+      "mean": 0.013911119846023131,
+      "median": 0.011555793998923036,
+      "min": 0.008229599001424504,
+      "total": 1.265911905988105
+    },
+    "init_state_index": 7,
+    "post_h10_gap_mean": 0.040184650818506876,
+    "post_minus_pre_gap": 0.040184650818506876,
+    "pre_h10_gap_mean": 0.0,
+    "score_comparison": {
+      "maximum_absolute_score_difference": 1.3649463653564453e-05,
+      "registered_windows": 60,
+      "tolerance": 0.002,
+      "within_tolerance": true
+    },
+    "scoring_seconds": {
+      "count": 81,
+      "max": 0.022123099999589613,
+      "mean": 0.014843950382603424,
+      "median": 0.014609202000428922,
+      "min": 0.012706512001386727,
+      "total": 1.2023599809908774
+    },
+    "steps": 90,
+    "success_within_prefix": false,
+    "task_id": 4,
+    "trajectory": "outputs/wm/stage24_online_sidecar/motion_attenuation_0p5_trajectory.npz",
+    "trajectory_sha256": "efc4279c6a49ca4d8ef519a62c2d0871bc4aa8a15bff98d90f68c043052ce000",
+    "video": "media/wm_stage24_motion_attenuation_0p5_monitor.mp4",
+    "video_sha256": "6aa57778fafaec16871b3582ba358c967bc9d4d27efdbb670c11c553cc9c5bbd"
+  }
+]

@@ -90,3 +90,15 @@ e477967f5b3eec28628321546158e617e6ee4c4bfa96cc8858edc9956db0193f  wm_stage21_pai
 ```text
 786b12032ec746de1a7b9d46516c922c46421d98b3a3202477d1c0cdeabb9e30  wm_stage23_confirmatory_wm_scoring.svg
 ```
+
+`wm_stage24_online_sidecar.svg` 根据
+[`../results/wm/stage24_online_sidecar`](../results/wm/stage24_online_sidecar)
+中的 1,080 窗口因果回放和真实在线配对结果绘制。两段 MP4 分别展示 normal 与 0.5× 动作衰减
+的 90 步 SmolVLA/LIBERO 监控前缀，左上角叠加 observation index 和最近一次 H10 gap；WM
+输出没有参与动作生成。
+
+```text
+64615ea2d98383f0b4bc2d9411cdf7c71e6f432f6ca3f8872fd43fac1cf3d7ae  wm_stage24_online_sidecar.svg
+1740ac09e7dadfbbfc9a6a5a28b8d36a98b9ac6d1b945d76bf17f6735bd9f0bf  wm_stage24_nominal_monitor.mp4
+6aa57778fafaec16871b3582ba358c967bc9d4d27efdbb670c11c553cc9c5bbd  wm_stage24_motion_attenuation_0p5_monitor.mp4
+```

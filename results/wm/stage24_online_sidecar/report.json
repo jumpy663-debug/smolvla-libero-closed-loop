@@ -1,0 +1,215 @@
+{
+  "artifacts": {
+    "live_summary": "live_summary.json",
+    "live_summary_sha256": "f546bc626c1c6ecfd9e5d147b4e98b58bc4524bf834dd998d856c3eff9a94e5e",
+    "live_timeline": "live_timeline.csv",
+    "live_timeline_sha256": "cb7ff8c2beb0c9c5452a8d3f8abf475c04764ea5c29c155886b34fbf8549e4d1",
+    "replay_comparison": "replay_comparison.csv",
+    "replay_comparison_sha256": "d092791515511ed9cf08f7ebea3b2d0c5e9d482d2638aa157488755fca17dbe2",
+    "videos": [
+      {
+        "condition": "nominal",
+        "local_path": "media/wm_stage24_nominal_monitor.mp4",
+        "sha256": "1740ac09e7dadfbbfc9a6a5a28b8d36a98b9ac6d1b945d76bf17f6735bd9f0bf"
+      },
+      {
+        "condition": "motion_attenuation_0p5",
+        "local_path": "media/wm_stage24_motion_attenuation_0p5_monitor.mp4",
+        "sha256": "6aa57778fafaec16871b3582ba358c967bc9d4d27efdbb670c11c553cc9c5bbd"
+      }
+    ]
+  },
+  "causal_semantics": {
+    "future_data_access_before_arrival": false,
+    "input_at_transition": "current oracle state plus commanded and executed action",
+    "score": "commanded H10 raw latent MSE minus executed H10 raw latent MSE",
+    "score_available_after_step": "start_index + H - 1",
+    "target": "DINO latent of observation arriving H=10 transitions later"
+  },
+  "conclusion": {
+    "attenuation_gap_is_positive": true,
+    "live_scores_match_offline_reference_within_tolerance": true,
+    "nominal_gap_is_zero": true,
+    "online_shield_justified": false,
+    "ready_for_separate_detector_calibration": true,
+    "sidecar_preserves_control_outputs_bit_exact": true,
+    "wm_runs_inside_smolvla_libero_loop": true
+  },
+  "frozen_components": {
+    "action_conditioned_checkpoint_sha256": "3d500085c2838e5594da3c1970f2bfb672fa2fb169b6ffa61b59dbce646e3ac7",
+    "encoder_model_id": "facebook/dinov2-small",
+    "encoder_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "no_action_checkpoint_sha256": "3e09e0ba289f9ebd59667e4391b1076b766509a67a138fc8e7733a2f067010a4",
+    "normalization_sha256": "749161e0a78b04a0a8717bb7eba64d30c4817d9e8c21418a7781653d58729aaf",
+    "stage14_report_sha256": "179bb80ef8ccf10fcdc97095d4d694c50f1de0f28a6c5838182b8ca216577b5d"
+  },
+  "limitations": [
+    "The score is retrospective and becomes available after ten control steps.",
+    "The live demonstration is one paired initial state, not a detector benchmark.",
+    "No threshold, alarm rule, or recovery action is selected in this stage.",
+    "The score targets commanded/executed actuator mismatch, not semantic VLA errors.",
+    "Executed-action feedback and oracle robot state are assumed available."
+  ],
+  "live_pair": [
+    {
+      "condition": "nominal",
+      "control_comparison": {
+        "all_control_outputs_bit_exact": true,
+        "commanded_actions_bit_exact": true,
+        "executed_actions_bit_exact": true,
+        "prefix_steps": 90,
+        "reference_rollout_id": "task04-init07-nominal",
+        "rewards_bit_exact": true
+      },
+      "encoding_seconds": {
+        "count": 91,
+        "max": 0.07311276399923372,
+        "mean": 0.01408429834067407,
+        "median": 0.012256699999852572,
+        "min": 0.008124912999846856,
+        "total": 1.2816711490013404
+      },
+      "init_state_index": 7,
+      "post_h10_gap_mean": 0.0,
+      "post_minus_pre_gap": 0.0,
+      "pre_h10_gap_mean": 0.0,
+      "score_comparison": {
+        "maximum_absolute_score_difference": 1.2993812561035156e-05,
+        "registered_windows": 60,
+        "tolerance": 0.002,
+        "within_tolerance": true
+      },
+      "scoring_seconds": {
+        "count": 81,
+        "max": 0.03261469700009911,
+        "mean": 0.015302428999999437,
+        "median": 0.013963041999886627,
+        "min": 0.012767713000357617,
+        "total": 1.2394967489999544
+      },
+      "steps": 90,
+      "success_within_prefix": false,
+      "task_id": 4,
+      "trajectory": "outputs/wm/stage24_online_sidecar/nominal_trajectory.npz",
+      "trajectory_sha256": "842e5c8f743144c4961ba4a63a31c1f3c21fd3e2e106d43f76fd8b895ecee990",
+      "video": "media/wm_stage24_nominal_monitor.mp4",
+      "video_sha256": "1740ac09e7dadfbbfc9a6a5a28b8d36a98b9ac6d1b945d76bf17f6735bd9f0bf"
+    },
+    {
+      "condition": "motion_attenuation_0p5",
+      "control_comparison": {
+        "all_control_outputs_bit_exact": true,
+        "commanded_actions_bit_exact": true,
+        "executed_actions_bit_exact": true,
+        "prefix_steps": 90,
+        "reference_rollout_id": "task04-init07-motion_attenuation_0p5",
+        "rewards_bit_exact": true
+      },
+      "encoding_seconds": {
+        "count": 91,
+        "max": 0.06888702399919566,
+        "mean": 0.013911119846023131,
+        "median": 0.011555793998923036,
+        "min": 0.008229599001424504,
+        "total": 1.265911905988105
+      },
+      "init_state_index": 7,
+      "post_h10_gap_mean": 0.040184650818506876,
+      "post_minus_pre_gap": 0.040184650818506876,
+      "pre_h10_gap_mean": 0.0,
+      "score_comparison": {
+        "maximum_absolute_score_difference": 1.3649463653564453e-05,
+        "registered_windows": 60,
+        "tolerance": 0.002,
+        "within_tolerance": true
+      },
+      "scoring_seconds": {
+        "count": 81,
+        "max": 0.022123099999589613,
+        "mean": 0.014843950382603424,
+        "median": 0.014609202000428922,
+        "min": 0.012706512001386727,
+        "total": 1.2023599809908774
+      },
+      "steps": 90,
+      "success_within_prefix": false,
+      "task_id": 4,
+      "trajectory": "outputs/wm/stage24_online_sidecar/motion_attenuation_0p5_trajectory.npz",
+      "trajectory_sha256": "efc4279c6a49ca4d8ef519a62c2d0871bc4aa8a15bff98d90f68c043052ce000",
+      "video": "media/wm_stage24_motion_attenuation_0p5_monitor.mp4",
+      "video_sha256": "6aa57778fafaec16871b3582ba358c967bc9d4d27efdbb670c11c553cc9c5bbd"
+    }
+  ],
+  "online_encoder_equivalence": {
+    "maximum_absolute_state_difference": 0.0,
+    "maximum_absolute_token_difference": 0.001953125,
+    "observation_indices": [
+      0,
+      50,
+      89
+    ],
+    "per_observation_encoding_seconds": {
+      "count": 3,
+      "max": 0.09236182600034226,
+      "mean": 0.04199532300056793,
+      "median": 0.017975282000406878,
+      "min": 0.01564886100095464,
+      "total": 0.12598596900170378
+    },
+    "rollout_id": "task04-init07-nominal",
+    "token_tolerance": 0.002,
+    "within_tolerance": true
+  },
+  "replay_equivalence": {
+    "episodes": 18,
+    "maximum_absolute_score_difference": 2.205371856689453e-06,
+    "per_window_scoring_seconds": {
+      "count": 1080,
+      "max": 0.03503572400040866,
+      "mean": 0.015241090760183498,
+      "median": 0.014747612999599369,
+      "min": 0.012312024999118876,
+      "total": 16.460378020998178
+    },
+    "registered_windows": 1080,
+    "tolerance": 2e-05,
+    "within_tolerance": true
+  },
+  "runtime": {
+    "frozen_wm_and_encoder_load_seconds": 0.3312802760010527,
+    "paired_live_wall_seconds": 48.87907248400006,
+    "peak_torch_gpu_memory_bytes": 1067205120,
+    "policy_model_load_seconds": 5.675162186998932,
+    "policy_revision": "31d453f7edd78c839a8bbc39744a292686daf0de",
+    "total_seconds": 78.01969697300046
+  },
+  "schema_version": 1,
+  "scope": {
+    "actions_modified_by_monitor": 0,
+    "detector_claimed": false,
+    "horizon": 10,
+    "live_conditions": [
+      "nominal",
+      "motion_attenuation_0p5"
+    ],
+    "live_diagnostic_prefix_steps_per_condition": 90,
+    "monitor_mode": "online sidecar; logging only",
+    "observation_delay_control_steps": 10,
+    "replay_episodes": 18,
+    "replay_registered_windows": 1080,
+    "shield_claimed": false,
+    "thresholds_fitted": 0
+  },
+  "software": {
+    "numpy": "2.2.6",
+    "python": "3.12.13",
+    "torch": "2.11.0+cu128"
+  },
+  "stage": "WM Stage 24 online non-intervening SmolVLA sidecar",
+  "stage25_readiness": {
+    "calibrate_detector_before_any_shield_claim": true,
+    "collect_separate_calibration_and_test_episodes": true,
+    "fit_or_freeze_threshold_on_stage23_confirmation_data": false
+  },
+  "status": "passed"
+}

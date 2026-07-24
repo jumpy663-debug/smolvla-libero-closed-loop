@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+<rect width="1200" height="560" fill="#f7f8fa"/>
+<text x="70" y="70" font-size="32" font-family="sans-serif" font-weight="700" fill="#162033">Stage 24：WM 在线旁路接入 SmolVLA 闭环</text>
+<text x="70" y="108" font-size="19" font-family="sans-serif" fill="#526070">H10 分数随真实观测到达后在线产生；只记录，不修改动作，不拟合阈值</text>
+<rect x="70" y="150" width="1060" height="110" rx="14" fill="#ffffff" stroke="#dce1e8"/>
+<text x="100" y="190" font-size="21" font-family="sans-serif" font-weight="700" fill="#162033">历史轨迹因果回放</text>
+<text x="100" y="227" font-size="19" font-family="sans-serif" fill="#32445a">18 episodes · 1,080 registered windows · online/offline max Δ ≤ 2e-05</text>
+<text x="70" y="315" font-size="22" font-family="sans-serif" font-weight="700" fill="#162033">实时闭环 post-window commanded − executed H10 error</text>
+<text x="90" y="370" font-size="19" font-family="sans-serif" fill="#32445a">正常执行</text>
+<rect x="260" y="343" width="2.00" height="35" rx="5" fill="#4f86c6"/>
+<text x="282.0" y="368" font-size="18" font-family="monospace" fill="#162033">+0.000000</text>
+<text x="90" y="435" font-size="19" font-family="sans-serif" fill="#32445a">0.5× 动作衰减</text>
+<rect x="260" y="408" width="321.48" height="35" rx="5" fill="#e36b4f"/>
+<text x="601.4772065480549" y="433" font-size="18" font-family="monospace" fill="#162033">+0.040185</text>
+<text x="70" y="510" font-size="17" font-family="sans-serif" fill="#6a7583">边界：当前是有 10 步观测延迟的 actuator-mismatch monitor，不是自然失败 detector 或 proactive shield。</text>
+</svg>
