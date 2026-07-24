@@ -1,0 +1,7 @@
+pair_id,benchmark_task_id,init_state_index,initial_observations_bit_exact,preintervention_observations_bit_exact,preintervention_commands_bit_exact,first_post_h10_commands_bit_exact,action_interface_mismatch_steps,fault_mutation_verified,pair_contract_passed
+task04-init06,4,6,True,True,True,True,0,True,True
+task04-init09,4,9,True,True,True,True,0,True,True
+task07-init08,7,8,True,True,True,True,0,True,True
+task07-init11,7,11,True,True,True,True,0,True,True
+task08-init10,8,10,True,True,True,True,0,True,True
+task08-init23,8,23,True,True,True,True,0,True,True

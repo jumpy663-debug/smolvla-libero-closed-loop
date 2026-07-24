@@ -131,3 +131,13 @@ EEF/视觉分叉；图中不包含任何 WM 分数。
 ```text
 c52fbb83531dd2d6dc79b9f834c872d15ed85483e852cdbdb5b4c33bc9ef1699  wm_stage27_hidden_dynamics_residual.svg
 ```
+
+`wm_stage28_confirm_hidden_dynamics_residual.svg` 根据
+[`../results/wm/stage28_confirm_hidden_dynamics_residual`](../results/wm/stage28_confirm_hidden_dynamics_residual)
+中的冻结候选与 6 对新 hidden-gain 轨迹绘制。它展示 no-action residual 只有 4/6、
+`p=0.640625` 的独立确认失败，并把 6/6 的 latent persistence 保留为不可替换主指标的
+描述性对照；不包含 threshold 或 shield 指标。
+
+```text
+ecb4180c01515774fcbf73fdf4d01f9c0f173908e22d46fa3509d8bf48b43128  wm_stage28_confirm_hidden_dynamics_residual.svg
+```

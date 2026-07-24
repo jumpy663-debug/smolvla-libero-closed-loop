@@ -1,0 +1,141 @@
+{
+  "conditions": [
+    "nominal",
+    "arm_actuator_gain_0p5"
+  ],
+  "confirmatory_metric": "no_action_residual",
+  "descriptive_comparators": [
+    "latent_persistence_motion",
+    "eef_path_length",
+    "pixel_endpoint_mae"
+  ],
+  "detector_thresholds_fitted": 0,
+  "diagnostic_prefix_steps": 90,
+  "fault_influenced_window_starts_inclusive": [
+    41,
+    50
+  ],
+  "frozen_candidate_sha256": "56b94aee8c6be5532009ff7c8e8656009b99b075f2d7b8c44201bc081471a65b",
+  "hidden_mutation": {
+    "operation": "multiply by 0.5 once before env.step at action step 50",
+    "target": "MuJoCo actuator_gainprm[:,0] for robot0_torq_j1..j7"
+  },
+  "horizon": 10,
+  "intervention_start_zero_based": 50,
+  "metric_reselection_after_confirmation": false,
+  "model_parameters_updated": 0,
+  "pairing_contract": {
+    "commanded_equals_env_step_action_every_step": true,
+    "first_post_h10_commands_bit_exact": true,
+    "initial_observations_bit_exact": true,
+    "pre_commands_bit_exact": true,
+    "pre_observations_bit_exact": true
+  },
+  "pairs": [
+    {
+      "benchmark_task_id": 4,
+      "episode_seed": 180406,
+      "historical_steps": 280,
+      "historical_success": false,
+      "init_state_index": 6,
+      "pair_id": "test-task04-init06",
+      "pilot_pair": false,
+      "selection_key": "4f4c337c11f8af7cc5cafbab353d2cbc47a6ccec4485ecbadaec7eaa7aaada37",
+      "selection_uses_wm_score": false,
+      "split": "test",
+      "stage26_pair_id": "task04-init06",
+      "stage28_pair_id": "task04-init06",
+      "task_name": "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate"
+    },
+    {
+      "benchmark_task_id": 4,
+      "episode_seed": 180409,
+      "historical_steps": 280,
+      "historical_success": false,
+      "init_state_index": 9,
+      "pair_id": "test-task04-init09",
+      "pilot_pair": false,
+      "selection_key": "fb659807309bf59e371bab2ca593935f32e311a00f7b3820c9c1177e4f0b0384",
+      "selection_uses_wm_score": false,
+      "split": "test",
+      "stage26_pair_id": "task04-init09",
+      "stage28_pair_id": "task04-init09",
+      "task_name": "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate"
+    },
+    {
+      "benchmark_task_id": 7,
+      "episode_seed": 180708,
+      "historical_steps": 280,
+      "historical_success": false,
+      "init_state_index": 8,
+      "pair_id": "test-task07-init08",
+      "pilot_pair": false,
+      "selection_key": "d4349c8ab88a48dccf47347ea0b8f1cc1f5a3c08f6e1ff0b12a4a46f6f3486bd",
+      "selection_uses_wm_score": false,
+      "split": "test",
+      "stage26_pair_id": "task07-init08",
+      "stage28_pair_id": "task07-init08",
+      "task_name": "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate"
+    },
+    {
+      "benchmark_task_id": 7,
+      "episode_seed": 180711,
+      "historical_steps": 117,
+      "historical_success": true,
+      "init_state_index": 11,
+      "pair_id": "test-task07-init11",
+      "pilot_pair": false,
+      "selection_key": "ea445cff3fe40c77e7d5f4a5fdabb20c4cbb6ead7e4a6325f6190e368ee50084",
+      "selection_uses_wm_score": false,
+      "split": "test",
+      "stage26_pair_id": "task07-init11",
+      "stage28_pair_id": "task07-init11",
+      "task_name": "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate"
+    },
+    {
+      "benchmark_task_id": 8,
+      "episode_seed": 180810,
+      "historical_steps": 92,
+      "historical_success": true,
+      "init_state_index": 10,
+      "pair_id": "test-task08-init10",
+      "pilot_pair": false,
+      "selection_key": "41bf2956d583efe41a6fe2f6a6f266c8b35c9e386aa00625822dc0d0afe04830",
+      "selection_uses_wm_score": false,
+      "split": "test",
+      "stage26_pair_id": "task08-init10",
+      "stage28_pair_id": "task08-init10",
+      "task_name": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate"
+    },
+    {
+      "benchmark_task_id": 8,
+      "episode_seed": 180823,
+      "historical_steps": 92,
+      "historical_success": true,
+      "init_state_index": 23,
+      "pair_id": "test-task08-init23",
+      "pilot_pair": false,
+      "selection_key": "46aa60b9e5f4cf4a2052f2ed569a0c51ee11d89e7a980eeac07d617444061bac",
+      "selection_uses_wm_score": false,
+      "split": "test",
+      "stage26_pair_id": "task08-init23",
+      "stage28_pair_id": "task08-init23",
+      "task_name": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate"
+    }
+  ],
+  "pre_window_starts_inclusive": [
+    10,
+    40
+  ],
+  "schema_version": 1,
+  "shield_actions_applied": 0,
+  "source_hashes": {
+    "stage25_protocol": "bc3ef2a4fd78ed5e281a4382c35db504b7cc1283df7dabb0819610d9bb25d41e",
+    "stage27_report": "71589d1bf1707c5304dc16f0dcb402728d335b752cc50c8eba166527a8c13248",
+    "stage27_statistics": "338f6a0ffb07c784f481fff751f83fecc5930e6b34cbfca607c5fcb33882ce4e"
+  },
+  "source_split": "Stage 25 test states",
+  "stage": "WM Stage 28 independent hidden-dynamics residual confirmation",
+  "states_previously_used_for_stage25_action_fault_test": true,
+  "states_used_in_stage26_or_stage27_hidden_dynamics": false
+}
