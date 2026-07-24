@@ -24,7 +24,7 @@ GeForce RTX 4060 Laptop GPU（8 GB）上完成，没有使用真机或租用云�
 
 ## World Model 扩展进度
 
-当前已完成 WM 阶段 0—7：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
+当前已完成 WM 阶段 0—8：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
 episode，生成按任务分层、episode 级互斥的 346/43/43 训练/验证/测试划分，并跑通冻结
 DINOv2-S/14 双相机表征 pilot 及全量缓存。最终以 episode 级原子分片处理 389 个
 train/validation episode、47,822 帧和 95,644 张图像，完整缓存约 1.10 GiB；389/389 shard
@@ -39,16 +39,20 @@ bootstrap 95% CI 为 `[0.484%, 0.916%]`。冻结 checkpoint 的 oracle-state 递
 控制步和 2,199 条有效 WM transition，12 个 success 与 steps 均精确复现旧结果。冻结模型
 在每回合共同前 80 个起点上的 H10 error 对失败取得 pooled AUROC 0.829，但精确置换
 `p=0.164`、task-centered AUROC 仅 0.486；因此只视为受任务混淆影响的初步信号，而不是已
-校准 failure detector。详见
+校准 failure detector。为构造新的 score-blind 队列，又在 Task 4/5/7/8 上固定扫描官方初始
+状态 3—14，共得到 48 个 episode、27 成功/21 失败；Task 4 与 7 达到每任务至少 3 成功/3
+失败，Task 5 为 0/12 成功、Task 8 仅 2 个失败，因此严格拒绝生成四任务 calibration/test
+选集。详见
 [数据审计](docs/WM_STAGE11_DATA_AUDIT.md)与
 [冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)、
 [全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)、
 [动作条件 Next-Latent Baseline](docs/WM_STAGE14_NEXT_LATENT_BASELINE.md)、
 [多步 Latent Rollout](docs/WM_STAGE15_MULTISTEP_ROLLOUT.md)、
 [完整观测闭环回采](docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md)与
-[闭环失败信号探索](docs/WM_STAGE17_FAILURE_SIGNAL.md)。
+[闭环失败信号探索](docs/WM_STAGE17_FAILURE_SIGNAL.md)与
+[未见初始状态标签筛选](docs/WM_STAGE18_INITIAL_STATE_SCOUT.md)。
 
-![Stage 17 闭环失败信号探索](media/wm_stage17_failure_signal.svg)
+![Stage 18 未见初始状态标签筛选](media/wm_stage18_initial_state_scout.svg)
 
 ## 系统闭环
 
@@ -226,6 +230,7 @@ adapter 重载前后的参数哈希及固定验证 loss 完全一致。
 - [WM 阶段 5：多步 Latent Rollout](docs/WM_STAGE15_MULTISTEP_ROLLOUT.md)
 - [WM 阶段 6：完整观测闭环回采](docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md)
 - [WM 阶段 7：闭环失败信号探索](docs/WM_STAGE17_FAILURE_SIGNAL.md)
+- [WM 阶段 8：未见初始状态标签筛选](docs/WM_STAGE18_INITIAL_STATE_SCOUT.md)
 - [结果与媒体来源说明](media/README.md)
 - [第三方项目、模型和数据说明](THIRD_PARTY_NOTICES.md)
 

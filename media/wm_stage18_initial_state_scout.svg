@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Stage 18 未见初始状态标签筛选</title>
+  <desc id="desc">展示四个 LIBERO 任务在十二个未见初始状态上的成功失败分布，以及预注册平衡门槛是否通过。</desc>
+  <rect width="1100" height="620" fill="#f7f9fc"/>
+  <text x="550" y="39" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#17233c">Stage 18：未见初始状态标签筛选</text>
+  <text x="550" y="69" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#53627a">官方初始状态 3—14 · 48 个 score-blind scout episode · 固定预训练 SmolVLA H=10</text>
+
+  <rect x="35" y="94" width="650" height="443" rx="14" fill="#ffffff" stroke="#d9e1ee"/>
+  <text x="360" y="128" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#17233c">每任务成功 / 失败分布</text>
+  <text x="360" y="151" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#53627a">预注册门槛：每个任务至少 3 成功、3 失败</text>
+
+  <g font-family="sans-serif" font-size="14" fill="#17233c" text-anchor="end">
+    <text x="130" y="210">Task 4</text>
+    <text x="130" y="285">Task 5</text>
+    <text x="130" y="360">Task 7</text>
+    <text x="130" y="435">Task 8</text>
+  </g>
+  <g stroke="#e7ebf2">
+    <line x1="150" y1="175" x2="610" y2="175"/>
+    <line x1="150" y1="250" x2="610" y2="250"/>
+    <line x1="150" y1="325" x2="610" y2="325"/>
+    <line x1="150" y1="400" x2="610" y2="400"/>
+    <line x1="150" y1="475" x2="610" y2="475"/>
+  </g>
+
+  <!-- 12 episodes = 432 px; each episode = 36 px -->
+  <rect x="150" y="184" width="288" height="36" rx="5" fill="#27a56a"/>
+  <rect x="438" y="184" width="144" height="36" rx="5" fill="#df5b57"/>
+  <rect x="150" y="259" width="432" height="36" rx="5" fill="#df5b57"/>
+  <rect x="150" y="334" width="324" height="36" rx="5" fill="#27a56a"/>
+  <rect x="474" y="334" width="108" height="36" rx="5" fill="#df5b57"/>
+  <rect x="150" y="409" width="360" height="36" rx="5" fill="#27a56a"/>
+  <rect x="510" y="409" width="72" height="36" rx="5" fill="#df5b57"/>
+
+  <g font-family="sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">
+    <text x="294" y="207">成功 8</text><text x="510" y="207">失败 4</text>
+    <text x="366" y="282">失败 12</text>
+    <text x="312" y="357">成功 9</text><text x="528" y="357">失败 3</text>
+    <text x="330" y="432">成功 10</text><text x="546" y="432">失败 2</text>
+  </g>
+  <g font-family="sans-serif" font-size="13" font-weight="700">
+    <rect x="602" y="185" width="54" height="34" rx="17" fill="#e5f5ed"/><text x="629" y="207" text-anchor="middle" fill="#13734a">通过</text>
+    <rect x="602" y="260" width="54" height="34" rx="17" fill="#fde9e8"/><text x="629" y="282" text-anchor="middle" fill="#a5322e">阻塞</text>
+    <rect x="602" y="335" width="54" height="34" rx="17" fill="#e5f5ed"/><text x="629" y="357" text-anchor="middle" fill="#13734a">通过</text>
+    <rect x="602" y="410" width="54" height="34" rx="17" fill="#fde9e8"/><text x="629" y="432" text-anchor="middle" fill="#a5322e">阻塞</text>
+  </g>
+  <g font-family="sans-serif" font-size="12" fill="#53627a">
+    <rect x="150" y="494" width="14" height="14" rx="3" fill="#27a56a"/><text x="174" y="506">成功：27</text>
+    <rect x="250" y="494" width="14" height="14" rx="3" fill="#df5b57"/><text x="274" y="506">失败：21</text>
+    <text x="385" y="506">48 个观测指纹、48 个动作指纹均唯一</text>
+  </g>
+
+  <rect x="705" y="94" width="360" height="443" rx="14" fill="#ffffff" stroke="#d9e1ee"/>
+  <text x="885" y="128" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#17233c">队列可行性审计</text>
+  <g font-family="sans-serif">
+    <circle cx="755" cy="184" r="16" fill="#e5f5ed"/><text x="755" y="190" text-anchor="middle" font-size="17" font-weight="700" fill="#13734a">✓</text>
+    <text x="785" y="180" font-size="14" font-weight="700" fill="#17233c">协议冻结</text>
+    <text x="785" y="201" font-size="12" fill="#53627a">不查看任何 WM 分数</text>
+
+    <circle cx="755" cy="253" r="16" fill="#e5f5ed"/><text x="755" y="259" text-anchor="middle" font-size="17" font-weight="700" fill="#13734a">✓</text>
+    <text x="785" y="249" font-size="14" font-weight="700" fill="#17233c">确定性复跑</text>
+    <text x="785" y="270" font-size="12" fill="#53627a">观测、动作、步数、标签 bit-exact</text>
+
+    <circle cx="755" cy="322" r="16" fill="#fde9e8"/><text x="755" y="328" text-anchor="middle" font-size="18" font-weight="700" fill="#a5322e">×</text>
+    <text x="785" y="318" font-size="14" font-weight="700" fill="#17233c">四任务全平衡</text>
+    <text x="785" y="339" font-size="12" fill="#53627a">Task 5 缺 3 成功；Task 8 缺 1 失败</text>
+
+    <circle cx="755" cy="391" r="16" fill="#fff3cd"/><text x="755" y="397" text-anchor="middle" font-size="17" font-weight="700" fill="#6b5500">→</text>
+    <text x="785" y="387" font-size="14" font-weight="700" fill="#17233c">未生成选集</text>
+    <text x="785" y="408" font-size="12" fill="#53627a">calibration 0 · test 0</text>
+  </g>
+  <rect x="735" y="447" width="300" height="61" rx="8" fill="#f0f4fa"/>
+  <text x="885" y="471" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#53627a">下一步：Task 5 作为 stress set</text>
+  <text x="885" y="492" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#53627a">固定扩展 Task 8，再冻结 4/7/8 队列</text>
+
+  <rect x="35" y="557" width="1030" height="42" rx="9" fill="#fff3cd" stroke="#f0d47a"/>
+  <text x="550" y="583" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#6b5500">结论：筛选链路通过，但不能把总体 27/48 标签比例当成任务内平衡；四任务 cohort 尚未就绪。</text>
+</svg>

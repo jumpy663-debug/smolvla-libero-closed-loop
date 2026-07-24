@@ -35,3 +35,12 @@ task-centered 后接近随机的限制。
 ```text
 108f350819234d93434ba2e3d3823455c44561c0f206456f735f87f9c2267319  wm_stage17_failure_signal.svg
 ```
+
+`wm_stage18_initial_state_scout.svg` 根据
+[`../results/wm/stage18_initial_state_scout`](../results/wm/stage18_initial_state_scout)
+中的 48 条 score-blind 标签筛选结果绘制，展示逐任务成功/失败分布、预注册平衡门槛和阻塞
+cell。
+
+```text
+941aeed8439973c991fede5a88dbb3633acc84fd9811cc187f13a6eebe1c1cf7  wm_stage18_initial_state_scout.svg
+```

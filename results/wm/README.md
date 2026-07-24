@@ -17,6 +17,8 @@
   回合的标签、步数、模态可用性、文件哈希和容器无关内容哈希。
 - [`stage17_failure_signal`](stage17_failure_signal)：固定前 80 个起点上的 H1/H10 error、
   action disagreement、episode 级 AUROC、精确置换和多重比较校正。
+- [`stage18_initial_state_scout`](stage18_initial_state_scout)：48 个未见官方初始状态上的
+  成功/失败标签、步数、观测与动作指纹，以及预注册任务内平衡门槛审计。
 
 实验设置、限制和字段解释见：
 
@@ -27,3 +29,4 @@
 - [`docs/WM_STAGE15_MULTISTEP_ROLLOUT.md`](../../docs/WM_STAGE15_MULTISTEP_ROLLOUT.md)
 - [`docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md`](../../docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md)
 - [`docs/WM_STAGE17_FAILURE_SIGNAL.md`](../../docs/WM_STAGE17_FAILURE_SIGNAL.md)
+- [`docs/WM_STAGE18_INITIAL_STATE_SCOUT.md`](../../docs/WM_STAGE18_INITIAL_STATE_SCOUT.md)
