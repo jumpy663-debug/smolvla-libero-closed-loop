@@ -72,3 +72,12 @@ Holm 校正后的统计边界。
 ```text
 e477967f5b3eec28628321546158e617e6ee4c4bfa96cc8858edc9956db0193f  wm_stage21_paired_wm_scoring.svg
 ```
+
+`wm_stage22_confirmatory_interventions.svg` 根据
+[`../results/wm/stage22_confirmatory_interventions`](../results/wm/stage22_confirmatory_interventions)
+中的六组三条件轨迹绘制，展示两种温和动作干预保留的 EEF/像素运动、episode 步数增长，以及
+18/18 回合成功的独立 score-blind 确认集。
+
+```text
+1b3442a53e4eba346d7471342d6f279e9c4a3173cf920614614c198371e74d7d  wm_stage22_confirmatory_interventions.svg
+```

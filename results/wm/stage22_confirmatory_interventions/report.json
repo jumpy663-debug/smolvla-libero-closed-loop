@@ -1,0 +1,188 @@
+{
+  "alignment": {
+    "all_episodes_cover_confirmatory_windows": true,
+    "all_initial_observations_match": true,
+    "all_nominal_episodes_reproduce_screen": true,
+    "all_preintervention_commanded_actions_match": true,
+    "all_preintervention_observations_match": true
+  },
+  "artifacts": {
+    "episodes_csv": "episodes.csv",
+    "episodes_csv_sha256": "ef8ca9cd1ea78052cc1b6f3db51a1e381831bff542f0744a96c8021135462647",
+    "fresh_reset_screen_csv": "fresh_reset_screen.csv",
+    "fresh_reset_screen_csv_sha256": "bba0893cc51f1a875f20a98ace7bc36644a6828fa7f9f50d066364c4bebea321",
+    "pairs_csv": "pairs.csv",
+    "pairs_csv_sha256": "6591a2e8e7785458c9fc529482912c6e3467abd354f92af0ddf8cdc100a944fc",
+    "raw_episode_archives": "local-only under outputs/wm/stage22_confirmatory_interventions"
+  },
+  "intervention_diagnostics": {
+    "action_delay_3": {
+      "action_mismatch_positive_episodes": 6,
+      "eef_motion_ratio_vs_nominal_median": 0.9313750979433408,
+      "episodes": 6,
+      "pixel_motion_ratio_vs_nominal_median": 0.9454382038693894,
+      "successes": 6
+    },
+    "motion_attenuation_0p5": {
+      "action_mismatch_positive_episodes": 6,
+      "eef_motion_ratio_vs_nominal_median": 0.5347917310162443,
+      "episodes": 6,
+      "pixel_motion_ratio_vs_nominal_median": 0.8413143636742528,
+      "successes": 6
+    }
+  },
+  "limitations": [
+    "The cohort contains only six pairs across three tasks.",
+    "Both interventions are synthetic actuator faults.",
+    "Executed-action conditioning assumes access to actuator feedback.",
+    "No world-model score is inspected in this collection stage."
+  ],
+  "protocol": {
+    "backbone_sha256": "b9bfd456c9472c0acd5719d6e514c4b859891af205ee1a736552fd3497b8b0c3",
+    "conditions": [
+      "nominal",
+      "motion_attenuation_0p5",
+      "action_delay_3"
+    ],
+    "confirmatory_h10_post_starts": [
+      50,
+      79
+    ],
+    "episode_batch_size": 1,
+    "fresh_environment_instance_per_episode": true,
+    "fresh_reset_screen_candidates": [
+      {
+        "benchmark_task_id": 4,
+        "candidate_id": "task04-init07",
+        "episode_seed": 180407,
+        "init_state_index": 7
+      },
+      {
+        "benchmark_task_id": 4,
+        "candidate_id": "task04-init04",
+        "episode_seed": 180404,
+        "init_state_index": 4
+      },
+      {
+        "benchmark_task_id": 4,
+        "candidate_id": "task04-init12",
+        "episode_seed": 180412,
+        "init_state_index": 12
+      },
+      {
+        "benchmark_task_id": 4,
+        "candidate_id": "task04-init11",
+        "episode_seed": 180411,
+        "init_state_index": 11
+      },
+      {
+        "benchmark_task_id": 7,
+        "candidate_id": "task07-init05",
+        "episode_seed": 180705,
+        "init_state_index": 5
+      },
+      {
+        "benchmark_task_id": 7,
+        "candidate_id": "task07-init09",
+        "episode_seed": 180709,
+        "init_state_index": 9
+      },
+      {
+        "benchmark_task_id": 7,
+        "candidate_id": "task07-init03",
+        "episode_seed": 180703,
+        "init_state_index": 3
+      },
+      {
+        "benchmark_task_id": 7,
+        "candidate_id": "task07-init12",
+        "episode_seed": 180712,
+        "init_state_index": 12
+      },
+      {
+        "benchmark_task_id": 8,
+        "candidate_id": "task08-init11",
+        "episode_seed": 180811,
+        "init_state_index": 11
+      },
+      {
+        "benchmark_task_id": 8,
+        "candidate_id": "task08-init26",
+        "episode_seed": 180826,
+        "init_state_index": 26
+      },
+      {
+        "benchmark_task_id": 8,
+        "candidate_id": "task08-init18",
+        "episode_seed": 180818,
+        "init_state_index": 18
+      },
+      {
+        "benchmark_task_id": 8,
+        "candidate_id": "task08-init13",
+        "episode_seed": 180813,
+        "init_state_index": 13
+      }
+    ],
+    "fresh_reset_screen_candidates_per_task": 4,
+    "intervention_start_zero_based": 50,
+    "interventions": {
+      "action_delay_3": {
+        "arm_dimensions_0_to_5": "commanded arm action from t-3",
+        "duration": "from step 50 until termination",
+        "gripper_dimension_6": "current commanded action"
+      },
+      "motion_attenuation_0p5": {
+        "arm_dimensions_0_to_5": "0.5 * current commanded action",
+        "duration": "from step 50 until termination",
+        "gripper_dimension_6": "current commanded action"
+      }
+    },
+    "n_action_steps": 10,
+    "pair_freeze_rule": "Within each task, take the first two candidates in the pinned hash order that fresh-reset succeed with at least 90 control steps.",
+    "policy_sha256": "9a9f6413e42c0f332fccbce9a0dc796af2790f82cf002f791cdbf7e01e1afca8",
+    "required_valid_transitions_through_index": 88,
+    "resolution": 360,
+    "schema_version": 1,
+    "selection_salt": "stage22-confirmatory-mild-interventions-v1",
+    "selection_uses_world_model_score": false,
+    "stage20_report_sha256": "51990ebce1e757d04f3dc08a7cc9d6110f9643302ce52180b0784f794c6a7c4d",
+    "stage20_screen_states_excluded": true,
+    "stage21_report_sha256": "59905abdbb2ea8b5ee3834a5ca1d014815c8ace69b84a4bf340434c7ac057135",
+    "stage23_candidate_direction": "positive",
+    "stage23_candidate_score": "fault-post commanded_h10_raw_mse minus executed_h10_raw_mse",
+    "stage23_discovery_data_reused": false,
+    "suite": "libero_spatial",
+    "task_ids": [
+      4,
+      7,
+      8
+    ],
+    "world_model_loaded_during_collection": false
+  },
+  "protocol_sha256": "5751f405e7ac647044fecdeba9a427e0a7bd1b46d0592fe0ad3b1d6519e3dc01",
+  "schema_version": 1,
+  "scope": {
+    "conditions_per_pair": 3,
+    "episodes": 18,
+    "fresh_reset_screen_episodes": 12,
+    "fresh_reset_screen_successes": 11,
+    "model_parameters_updated": 0,
+    "pairs": 6,
+    "raw_archive_bytes": 732269351,
+    "task_ids": [
+      4,
+      7,
+      8
+    ],
+    "test_demonstration_episodes_used": 0,
+    "world_model_scores_computed": 0
+  },
+  "stage": "WM Stage 22 score-blind mild-intervention confirmation collection",
+  "stage23_readiness": {
+    "candidate_score_frozen_before_encoding": true,
+    "frozen_wm_scoring_can_start": true,
+    "independent_confirmation_cohort_complete": true
+  },
+  "status": "passed"
+}
