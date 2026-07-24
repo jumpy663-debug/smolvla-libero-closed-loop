@@ -24,7 +24,7 @@ GeForce RTX 4060 Laptop GPU（8 GB）上完成，没有使用真机或租用云�
 
 ## World Model 扩展进度
 
-当前已完成 WM 阶段 0—9：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
+当前已完成 WM 阶段 0—10：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
 episode，生成按任务分层、episode 级互斥的 346/43/43 训练/验证/测试划分，并跑通冻结
 DINOv2-S/14 双相机表征 pilot 及全量缓存。最终以 episode 级原子分片处理 389 个
 train/validation episode、47,822 帧和 95,644 张图像，完整缓存约 1.10 GiB；389/389 shard
@@ -44,7 +44,10 @@ bootstrap 95% CI 为 `[0.484%, 0.916%]`。冻结 checkpoint 的 oracle-state 递
 失败，Task 5 为 0/12 成功、Task 8 仅 2 个失败，因此严格拒绝生成四任务 calibration/test
 选集。随后按预注册修订将 Task 5 固定为 stress set，并完整扫描 Task 8 状态 15—26；扩展块
 12/12 全部成功，使 Task 8 在状态 3—26 上达到 22 成功/2 失败，仍不足 3 个失败，因此再次
-拒绝冻结三任务选集，并停止机会性搜索自然失败。详见
+拒绝冻结三任务选集，并停止机会性搜索自然失败。随后构建同任务/初始状态/seed 的配对执行器
+故障 pilot：经 12 条独立 fresh-reset 筛选后冻结 6 对状态，从步 50 起持续丢弃机械臂运动命令，
+得到 **6/6 nominal 成功、6/6 dropout 失败**；629 MiB 完整观测中同时保存 commanded 与
+executed action，且六对干预前轨迹逐位一致。详见
 [数据审计](docs/WM_STAGE11_DATA_AUDIT.md)与
 [冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)、
 [全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)、
@@ -53,9 +56,10 @@ bootstrap 95% CI 为 `[0.484%, 0.916%]`。冻结 checkpoint 的 oracle-state 递
 [完整观测闭环回采](docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md)、
 [闭环失败信号探索](docs/WM_STAGE17_FAILURE_SIGNAL.md)、
 [未见初始状态标签筛选](docs/WM_STAGE18_INITIAL_STATE_SCOUT.md)、
-[平衡队列修订](docs/WM_STAGE19_BALANCED_COHORT.md)。
+[平衡队列修订](docs/WM_STAGE19_BALANCED_COHORT.md)与
+[配对动作干预完整观测回采](docs/WM_STAGE20_PAIRED_INTERVENTIONS.md)。
 
-![Stage 19 平衡队列修订](media/wm_stage19_balanced_cohort.svg)
+![Stage 20 配对动作干预](media/wm_stage20_paired_interventions.svg)
 
 ## 系统闭环
 
@@ -235,6 +239,7 @@ adapter 重载前后的参数哈希及固定验证 loss 完全一致。
 - [WM 阶段 7：闭环失败信号探索](docs/WM_STAGE17_FAILURE_SIGNAL.md)
 - [WM 阶段 8：未见初始状态标签筛选](docs/WM_STAGE18_INITIAL_STATE_SCOUT.md)
 - [WM 阶段 9：平衡队列修订与可行性审计](docs/WM_STAGE19_BALANCED_COHORT.md)
+- [WM 阶段 10：配对动作干预完整观测回采](docs/WM_STAGE20_PAIRED_INTERVENTIONS.md)
 - [结果与媒体来源说明](media/README.md)
 - [第三方项目、模型和数据说明](THIRD_PARTY_NOTICES.md)
 

@@ -1,0 +1,199 @@
+{
+  "alignment": {
+    "action_t_maps_observation_t_to_t_plus_1": true,
+    "all_initial_observations_match_fresh_screen_and_pair": true,
+    "all_nominal_episodes_reproduce_fresh_screen": true,
+    "all_preintervention_commanded_actions_match": true,
+    "all_preintervention_observations_match": true,
+    "successful_final_transition_valid": false
+  },
+  "artifacts": {
+    "episodes_csv": "episodes.csv",
+    "episodes_csv_sha256": "6283cd45c1c7b67fa10e9a39545841c82b67441dbe7a21080e3ba93a271408d2",
+    "fresh_reset_screen_csv": "fresh_reset_screen.csv",
+    "fresh_reset_screen_csv_sha256": "d53ba01607018a58e4b83cadfddeed93663234e6b473baf40e91c093724118ed",
+    "pairs_csv": "pairs.csv",
+    "pairs_csv_sha256": "f1c5673ed10ee3d3387b4fb4e35d07d16b03433a02474dfc393700bb60befcac",
+    "raw_archives_committed_to_git": false,
+    "raw_episode_archives": "local-only under outputs/wm/stage20_paired_interventions"
+  },
+  "frozen_world_model": {
+    "model_parameters_updated": 0,
+    "stage17_primary_score": "h10_raw_mse",
+    "thresholds_fitted_in_stage20": 0,
+    "world_model_scores_computed_in_stage20": 0
+  },
+  "intervention_viability": {
+    "minimum_fault_failures": 4,
+    "observed_fault_failures": 6,
+    "passes": true
+  },
+  "limitations": [
+    "Persistent motion dropout is a synthetic actuator fault, not a natural policy failure.",
+    "Only six episode pairs across three tasks are collected in this pilot.",
+    "The policy observes the diverged post-fault trajectory and replans normally.",
+    "No world-model score or detector result is reported in this collection stage."
+  ],
+  "modalities": {
+    "camera1": "agentview uint8 RGB",
+    "camera2": "eye-in-hand uint8 RGB",
+    "commanded_action": "7-D postprocessed SmolVLA command",
+    "executed_action": "7-D action actually passed to LIBERO",
+    "intervention_mask": "true from step 50 onward in fault condition",
+    "robot_state": [
+      "eef_pos",
+      "eef_quat",
+      "eef_mat",
+      "gripper_qpos",
+      "gripper_qvel",
+      "joint_pos",
+      "joint_vel"
+    ]
+  },
+  "protocol": {
+    "backbone_sha256": "b9bfd456c9472c0acd5719d6e514c4b859891af205ee1a736552fd3497b8b0c3",
+    "conditions": [
+      "nominal",
+      "persistent_motion_dropout"
+    ],
+    "episode_batch_size": 1,
+    "fresh_environment_instance_per_full_episode": true,
+    "fresh_environment_instance_per_screen_episode": true,
+    "fresh_reset_screen_candidates": [
+      {
+        "benchmark_task_id": 4,
+        "candidate_id": "task04-init10",
+        "episode_seed": 180410,
+        "init_state_index": 10
+      },
+      {
+        "benchmark_task_id": 4,
+        "candidate_id": "task04-init08",
+        "episode_seed": 180408,
+        "init_state_index": 8
+      },
+      {
+        "benchmark_task_id": 4,
+        "candidate_id": "task04-init14",
+        "episode_seed": 180414,
+        "init_state_index": 14
+      },
+      {
+        "benchmark_task_id": 4,
+        "candidate_id": "task04-init05",
+        "episode_seed": 180405,
+        "init_state_index": 5
+      },
+      {
+        "benchmark_task_id": 7,
+        "candidate_id": "task07-init06",
+        "episode_seed": 180706,
+        "init_state_index": 6
+      },
+      {
+        "benchmark_task_id": 7,
+        "candidate_id": "task07-init04",
+        "episode_seed": 180704,
+        "init_state_index": 4
+      },
+      {
+        "benchmark_task_id": 7,
+        "candidate_id": "task07-init07",
+        "episode_seed": 180707,
+        "init_state_index": 7
+      },
+      {
+        "benchmark_task_id": 7,
+        "candidate_id": "task07-init14",
+        "episode_seed": 180714,
+        "init_state_index": 14
+      },
+      {
+        "benchmark_task_id": 8,
+        "candidate_id": "task08-init14",
+        "episode_seed": 180814,
+        "init_state_index": 14
+      },
+      {
+        "benchmark_task_id": 8,
+        "candidate_id": "task08-init24",
+        "episode_seed": 180824,
+        "init_state_index": 24
+      },
+      {
+        "benchmark_task_id": 8,
+        "candidate_id": "task08-init03",
+        "episode_seed": 180803,
+        "init_state_index": 3
+      },
+      {
+        "benchmark_task_id": 8,
+        "candidate_id": "task08-init07",
+        "episode_seed": 180807,
+        "init_state_index": 7
+      }
+    ],
+    "fresh_reset_screen_candidates_per_task": 4,
+    "fresh_screen_must_finish_full_block": true,
+    "intervention": {
+      "commanded_action_saved": true,
+      "duration": "until episode termination or time limit",
+      "executed_action_saved": true,
+      "executed_arm_dimensions_0_to_5": 0.0,
+      "executed_gripper_dimension_6": "preserve commanded value",
+      "name": "persistent_motion_dropout",
+      "start_control_step_zero_based": 50
+    },
+    "minimum_fault_failures_for_viability": 4,
+    "n_action_steps": 10,
+    "pair_freeze_rule": "Within each task, take the first two candidates in the pre-registered hash order that succeed after control step 50 in the complete fresh-reset screen.",
+    "pairs_per_task": 2,
+    "policy_sha256": "9a9f6413e42c0f332fccbce9a0dc796af2790f82cf002f791cdbf7e01e1afca8",
+    "resolution": 360,
+    "schema_version": 1,
+    "selection_salt": "stage20-paired-motion-dropout-v1",
+    "selection_uses_world_model_score": false,
+    "stage17_report_sha256": "06859d1835154393488a678fda8fefb42f1ba48ea8bb0d07fef4be6802314e5a",
+    "stage18_episodes_sha256": "d98268c4ab3b43bdb646b8ff3f3855acb841dac065ed73eed129b590688d99d9",
+    "stage18_report_sha256": "4e97090db32baa6c58258c058606b669e8967712ad419325eebc17ac293d6f7a",
+    "stage19_extension_sha256": "5108864a13c899da6cc4c2f811bfad5b4dd58f50ad81b6faed2c859e4c5bfc46",
+    "stage19_report_sha256": "7a3f04d71ccbf48d7d0253ee4b5746425a78acfaca023d2de9865d6f26f68558",
+    "suite": "libero_spatial",
+    "task_ids": [
+      4,
+      7,
+      8
+    ]
+  },
+  "protocol_sha256": "63604bca6752505a4a14cba4df96389a94d57f0b00c60cf84c90b33364d37f9e",
+  "reset_history_audit": {
+    "fresh_environment_instance_used_for_every_screen_and_full_episode": true,
+    "historical_scout_initial_observations_matching_fresh_reset": 8,
+    "reason": "The first attempted direct reuse of a later Stage 18 state did not reproduce from a fresh simulator instance; formal Stage 20 therefore uses a complete fresh-reset eligibility screen.",
+    "screen_episodes": 12
+  },
+  "schema_version": 1,
+  "scope": {
+    "episodes": 12,
+    "fault_episodes": 6,
+    "fault_failures": 6,
+    "fresh_reset_screen_episodes": 12,
+    "fresh_reset_screen_successes": 10,
+    "nominal_episodes": 6,
+    "pairs": 6,
+    "raw_archive_bytes": 659350899,
+    "task_ids": [
+      4,
+      7,
+      8
+    ],
+    "test_demonstration_episodes_used": 0
+  },
+  "stage": "WM Stage 20 paired persistent motion-dropout recollection",
+  "stage21_readiness": {
+    "frozen_wm_paired_scoring_can_start": true,
+    "intervention_viable": true,
+    "paired_complete_observations_available": true
+  },
+  "status": "passed"
+}

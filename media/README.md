@@ -53,3 +53,12 @@ calibration/test 队列。
 ```text
 ff437eb6a42745c79f43879db95465424906ae0807afed864e7e96049af8a412  wm_stage19_balanced_cohort.svg
 ```
+
+`wm_stage20_paired_interventions.svg` 根据
+[`../results/wm/stage20_paired_interventions`](../results/wm/stage20_paired_interventions)
+中的 fresh-reset 筛选、六组配对步数与故障有效性结果绘制。它展示 nominal 与 persistent
+motion-dropout 的严格同状态对照，不包含 WM 评分结果。
+
+```text
+16c2e97ed39b371ccd9f124e14af37d678b2b23b5116b87c5499ee9d66148f7b  wm_stage20_paired_interventions.svg
+```

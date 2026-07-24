@@ -21,6 +21,8 @@
   成功/失败标签、步数、观测与动作指纹，以及预注册任务内平衡门槛审计。
 - [`stage19_balanced_cohort`](stage19_balanced_cohort)：Task 8 官方状态 15—26 的固定块
   扩展、Task 5 能力地板 stress set，以及三任务平衡队列可行性审计。
+- [`stage20_paired_interventions`](stage20_paired_interventions)：独立 fresh-reset 筛选、
+  六组 nominal/persistent motion-dropout 完整观测配对、commanded/executed action 与对齐哈希。
 
 实验设置、限制和字段解释见：
 
@@ -33,3 +35,4 @@
 - [`docs/WM_STAGE17_FAILURE_SIGNAL.md`](../../docs/WM_STAGE17_FAILURE_SIGNAL.md)
 - [`docs/WM_STAGE18_INITIAL_STATE_SCOUT.md`](../../docs/WM_STAGE18_INITIAL_STATE_SCOUT.md)
 - [`docs/WM_STAGE19_BALANCED_COHORT.md`](../../docs/WM_STAGE19_BALANCED_COHORT.md)
+- [`docs/WM_STAGE20_PAIRED_INTERVENTIONS.md`](../../docs/WM_STAGE20_PAIRED_INTERVENTIONS.md)
