@@ -102,3 +102,12 @@ e477967f5b3eec28628321546158e617e6ee4c4bfa96cc8858edc9956db0193f  wm_stage21_pai
 1740ac09e7dadfbbfc9a6a5a28b8d36a98b9ac6d1b945d76bf17f6735bd9f0bf  wm_stage24_nominal_monitor.mp4
 6aa57778fafaec16871b3582ba358c967bc9d4d27efdbb670c11c553cc9c5bbd  wm_stage24_motion_attenuation_0p5_monitor.mp4
 ```
+
+`wm_stage25_detector_calibration.svg` 根据
+[`../results/wm/stage25_detector_calibration`](../results/wm/stage25_detector_calibration)
+中的 calibration-only threshold 与 6 个留出 test pair 绘制。它同时展示 WM detector 的正常
+误报、两类故障检出，以及直接 action mismatch 基线为何阻止本阶段直接外推为 shield。
+
+```text
+25901dbb237c687526ecf80391c0e4bf64a5ea251027354e6f462ec7cafddcc6  wm_stage25_detector_calibration.svg
+```

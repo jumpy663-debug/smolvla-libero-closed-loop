@@ -24,7 +24,7 @@ GeForce RTX 4060 Laptop GPU（8 GB）上完成，没有使用真机或租用云�
 
 ## World Model 扩展进度
 
-当前已完成 WM 阶段 0—14：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
+当前已完成 WM 阶段 0—15：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
 episode，生成按任务分层、episode 级互斥的 346/43/43 训练/验证/测试划分，并跑通冻结
 DINOv2-S/14 双相机表征 pilot 及全量缓存。最终以 episode 级原子分片处理 389 个
 train/validation episode、47,822 帧和 95,644 张图像，完整缓存约 1.10 GiB；389/389 shard
@@ -61,7 +61,11 @@ executed action，且六对干预前轨迹逐位一致。冻结 WM 随后在预�
 自然 failure detector 或在线 shield。最后将冻结 DINOv2 与 latent dynamics 作为只记录的
 sidecar 接入真实 SmolVLA/LIBERO 循环：18 条历史轨迹的 1,080 个注册窗口在线/离线最大分数差
 仅 **2.205×10⁻⁶**；一组正常/0.5× 衰减的 90 步实时配对中，控制输出均与原轨迹逐位一致，
-post gap 分别为 **0.00000 / +0.04018**，在线编码和 WM 评分各约 14 ms。详见
+post gap 分别为 **0.00000 / +0.04018**，在线编码和 WM 评分各约 14 ms。
+随后排除所有既往干预筛选状态，用 6 个 calibration pair 冻结 `0.024414` threshold，再在
+6 个留出 test pair 上取得正常 **0/6 误报**、0.5× 衰减 **5/6 检出**、零样本 3-step delay
+**4/6 检出**；但直接 action mismatch 基线为两类故障 **6/6、0 步延迟**，明确否证了在当前
+标签直接暴露设定下继续把 WM detector 包装成 shield 的合理性。详见
 [数据审计](docs/WM_STAGE11_DATA_AUDIT.md)与
 [冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)、
 [全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)、
@@ -75,9 +79,10 @@ post gap 分别为 **0.00000 / +0.04018**，在线编码和 WM 评分各约 14 m
 [冻结 WM 配对干预评分](docs/WM_STAGE21_PAIRED_WM_SCORING.md)、
 [独立温和干预确认集](docs/WM_STAGE22_CONFIRMATORY_INTERVENTIONS.md)、
 [独立确认 action-sensitivity](docs/WM_STAGE23_CONFIRMATORY_WM_SCORING.md)与
-[在线旁路接入](docs/WM_STAGE24_ONLINE_SIDECAR.md)。
+[在线旁路接入](docs/WM_STAGE24_ONLINE_SIDECAR.md)、
+[独立 detector 校准](docs/WM_STAGE25_DETECTOR_CALIBRATION.md)。
 
-![Stage 24 WM 在线旁路接入](media/wm_stage24_online_sidecar.svg)
+![Stage 25 独立 detector 校准](media/wm_stage25_detector_calibration.svg)
 
 ## 系统闭环
 
@@ -94,6 +99,7 @@ flowchart LR
     H -. commanded action .-> W
     E -. executed feedback .-> W
     W --> G[H10 gap 日志<br/>不修改动作]
+    G --> T[冻结 threshold<br/>连续 3 窗口报警]
 
     D[Task 5 demonstrations] --> F{微调方式}
     F --> X[动作专家微调<br/>99.9M 可训练参数]
@@ -245,6 +251,17 @@ MUJOCO_GL=egl uv run --no-sync python \
   scripts/wm/stage24_online_sidecar.py
 ```
 
+### 5. 独立 detector 校准与 Test
+
+Stage 25 排除既往干预状态，严格按 calibration→冻结 threshold→test 的顺序运行，并同时报告直接
+action mismatch 基线：
+
+```bash
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
+MUJOCO_GL=egl uv run --no-sync python \
+  scripts/wm/stage25_detector_calibration.py
+```
+
 ## 项目结构
 
 ```text
@@ -278,6 +295,7 @@ MUJOCO_GL=egl uv run --no-sync python \
 - [WM 阶段 12：独立温和干预确认集](docs/WM_STAGE22_CONFIRMATORY_INTERVENTIONS.md)
 - [WM 阶段 13：独立确认 action-sensitivity](docs/WM_STAGE23_CONFIRMATORY_WM_SCORING.md)
 - [WM 阶段 14：在线旁路接入](docs/WM_STAGE24_ONLINE_SIDECAR.md)
+- [WM 阶段 15：独立 detector 校准](docs/WM_STAGE25_DETECTOR_CALIBRATION.md)
 - [结果与媒体来源说明](media/README.md)
 - [第三方项目、模型和数据说明](THIRD_PARTY_NOTICES.md)
 
@@ -292,6 +310,8 @@ MUJOCO_GL=egl uv run --no-sync python \
   分布上继续拟合，并没有引入全新的行为数据。
 - 两种微调方式都没有解决 Task 5。结论仅限于工程复现、参数效率以及本次配对实验中观察到的遗忘
   差异，不能宣称 LoRA 普遍优于完整微调。
+- 当前 WM detector 只针对 executed-action feedback 直接暴露的合成执行器故障；直接 action
+  mismatch 基线更快且检出更完整，因此尚不支持 online shield 结论。
 - 当前只有仿真闭环，没有覆盖真机感知、标定、控制延迟和安全问题。
 
 这些限制被明确保留，因为它们决定了实验结果能够支持哪些结论。

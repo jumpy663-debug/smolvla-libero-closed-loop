@@ -365,6 +365,7 @@ def collect_live_prefix(
     init_state_index: int,
     condition: str,
     live_steps: int,
+    capture_frames: bool = True,
 ) -> dict[str, Any]:
     seed = STAGE18.episode_seed(task_id, init_state_index)
     torch.manual_seed(seed)
@@ -375,7 +376,6 @@ def collect_live_prefix(
     observation, _ = env.reset(seed=[seed])
     initial_tokens, initial_state, initial_encode_seconds = observation_encoder.encode(observation)
     monitor.reset(initial_tokens, initial_state)
-    rendered = [np.ascontiguousarray(env.envs[0].render())]
     commanded_actions = []
     executed_actions = []
     reward_values = []
@@ -384,14 +384,16 @@ def collect_live_prefix(
     encode_seconds = [initial_encode_seconds]
     command_history: list[np.ndarray] = []
     latest_score: float | None = None
-    frames = [
-        annotate_frame(
-            rendered[0],
-            condition=condition,
-            target_index=0,
-            score=None,
+    frames = []
+    if capture_frames:
+        frames.append(
+            annotate_frame(
+                np.ascontiguousarray(env.envs[0].render()),
+                condition=condition,
+                target_index=0,
+                score=None,
+            )
         )
-    ]
 
     for step in range(live_steps):
         policy_observation = preprocess_observation(observation)
@@ -439,15 +441,16 @@ def collect_live_prefix(
         reward_values.append(float(np.asarray(reward)[0]))
         step_successes = STAGE18.STAGE16.extract_successes(info, 1)
         success_values.append(bool(step_successes[0]))
-        rendered_frame = np.ascontiguousarray(env.envs[0].render())
-        frames.append(
-            annotate_frame(
-                rendered_frame,
-                condition=condition,
-                target_index=step + 1,
-                score=latest_score,
+        if capture_frames:
+            rendered_frame = np.ascontiguousarray(env.envs[0].render())
+            frames.append(
+                annotate_frame(
+                    rendered_frame,
+                    condition=condition,
+                    target_index=step + 1,
+                    score=latest_score,
+                )
             )
-        )
         if bool((terminated | truncated)[0]):
             break
     return {

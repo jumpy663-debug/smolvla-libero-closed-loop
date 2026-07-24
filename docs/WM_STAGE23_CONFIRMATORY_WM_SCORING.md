@@ -135,5 +135,5 @@ uv run --no-sync python scripts/wm/stage23_confirmatory_wm_scoring.py
 - oracle state 递归评测尚未替换为完全在线可观测状态管线；
 - 6 个 pair 仍不足以支持跨任务、跨机器人或真实故障的通用结论。
 
-因此 Stage 24 可以继续做离线 detector/时序 onset 分析，但必须继续区分“候选信号已确认”和
-“在线 shield 已验证”；后者目前仍不成立。
+因此后续可以继续做 detector/时序 onset 分析与在线旁路接入，但必须继续区分“候选信号已确认”
+和“在线 shield 已验证”；后者在本阶段仍不成立。

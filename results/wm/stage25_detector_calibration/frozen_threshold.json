@@ -1,0 +1,19 @@
+{
+  "calibration_episode_metadata_sha256": "91e1e4ab2afad89d93c2ef9e498d90724544132a6e337de5ef371cdddcb507e7",
+  "candidate_thresholds_evaluated": 102,
+  "comparison": "strictly greater than threshold",
+  "consecutive_windows": 3,
+  "frozen_artifact_sha256": "42a0355313aefde766abcd502ddd58a9120f39ec3ae63ba43f1d697d61982649",
+  "protocol_sha256": "bc3ef2a4fd78ed5e281a4382c35db504b7cc1283df7dabb0819610d9bb25d41e",
+  "schema_version": 1,
+  "score": "commanded H10 raw latent MSE minus executed H10 raw latent MSE",
+  "selected_calibration_counts": {
+    "fault_episodes": 6,
+    "fault_episodes_detected": 5,
+    "fault_pre_false_alarms": 0,
+    "nominal_false_alarms": 0
+  },
+  "selection_rule": "largest positive-score midpoint with zero calibration nominal/pre false alarms and at least 5/6 calibration attenuation episodes detected",
+  "test_scores_accessed": false,
+  "threshold": 0.024414002895355225
+}

@@ -1,0 +1,13 @@
+pair_id,split,benchmark_task_id,init_state_index,conditions,pre_commanded_actions_bit_exact,pre_rewards_bit_exact,preperiod_pairing_passed
+calibration-task04-init03,calibration,4,3,2,True,True,True
+calibration-task04-init13,calibration,4,13,2,True,True,True
+calibration-task07-init10,calibration,7,10,2,True,True,True
+calibration-task07-init13,calibration,7,13,2,True,True,True
+calibration-task08-init05,calibration,8,5,2,True,True,True
+calibration-task08-init16,calibration,8,16,2,True,True,True
+test-task04-init06,test,4,6,3,True,True,True
+test-task04-init09,test,4,9,3,True,True,True
+test-task07-init08,test,7,8,3,True,True,True
+test-task07-init11,test,7,11,3,True,True,True
+test-task08-init10,test,8,10,3,True,True,True
+test-task08-init23,test,8,23,3,True,True,True
