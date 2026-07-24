@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="570" viewBox="0 0 1200 570">
+<rect width="1200" height="570" fill="#f7f8fa"/>
+<text x="65" y="65" font-size="31" font-family="sans-serif" font-weight="700" fill="#162033">Stage 26：隐藏动力学偏移队列</text>
+<text x="65" y="105" font-size="18" font-family="sans-serif" fill="#526070">action 接口逐位相同；只改变 MuJoCo 内部动力学；全程不查看 WM 分数</text>
+<rect x="65" y="145" width="500" height="150" rx="14" fill="#ffffff" stroke="#dce1e8"/>
+<text x="95" y="188" font-size="20" font-family="sans-serif" font-weight="700" fill="#162033">0.5× arm actuator gain</text>
+<text x="95" y="245" font-size="35" font-family="monospace" fill="#e36b4f">3/3 pilot gate</text>
+<rect x="635" y="145" width="500" height="150" rx="14" fill="#ffffff" stroke="#dce1e8"/>
+<text x="665" y="188" font-size="20" font-family="sans-serif" font-weight="700" fill="#162033">10× arm joint damping</text>
+<text x="665" y="245" font-size="35" font-family="monospace" fill="#d99a31">1/3 pilot gate</text>
+<text x="65" y="355" font-size="22" font-family="sans-serif" font-weight="700" fill="#162033">通过条件的 6-pair discovery cohort</text>
+<text x="65" y="405" font-size="19" font-family="sans-serif" fill="#32445a">H10 EEF divergence median: 15.26 mm</text>
+<text x="65" y="448" font-size="19" font-family="sans-serif" fill="#32445a">Observation 60 dual-camera pixel MAE median: 11.543</text>
+<text x="65" y="515" font-size="17" font-family="sans-serif" fill="#6a7583">下一阶段才首次计算 observation residual；本图不包含任何 WM score。</text>
+</svg>

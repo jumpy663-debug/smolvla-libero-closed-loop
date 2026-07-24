@@ -1,0 +1,30 @@
+{
+  "frozen_local_artifact_sha256": "2d8a48bb080ec890a5edd84be0c89becd8d53af86d8a5ca32952020c50eb8f46",
+  "pilot_results": {
+    "arm_actuator_gain_0p5": {
+      "advanced_to_discovery": true,
+      "eef_divergence_m_max_across_pairs": 0.05165572091937065,
+      "minimum_passing_pairs": 2,
+      "passing_pairs": 3,
+      "pilot_pairs": 3,
+      "pixel_mae_median": 12.023685455322266
+    },
+    "arm_joint_damping_10x": {
+      "advanced_to_discovery": false,
+      "eef_divergence_m_max_across_pairs": 0.0014528754400089383,
+      "minimum_passing_pairs": 2,
+      "passing_pairs": 1,
+      "pilot_pairs": 3,
+      "pixel_mae_median": 2.4649240970611572
+    }
+  },
+  "protocol_sha256": "0ccd550c7d2285ef05d7e541511d77bb0e8bc46432d54dcb1302b89848bbc5f6",
+  "rejected_fault_conditions": [
+    "arm_joint_damping_10x"
+  ],
+  "schema_version": 1,
+  "selected_fault_conditions": [
+    "arm_actuator_gain_0p5"
+  ],
+  "world_model_scores_viewed": false
+}

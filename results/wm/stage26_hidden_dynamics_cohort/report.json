@@ -1,0 +1,243 @@
+{
+  "artifacts": {
+    "episodes": "episodes.csv",
+    "episodes_sha256": "28cca6669ca2c1eefbd78cdaab990be2afcb4629d276f4f61a57a5e101b03960",
+    "frozen_gate": "frozen_gate.json",
+    "frozen_gate_sha256": "0be1f5e0850c66a2d1f64898bbea5d6f384679407e1f793c745c75d89275a1b6",
+    "paired_diagnostics": "paired_diagnostics.csv",
+    "paired_diagnostics_sha256": "8d475c20c56977a7d230f0da6d9e435af8739f6fa4f7bee504c433f74ec7a886",
+    "pilot_diagnostics": "pilot_diagnostics.csv",
+    "pilot_diagnostics_sha256": "2746903011100478029519c4f25dbce52c5a5068aa993fe0a4bdcdc1bbc1887c",
+    "protocol": "protocol.json",
+    "protocol_sha256": "0ccd550c7d2285ef05d7e541511d77bb0e8bc46432d54dcb1302b89848bbc5f6",
+    "raw_archives": "local-only under outputs/wm/stage26_hidden_dynamics_cohort/episodes"
+  },
+  "formal_discovery_summary": {
+    "arm_actuator_gain_0p5": {
+      "eef_divergence_m_median": 0.015260875690728426,
+      "pair_gates_passed": 6,
+      "pairs": 6,
+      "pixel_mae_median": 11.543362140655518
+    }
+  },
+  "limitations": [
+    "The discovery states were previously used in Stage 25 for a different synthetic fault family.",
+    "MuJoCo parameter shifts remain synthetic and do not model a specific real robot failure rate.",
+    "The cohort contains only 90-step diagnostic prefixes, not full success-rate evaluations.",
+    "No world-model score is evaluated in this stage."
+  ],
+  "negative_controls": {
+    "all_first_post_h10_commands_bit_exact": true,
+    "all_initial_observations_bit_exact": true,
+    "all_preintervention_commands_bit_exact": true,
+    "all_preintervention_observations_bit_exact": true,
+    "commanded_equals_interface_action_every_step": true
+  },
+  "pilot_gate": {
+    "frozen_local_artifact_sha256": "2d8a48bb080ec890a5edd84be0c89becd8d53af86d8a5ca32952020c50eb8f46",
+    "pilot_results": {
+      "arm_actuator_gain_0p5": {
+        "advanced_to_discovery": true,
+        "eef_divergence_m_max_across_pairs": 0.05165572091937065,
+        "minimum_passing_pairs": 2,
+        "passing_pairs": 3,
+        "pilot_pairs": 3,
+        "pixel_mae_median": 12.023685455322266
+      },
+      "arm_joint_damping_10x": {
+        "advanced_to_discovery": false,
+        "eef_divergence_m_max_across_pairs": 0.0014528754400089383,
+        "minimum_passing_pairs": 2,
+        "passing_pairs": 1,
+        "pilot_pairs": 3,
+        "pixel_mae_median": 2.4649240970611572
+      }
+    },
+    "protocol_sha256": "0ccd550c7d2285ef05d7e541511d77bb0e8bc46432d54dcb1302b89848bbc5f6",
+    "rejected_fault_conditions": [
+      "arm_joint_damping_10x"
+    ],
+    "schema_version": 1,
+    "selected_fault_conditions": [
+      "arm_actuator_gain_0p5"
+    ],
+    "world_model_scores_viewed": false
+  },
+  "protocol": {
+    "action_interface_contract": "commanded_action and action passed to env.step are bit-exact under every condition",
+    "conditions": [
+      "nominal",
+      "arm_actuator_gain_0p5",
+      "arm_joint_damping_10x"
+    ],
+    "diagnostic_prefix_steps": 90,
+    "first_post_horizon_steps": 10,
+    "intervention_start_zero_based": 50,
+    "mutations": {
+      "arm_actuator_gain_0p5": {
+        "operation": "multiply by 0.5 once before env.step at step 50",
+        "target": "MuJoCo actuator_gainprm[:,0] for robot0_torq_j1..j7"
+      },
+      "arm_joint_damping_10x": {
+        "operation": "multiply by 10 once before env.step at step 50",
+        "target": "MuJoCo dof_damping for robot0_joint1..joint7"
+      }
+    },
+    "pairs": [
+      {
+        "benchmark_task_id": 4,
+        "episode_seed": 180403,
+        "historical_steps": 280,
+        "historical_success": false,
+        "init_state_index": 3,
+        "pair_id": "calibration-task04-init03",
+        "pilot_pair": true,
+        "selection_key": "1cba1d07e9d0b07bb3665eea7cb47a6854051c82835d239735ee2f534f0fea1d",
+        "selection_uses_wm_score": false,
+        "split": "calibration",
+        "stage26_pair_id": "task04-init03",
+        "task_name": "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate"
+      },
+      {
+        "benchmark_task_id": 4,
+        "episode_seed": 180413,
+        "historical_steps": 280,
+        "historical_success": false,
+        "init_state_index": 13,
+        "pair_id": "calibration-task04-init13",
+        "pilot_pair": false,
+        "selection_key": "282426965c0b4ac140bd21f14023bf472e6da4abf0426ad34afe73f9d141cafc",
+        "selection_uses_wm_score": false,
+        "split": "calibration",
+        "stage26_pair_id": "task04-init13",
+        "task_name": "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate"
+      },
+      {
+        "benchmark_task_id": 7,
+        "episode_seed": 180710,
+        "historical_steps": 280,
+        "historical_success": false,
+        "init_state_index": 10,
+        "pair_id": "calibration-task07-init10",
+        "pilot_pair": true,
+        "selection_key": "5beb35659378224f779b7091465262695da30fb483dc541fc48bc873c2ac38a1",
+        "selection_uses_wm_score": false,
+        "split": "calibration",
+        "stage26_pair_id": "task07-init10",
+        "task_name": "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate"
+      },
+      {
+        "benchmark_task_id": 7,
+        "episode_seed": 180713,
+        "historical_steps": 280,
+        "historical_success": false,
+        "init_state_index": 13,
+        "pair_id": "calibration-task07-init13",
+        "pilot_pair": false,
+        "selection_key": "c74ce72e57d35511193e06826b3a0ef35197717466375496c98759b604c6a429",
+        "selection_uses_wm_score": false,
+        "split": "calibration",
+        "stage26_pair_id": "task07-init13",
+        "task_name": "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate"
+      },
+      {
+        "benchmark_task_id": 8,
+        "episode_seed": 180816,
+        "historical_steps": 177,
+        "historical_success": true,
+        "init_state_index": 16,
+        "pair_id": "calibration-task08-init16",
+        "pilot_pair": true,
+        "selection_key": "079a286ee9d8d7cddc458e7f3b9c16cbfa3089c303334fb71a434ec53fd05a20",
+        "selection_uses_wm_score": false,
+        "split": "calibration",
+        "stage26_pair_id": "task08-init16",
+        "task_name": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate"
+      },
+      {
+        "benchmark_task_id": 8,
+        "episode_seed": 180805,
+        "historical_steps": 91,
+        "historical_success": true,
+        "init_state_index": 5,
+        "pair_id": "calibration-task08-init05",
+        "pilot_pair": false,
+        "selection_key": "10a1d902aed4a67901ce8a449b028f87dc8f9aa0cb841eb30aee21786ed08d3d",
+        "selection_uses_wm_score": false,
+        "split": "calibration",
+        "stage26_pair_id": "task08-init05",
+        "task_name": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate"
+      }
+    ],
+    "pilot_gate_per_condition": {
+      "each_pair_requires": {
+        "action_interface_mismatch_steps": 0,
+        "first_post_h10_commands_bit_exact": true,
+        "max_first_h10_eef_divergence_m_at_least": 0.001,
+        "mutation_verified": true,
+        "observation_60_dual_camera_pixel_mae_at_least": 0.25,
+        "preintervention_actions_bit_exact": true,
+        "preintervention_observations_bit_exact": true
+      },
+      "minimum_passing_pairs_out_of_three": 2
+    },
+    "pilot_pairs": [
+      "task04-init03",
+      "task07-init10",
+      "task08-init16"
+    ],
+    "remaining_pairs_collected_only_after_gate_freeze": true,
+    "schema_version": 1,
+    "source_hashes": {
+      "stage25_protocol": "bc3ef2a4fd78ed5e281a4382c35db504b7cc1283df7dabb0819610d9bb25d41e",
+      "stage25_report": "335ae8faed48b70f567bd4100e02b9a800dc79d7f65c3298ebc1763df0350da1"
+    },
+    "source_split": "Stage 25 calibration states reused as score-blind hidden-dynamics discovery states",
+    "stage25_state_selection_used_wm_score": false,
+    "tasks": [
+      4,
+      7,
+      8
+    ],
+    "world_model_loaded_during_collection": false,
+    "world_model_scores_computed": 0
+  },
+  "runtime": {
+    "peak_torch_gpu_memory_bytes": 972125184,
+    "policy_load_seconds": 10.084040489999097,
+    "total_seconds": 378.8102707449998
+  },
+  "schema_version": 1,
+  "scope": {
+    "action_interface_mismatch_steps_total": 0,
+    "collected_episodes": 15,
+    "diagnostic_prefix_steps": 90,
+    "formal_discovery_pairs": 6,
+    "pilot_pairs": 3,
+    "rejected_fault_conditions": [
+      "arm_joint_damping_10x"
+    ],
+    "selected_fault_conditions": [
+      "arm_actuator_gain_0p5"
+    ],
+    "tasks": [
+      4,
+      7,
+      8
+    ],
+    "world_model_loaded_during_collection": false,
+    "world_model_scores_computed": 0
+  },
+  "software": {
+    "numpy": "2.2.6",
+    "python": "3.12.13",
+    "torch": "2.11.0+cu128"
+  },
+  "stage": "WM Stage 26 score-blind hidden dynamics cohort",
+  "stage27_readiness": {
+    "must_compare_against_state_and_pixel_heuristics": true,
+    "observation_residual_discovery_can_start": true,
+    "shield_claim_justified": false
+  },
+  "status": "passed"
+}

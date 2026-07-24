@@ -1,0 +1,7 @@
+pair_id,benchmark_task_id,init_state_index,pilot_pair,condition,initial_observations_bit_exact,preintervention_observations_bit_exact,preintervention_commands_bit_exact,first_post_h10_commands_bit_exact,action_interface_mismatch_steps,mutation_verified,first_h10_eef_divergence_m_max,first_h10_eef_divergence_m_at_observation_60,first_h10_joint_divergence_l2_max,observation_60_dual_camera_pixel_mae,state_effect_gate,visual_effect_gate,pair_gate_passed
+task04-init03,4,3,True,arm_actuator_gain_0p5,True,True,True,True,0,True,0.010894282720983028,0.010894282720983028,0.24519987404346466,12.023685455322266,True,True,True
+task04-init13,4,13,False,arm_actuator_gain_0p5,True,True,True,True,0,True,0.007516821380704641,0.007516821380704641,0.11403041332960129,9.099651336669922,True,True,True
+task07-init10,7,10,True,arm_actuator_gain_0p5,True,True,True,True,0,True,0.05165572091937065,0.05165572091937065,0.15581989288330078,11.06303882598877,True,True,True
+task07-init13,7,13,False,arm_actuator_gain_0p5,True,True,True,True,0,True,0.051034796983003616,0.051034796983003616,0.14771875739097595,9.992514610290527,True,True,True
+task08-init16,8,16,True,arm_actuator_gain_0p5,True,True,True,True,0,True,0.00956733152270317,0.00956733152270317,0.06756249815225601,12.980659484863281,True,True,True
+task08-init05,8,5,False,arm_actuator_gain_0p5,True,True,True,True,0,True,0.019627468660473824,0.019627468660473824,0.10725714266300201,14.74712085723877,True,True,True

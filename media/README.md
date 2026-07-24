@@ -111,3 +111,13 @@ e477967f5b3eec28628321546158e617e6ee4c4bfa96cc8858edc9956db0193f  wm_stage21_pai
 ```text
 25901dbb237c687526ecf80391c0e4bf64a5ea251027354e6f462ec7cafddcc6  wm_stage25_detector_calibration.svg
 ```
+
+`wm_stage26_hidden_dynamics_cohort.svg` 根据
+[`../results/wm/stage26_hidden_dynamics_cohort`](../results/wm/stage26_hidden_dynamics_cohort)
+中的 score-blind pilot 门控和 6 对正式 discovery 诊断绘制。它展示 0.5× arm actuator
+gain 通过、10× joint damping 被拒绝，以及通过条件在 action 接口逐位相同的前提下造成的
+EEF/视觉分叉；图中不包含任何 WM 分数。
+
+```text
+64a18b9e10c79609af393b8475f446b09c0c94bf0e127a4e1e17c683f39afc3a  wm_stage26_hidden_dynamics_cohort.svg
+```
