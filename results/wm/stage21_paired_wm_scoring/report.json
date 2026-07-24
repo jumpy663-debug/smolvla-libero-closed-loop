@@ -1,0 +1,143 @@
+{
+  "artifacts": {
+    "episode_period_scores": "episode_period_scores.csv",
+    "episode_period_scores_sha256": "175c5c1554652ba23db4524050b918647f15cfa8e97d8a89850dc839cd136d04",
+    "feature_cache": "local-only under outputs/wm/stage21_paired_wm_scoring/features",
+    "feature_manifest": "feature_manifest.csv",
+    "feature_manifest_sha256": "d8b6beb3771f939aef853069e2a252b5c6854ad09a2a323b24026a8579ea48ff",
+    "pair_effects": "pair_effects.csv",
+    "pair_effects_sha256": "3b6a1d5255635b5816a84c6aa429cbfecceefb2de49a8d35b39f6b15b674701c",
+    "statistics": "statistics.json",
+    "statistics_sha256": "ab71aea7ad738594b85e0f2cc9fb7826c596756805276903cf15e1af99347a04",
+    "window_scores": "window_scores.csv",
+    "window_scores_sha256": "2bfb47230594e915d1824e30f0324ba76128ec1635fb1308f4c9206b4ce3189a"
+  },
+  "conclusion": {
+    "decision_rule_passed": false,
+    "diagnostic_survives_holm_correction": false,
+    "exploratory_commanded_stronger_than_executed_supported": true,
+    "primary_action_consequence_mismatch_supported": false
+  },
+  "determinism": {
+    "deterministic_recheck_bit_exact": true,
+    "deterministic_recheck_rollout_id": "task08-init14-nominal",
+    "encoder_batch_size": 16
+  },
+  "frozen_components": {
+    "action_conditioned_checkpoint_sha256": "3d500085c2838e5594da3c1970f2bfb672fa2fb169b6ffa61b59dbce646e3ac7",
+    "encoder_model_id": "facebook/dinov2-small",
+    "encoder_revision": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "no_action_checkpoint_sha256": "3e09e0ba289f9ebd59667e4391b1076b766509a67a138fc8e7733a2f067010a4",
+    "normalization_source": "Stage 13 train split only",
+    "stage14_report_sha256": "179bb80ef8ccf10fcdc97095d4d694c50f1de0f28a6c5838182b8ca216577b5d"
+  },
+  "limitations": [
+    "Only six episode pairs across three tasks are available.",
+    "The intervention is a strong synthetic persistent actuator fault.",
+    "H10 windows overlap within an episode; inference therefore uses only six pair-level aggregates.",
+    "Oracle robot state is supplied at every recursive WM step.",
+    "This stage evaluates a frozen score and does not establish a deployed online shield."
+  ],
+  "mechanism_result": {
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 2125,
+    "exact_sign_flip_assignments": 64,
+    "exact_sign_flip_two_sided_p": 0.03125,
+    "maximum": 0.2932058572769165,
+    "mean": 0.16190887490908304,
+    "mean_bootstrap_ci95": [
+      0.10178253054618835,
+      0.22360727190971375
+    ],
+    "median": 0.16194868087768555,
+    "minimum": 0.0347781777381897,
+    "negative_pairs": 0,
+    "paired_effect_dz": 1.8914265989799057,
+    "pairs": 6,
+    "positive_pairs": 6,
+    "zero_pairs": 0
+  },
+  "negative_controls": {
+    "fault_pre_commanded_equals_executed_scores_bit_exact": true,
+    "nominal_commanded_equals_executed_scores_bit_exact": true
+  },
+  "primary_result": {
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 2121,
+    "exact_sign_flip_assignments": 64,
+    "exact_sign_flip_two_sided_p": 0.65625,
+    "maximum": 0.16374212503433228,
+    "mean": -0.040002922217051186,
+    "mean_bootstrap_ci95": [
+      -0.18060790499051413,
+      0.08202892541885376
+    ],
+    "median": 0.022982478141784668,
+    "minimum": -0.31157928705215454,
+    "negative_pairs": 3,
+    "paired_effect_dz": -0.2235121843424164,
+    "pairs": 6,
+    "positive_pairs": 3,
+    "zero_pairs": 0
+  },
+  "protocol": {
+    "diagnostics": [
+      "executed_h10_raw_mse",
+      "no_action_h10_raw_mse",
+      "persistence_h10_raw_mse",
+      "fault_post_commanded_minus_executed"
+    ],
+    "horizon": 10,
+    "intervention_start": 50,
+    "post_start_indices": [
+      50,
+      79
+    ],
+    "pre_start_indices": [
+      10,
+      39
+    ],
+    "pre_windows_cross_intervention": false,
+    "primary_effect": "fault(post-pre)-nominal(post-pre)",
+    "primary_score": "commanded_h10_raw_mse",
+    "state_context": "oracle ground-truth state at every recursive rollout step"
+  },
+  "runtime": {
+    "device": "cuda",
+    "encoded_feature_shards": 0,
+    "encoder_load_seconds": 0.24656633799986594,
+    "feature_encoding_and_recheck_seconds": 1.0916004680002516,
+    "peak_torch_gpu_memory_bytes": 202168832,
+    "resumed_feature_shards": 12,
+    "scoring_seconds": 2.3624861139996938,
+    "total_seconds": 3.7006529199998113
+  },
+  "schema_version": 1,
+  "scope": {
+    "episodes": 12,
+    "expert_test_episodes_used": 0,
+    "failure_classifier_trained": false,
+    "model_parameters_updated": 0,
+    "pair_is_statistical_unit": true,
+    "pairs": 6,
+    "tasks": [
+      4,
+      7,
+      8
+    ],
+    "thresholds_fitted": 0,
+    "window_rows": 720,
+    "windows_per_episode": 60
+  },
+  "software": {
+    "numpy": "2.2.6",
+    "python": "3.12.13",
+    "torch": "2.11.0+cu128"
+  },
+  "stage": "WM Stage 21 frozen paired intervention scoring",
+  "stage22_readiness": {
+    "online_shield_prototype_justified": false,
+    "requires_more_pairs_before_general_claim": true
+  },
+  "status": "passed"
+}

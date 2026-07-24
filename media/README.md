@@ -62,3 +62,13 @@ motion-dropout 的严格同状态对照，不包含 WM 评分结果。
 ```text
 16c2e97ed39b371ccd9f124e14af37d678b2b23b5116b87c5499ee9d66148f7b  wm_stage20_paired_interventions.svg
 ```
+
+`wm_stage21_paired_wm_scoring.svg` 根据
+[`../results/wm/stage21_paired_wm_scoring`](../results/wm/stage21_paired_wm_scoring)
+中的六组 pair-level 差分与精确检验结果绘制。左图展示预注册 commanded-error 主指标的方向
+不一致与 decision rule 失败；右图展示仅作为诊断的 commanded-minus-executed gap，并明确标注
+Holm 校正后的统计边界。
+
+```text
+e477967f5b3eec28628321546158e617e6ee4c4bfa96cc8858edc9956db0193f  wm_stage21_paired_wm_scoring.svg
+```
