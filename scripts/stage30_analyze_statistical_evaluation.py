@@ -11,14 +11,13 @@ import io
 import json
 import math
 from collections import defaultdict
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 import numpy as np
-
 from statistical_evaluation_common import (
     FORMAL_CORE_TASK_IDS,
-    EpisodeJob,
     atomic_write_text,
     build_jobs,
     canonical_json,
@@ -252,8 +251,7 @@ def load_legacy_rows(
                         "schema_version": 1,
                         "protocol_sha256": protocol_sha256,
                         "episode_id": (
-                            f"formal-{policy}-h{horizon:02d}-task{task_id:02d}-init{init_state_index:02d}"
-                            f"-legacy-batch3"
+                            f"formal-{policy}-h{horizon:02d}-task{task_id:02d}-init{init_state_index:02d}-legacy-batch3"
                         ),
                         "mode": "formal",
                         "source": "legacy_reused",
@@ -347,11 +345,7 @@ def success_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
             }
         )
     new_rows = [row for row in rows if row["source"] == "new_formal"]
-    latency_events = [
-        float(value)
-        for row in new_rows
-        for value in (row.get("inference_latencies_seconds") or [])
-    ]
+    latency_events = [float(value) for row in new_rows for value in (row.get("inference_latencies_seconds") or [])]
     return {
         "successes": successes,
         "episodes": trials,
@@ -359,18 +353,14 @@ def success_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "wilson_95_interval": wilson_interval(successes, trials),
         "per_task": per_task,
         "steps_to_success": distribution(int(row["control_steps"]) for row in rows if bool(row["success"])),
-        "censored_failure_steps": distribution(
-            int(row["control_steps"]) for row in rows if not bool(row["success"])
-        ),
+        "censored_failure_steps": distribution(int(row["control_steps"]) for row in rows if not bool(row["success"])),
         "logical_vlm_forward_count": distribution(int(row["logical_vlm_forward_count"]) for row in rows),
         "runtime_measurement_scope": {
             "new_sequential_episodes": len(new_rows),
             "legacy_episodes_with_null_runtime": trials - len(new_rows),
             "per_forward_latency_seconds": distribution(latency_events),
             "episode_wall_seconds": distribution(
-                float(row["episode_wall_seconds"])
-                for row in new_rows
-                if row.get("episode_wall_seconds") is not None
+                float(row["episode_wall_seconds"]) for row in new_rows if row.get("episode_wall_seconds") is not None
             ),
             "peak_inference_gpu_memory_bytes": distribution(
                 int(row["peak_inference_gpu_memory_bytes"])
@@ -420,9 +410,7 @@ def compare_conditions(
             cell = "both_fail"
         cells[cell] += 1
         step_difference = int(second_row["control_steps"]) - int(first_row["control_steps"])
-        logical_difference = int(second_row["logical_vlm_forward_count"]) - int(
-            first_row["logical_vlm_forward_count"]
-        )
+        logical_difference = int(second_row["logical_vlm_forward_count"]) - int(first_row["logical_vlm_forward_count"])
         control_step_differences.append(float(step_difference))
         logical_forward_differences.append(float(logical_difference))
         if first_success and second_success:
@@ -432,15 +420,11 @@ def compare_conditions(
             first_row.get("actual_vlm_forward_count") is not None
             and second_row.get("actual_vlm_forward_count") is not None
         ):
-            actual_difference = int(second_row["actual_vlm_forward_count"]) - int(
-                first_row["actual_vlm_forward_count"]
-            )
+            actual_difference = int(second_row["actual_vlm_forward_count"]) - int(first_row["actual_vlm_forward_count"])
             actual_forward_differences.append(float(actual_difference))
         wall_difference = None
         if first_row.get("episode_wall_seconds") is not None and second_row.get("episode_wall_seconds") is not None:
-            wall_difference = float(second_row["episode_wall_seconds"]) - float(
-                first_row["episode_wall_seconds"]
-            )
+            wall_difference = float(second_row["episode_wall_seconds"]) - float(first_row["episode_wall_seconds"])
             wall_differences.append(wall_difference)
         pair_rows.append(
             {
@@ -528,17 +512,29 @@ def build_paired_state_tables(rows: list[dict[str, Any]]) -> tuple[list[dict[str
     return horizon_rows, adaptation_rows
 
 
-def relative_public_path(path_value: str | None, repository_root: Path) -> str | None:
+def relative_public_path(
+    path_value: str | None,
+    repository_root: Path,
+    asset_root: Path,
+) -> str | None:
     if path_value is None:
         return None
     path = Path(path_value)
+    resolved = path.resolve()
     try:
-        return str(path.resolve().relative_to(repository_root.resolve()))
+        return str(resolved.relative_to(repository_root.resolve()))
     except ValueError:
-        return str(path)
+        try:
+            return str(Path("external_asset_root") / resolved.relative_to(asset_root.resolve()))
+        except ValueError as error:
+            raise AssertionError(f"Refusing to publish an unresolved absolute path: {resolved}") from error
 
 
-def flat_episode_row(row: dict[str, Any], repository_root: Path) -> dict[str, Any]:
+def flat_episode_row(
+    row: dict[str, Any],
+    repository_root: Path,
+    asset_root: Path,
+) -> dict[str, Any]:
     return {
         "episode_id": row["episode_id"],
         "source": row["source"],
@@ -563,9 +559,9 @@ def flat_episode_row(row: dict[str, Any], repository_root: Path) -> dict[str, An
         "peak_inference_gpu_memory_bytes": row.get("peak_inference_gpu_memory_bytes"),
         "initial_observation_sha256": row.get("initial_observation_sha256"),
         "action_sha256": row["action_sha256"],
-        "video": relative_public_path(row["video_path"], repository_root),
+        "video": relative_public_path(row["video_path"], repository_root, asset_root),
         "video_sha256": row["video_sha256"],
-        "trajectory": relative_public_path(row["trajectory_path"], repository_root),
+        "trajectory": relative_public_path(row["trajectory_path"], repository_root, asset_root),
         "trajectory_sha256": row["trajectory_sha256"],
         "protocol_sha256": row["protocol_sha256"],
     }
@@ -575,6 +571,7 @@ def annotation_rows(
     rows: list[dict[str, Any]],
     *,
     repository_root: Path,
+    asset_root: Path,
     existing_path: Path,
 ) -> list[dict[str, Any]]:
     existing = {}
@@ -604,7 +601,7 @@ def annotation_rows(
                 "review_status": preserved.get("review_status", "pending"),
                 "reviewer": preserved.get("reviewer", ""),
                 "notes_zh": preserved.get("notes_zh", ""),
-                "video_path": relative_public_path(row["video_path"], repository_root),
+                "video_path": relative_public_path(row["video_path"], repository_root, asset_root),
                 "video_sha256": row["video_sha256"],
                 "contact_sheet_path": preserved.get("contact_sheet_path", ""),
                 "contact_sheet_sha256": preserved.get("contact_sheet_sha256", ""),
@@ -621,6 +618,87 @@ def annotation_rows(
             }
         )
     return annotations
+
+
+def failure_code_distribution(
+    rows: list[dict[str, Any]],
+    *,
+    taxonomy_codes: list[str],
+) -> dict[str, Any]:
+    counts = {code: 0 for code in taxonomy_codes}
+    confirmed = 0
+    for row in rows:
+        code = str(row.get("primary_failure_code", ""))
+        if code:
+            if code not in counts:
+                raise AssertionError(f"Failure annotation uses an unknown taxonomy code: {code}")
+            counts[code] += 1
+        if row.get("review_status") == "confirmed":
+            confirmed += 1
+    failures = len(rows)
+    return {
+        "failures": failures,
+        "confirmed_annotations": confirmed,
+        "counts": counts,
+        "fraction_of_failures": {code: (count / failures if failures else None) for code, count in counts.items()},
+    }
+
+
+def summarize_failure_annotations(
+    rows: list[dict[str, Any]],
+    *,
+    taxonomy_codes: list[str],
+) -> dict[str, Any]:
+    core_task_ids = set(FORMAL_CORE_TASK_IDS)
+
+    def select(policy: str, horizon: int, *, core_only: bool) -> list[dict[str, Any]]:
+        return [
+            row
+            for row in rows
+            if str(row["policy"]) == policy
+            and int(row["action_horizon"]) == horizon
+            and (not core_only or int(row["task_id"]) in core_task_ids)
+        ]
+
+    report = {
+        "annotation_unit": "failed episode",
+        "primary_code_only": True,
+        "overall": failure_code_distribution(rows, taxonomy_codes=taxonomy_codes),
+        "by_condition": {
+            "pretrained_h50_all_tasks": failure_code_distribution(
+                select("pretrained", 50, core_only=False),
+                taxonomy_codes=taxonomy_codes,
+            ),
+            "pretrained_h50_core_tasks": failure_code_distribution(
+                select("pretrained", 50, core_only=True),
+                taxonomy_codes=taxonomy_codes,
+            ),
+            "pretrained_h25_core_tasks": failure_code_distribution(
+                select("pretrained", 25, core_only=True),
+                taxonomy_codes=taxonomy_codes,
+            ),
+            "pretrained_h10_core_tasks": failure_code_distribution(
+                select("pretrained", 10, core_only=True),
+                taxonomy_codes=taxonomy_codes,
+            ),
+            "expert_only_h10_core_tasks": failure_code_distribution(
+                select("expert_only", 10, core_only=True),
+                taxonomy_codes=taxonomy_codes,
+            ),
+            "lora_h10_core_tasks": failure_code_distribution(
+                select("lora", 10, core_only=True),
+                taxonomy_codes=taxonomy_codes,
+            ),
+        },
+    }
+    overall = report["overall"]
+    report["status"] = (
+        "passed"
+        if overall["confirmed_annotations"] == overall["failures"]
+        and sum(overall["counts"].values()) == overall["failures"]
+        else "incomplete"
+    )
+    return report
 
 
 def analyze_randomness(
@@ -653,9 +731,7 @@ def analyze_randomness(
     formal_lookup = {
         (int(row["task_id"]), int(row["init_state_index"])): row
         for row in formal_rows
-        if row["policy"] == "pretrained"
-        and int(row["action_horizon"]) == 10
-        and int(row["init_state_index"]) in (3, 4)
+        if row["policy"] == "pretrained" and int(row["action_horizon"]) == 10 and int(row["init_state_index"]) in (3, 4)
     }
     rows = []
     for task_id in FORMAL_CORE_TASK_IDS:
@@ -676,7 +752,9 @@ def analyze_randomness(
                     "task_id": task_id,
                     "init_state_index": init_state_index,
                     "environment_seed": 1000 + init_state_index,
-                    "policy_seeds": json.dumps([1000 + init_state_index, 2000 + init_state_index, 3000 + init_state_index]),
+                    "policy_seeds": json.dumps(
+                        [1000 + init_state_index, 2000 + init_state_index, 3000 + init_state_index]
+                    ),
                     "unique_action_hashes": len(set(action_hashes)),
                     "action_varies_across_policy_seeds": len(set(action_hashes)) > 1,
                     "successes": json.dumps(successes),
@@ -693,9 +771,7 @@ def analyze_randomness(
             "units_with_action_variation": sum(row["action_varies_across_policy_seeds"] for row in rows),
             "units_with_success_variation": sum(row["success_varies_across_policy_seeds"] for row in rows),
             "units_with_step_variation": sum(row["steps_vary_across_policy_seeds"] for row in rows),
-            "same_seed_reproducibility_evidence": protocol["randomness"]["audit"][
-                "same_seed_reproducibility_evidence"
-            ],
+            "same_seed_reproducibility_evidence": protocol["randomness"]["audit"]["same_seed_reproducibility_evidence"],
         },
         rows,
     )
@@ -721,9 +797,7 @@ def main() -> None:
     expected_unique = int(protocol["experiments"]["unique_formal_episode_count"])
     if len(rows) != expected_unique:
         raise AssertionError(f"Expected {expected_unique} unified episodes, got {len(rows)}")
-    unique_conditions = {
-        (str(row["policy"]), int(row["action_horizon"]), *pair_key(row)) for row in rows
-    }
+    unique_conditions = {(str(row["policy"]), int(row["action_horizon"]), *pair_key(row)) for row in rows}
     if len(unique_conditions) != expected_unique:
         raise AssertionError("Unified episode conditions are not unique")
 
@@ -735,16 +809,12 @@ def main() -> None:
     if len(experiment_a_rows) != 100:
         raise AssertionError("Experiment A must contain 100 episodes")
     experiment_b_groups = {
-        f"h{horizon}": [
-            row for row in grouped[("pretrained", horizon)] if int(row["task_id"]) in FORMAL_CORE_TASK_IDS
-        ]
+        f"h{horizon}": [row for row in grouped[("pretrained", horizon)] if int(row["task_id"]) in FORMAL_CORE_TASK_IDS]
         for horizon in (50, 25, 10)
     }
     if any(len(group) != 40 for group in experiment_b_groups.values()):
         raise AssertionError("Every Experiment B horizon must contain 40 paired episodes")
-    experiment_c_groups = {
-        policy: grouped[(policy, 10)] for policy in ("pretrained", "expert_only", "lora")
-    }
+    experiment_c_groups = {policy: grouped[(policy, 10)] for policy in ("pretrained", "expert_only", "lora")}
     if any(len(group) != 40 for group in experiment_c_groups.values()):
         raise AssertionError("Every Experiment C policy must contain 40 paired episodes")
 
@@ -791,6 +861,16 @@ def main() -> None:
         "lora": project_summary["lora"],
         "adaptation_control": project_summary["adaptation_control"],
     }
+    args.results_dir.mkdir(parents=True, exist_ok=True)
+    annotations = annotation_rows(
+        rows,
+        repository_root=repository_root,
+        asset_root=args.asset_root.resolve(),
+        existing_path=args.results_dir / "failure_annotations.csv",
+    )
+    taxonomy = json.loads((repository_root / "protocols/failure_taxonomy_v1.json").read_text(encoding="utf-8"))
+    taxonomy_codes = [item["code"] for item in taxonomy["categories"]]
+    failure_report = summarize_failure_annotations(annotations, taxonomy_codes=taxonomy_codes)
     statistics = {
         "schema_version": 1,
         "status": "passed",
@@ -799,24 +879,27 @@ def main() -> None:
         "experiment_A_expanded_pretrained_baseline": success_summary(experiment_a_rows),
         "experiment_B_action_horizon": {
             "conditions": {
-                label: success_summary(condition_rows)
-                for label, condition_rows in experiment_b_groups.items()
+                label: success_summary(condition_rows) for label, condition_rows in experiment_b_groups.items()
             },
             "paired_comparisons": horizon_comparisons,
         },
         "experiment_C_policy_adaptation": {
             "conditions": {
-                label: success_summary(condition_rows)
-                for label, condition_rows in experiment_c_groups.items()
+                label: success_summary(condition_rows) for label, condition_rows in experiment_c_groups.items()
             },
             "paired_comparisons": adaptation_comparisons,
         },
         "randomness_audit": randomness_report,
+        "failure_taxonomy": failure_report,
         "limitations": [
-            "Legacy states 0-2 use the frozen historical batch=3 policy RNG stream; new states 3-9 use batch=1 state-specific policy seeds. Every within-state condition comparison preserves its own frozen RNG contract.",
-            "Per-episode latency, wall time, actual VLM calls, and peak memory are null for legacy rows and are not imputed or rerun.",
+            "Legacy states 0-2 use the frozen historical batch=3 policy RNG stream; new states 3-9 use "
+            "batch=1 state-specific policy seeds. Every within-state condition comparison preserves its "
+            "own frozen RNG contract.",
+            "Per-episode latency, wall time, actual VLM calls, and peak memory are null for legacy rows "
+            "and are not imputed or rerun.",
             "LIBERO tasks are heterogeneous; pooled intervals supplement rather than replace per-task results.",
-            "All results are local simulation measurements, not physical-robot evaluation or the official paper benchmark.",
+            "All results are local simulation measurements, not physical-robot evaluation or the official "
+            "paper benchmark.",
         ],
     }
     costs = {
@@ -830,9 +913,8 @@ def main() -> None:
         },
     }
 
-    args.results_dir.mkdir(parents=True, exist_ok=True)
     flat_rows = [
-        flat_episode_row(row, repository_root)
+        flat_episode_row(row, repository_root, args.asset_root.resolve())
         for row in sorted(
             rows,
             key=lambda row: (
@@ -843,11 +925,6 @@ def main() -> None:
             ),
         )
     ]
-    annotations = annotation_rows(
-        rows,
-        repository_root=repository_root,
-        existing_path=args.results_dir / "failure_annotations.csv",
-    )
     atomic_write_text(args.results_dir / "episodes.csv", csv_text(flat_rows))
     atomic_write_text(args.results_dir / "statistics.json", canonical_json(statistics))
     atomic_write_text(args.results_dir / "costs.json", canonical_json(costs))

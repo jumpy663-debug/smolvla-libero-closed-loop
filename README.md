@@ -1,26 +1,89 @@
-# SmolVLA × LIBERO：仿真闭环复现、消融与参数高效微调
+# SmolVLA × LIBERO：统计可信闭环评测、消融与参数高效微调
 
 本项目完整复现了 SmolVLA 在 LIBERO 中从仿真环境重置、GPU 推理到多任务闭环评测的整条链路，
-并进一步完成动作执行窗口消融、动作专家微调和 LoRA 参数高效微调。全部实验均在一张 NVIDIA
-GeForce RTX 4060 Laptop GPU（8 GB）上完成，没有使用真机或租用云端 GPU。
+并进一步完成 260 个唯一正式 episode 的统计扩展、动作执行窗口消融、动作专家微调和 LoRA
+参数高效微调。全部实验均在一张 NVIDIA GeForce RTX 4060 Laptop GPU（8 GB）上完成，没有
+使用真机或租用云端 GPU。
 
-核心发现是：动作专家微调和 LoRA 都让留出集的 flow-matching loss 下降约 2.5%，但都没有改善
-目标 Task 5 的 0/3 闭环结果。严格配对评测进一步发现，动作专家微调丢失了一条原本成功的轨迹，
-而 LoRA 用少 99.26% 的可训练参数保住了预训练策略的全部 7 条成功轨迹。
+扩大后的核心发现是：在 Task 4/5/7/8 的 40 个严格配对状态上，H=50、25、10 分别取得
+12/40、20/40、23/40；H=25 与 H=10 相对 H=50 的改善通过 Holm 校正的精确 McNemar 检验。
+与此同时，全量动作专家和 LoRA 虽让离线验证 loss 分别下降 2.32% 和 2.49%，闭环结果仍只有
+22/40 和 23/40，对照预训练为 23/40。该证据支持“离线 loss 改善不保证闭环提升”，但不支持
+“H=10 显著优于 H=25”。
 
-![实验结果总览](media/results_overview.svg)
+![统计结果总览](media/statistical_results_overview.svg)
 
 ## 项目亮点
 
 - 跑通 MuJoCo/EGL 无头仿真、观测预处理、SmolVLA 动作生成和 receding-horizon 闭环控制。
-- 覆盖全部 10 个 LIBERO Spatial 任务，共评测 30 个回合，得到 **18/30（60.0%）** 本地复现结果。
-- 在固定四任务困难子集上完成动作执行窗口消融：**H=50 为 2/12**、**H=25 为 6/12**、
-  **H=10 为 7/12**。
+- 冻结协议后统一审计 **260 个唯一正式 episode**：10 任务基线 **58/100（58.0%，Wilson
+  95% CI [48.2%, 67.2%]）**。
+- 在 40 个相同任务-状态-seed 上完成 H=50/25/10 严格配对；H=25 和 H=10 相对 H=50 的
+  Holm 校正 `p=0.0156/0.0103`，H=10 与 H=25 则不显著（`p=0.453`）。
 - 为 Task 5 构建确定性的 31/8 demonstration 训练/验证划分，以及任务、初始状态、随机种子、
   预处理和执行窗口完全一致的配对回归测试。
-- 对比 99.9M 参数的动作专家微调和 rank-16 LoRA：LoRA 仅训练 0.743M 参数，adapter 为 3.0 MB，
-  峰值训练显存降低 20.9%，并避免了动作专家微调出现的闭环退化。
-- 对 checkpoint 重载、动作有限值、轨迹归档、视频哈希和视频可解码性进行完整审计。
+- 对比 99.9M 参数的动作专家微调和 rank-16 LoRA：LoRA 仅训练 0.743M 参数，在 40 个配对状态
+  上保持预训练全部 23 条成功标签，但没有新增成功。
+- 完成 **114/114** 失败视频分类，以及 20 个状态 × 3 个策略 seed 的随机性审计；对 checkpoint
+  重载、动作有限值、轨迹归档、视频哈希和可解码性进行完整审计。
+
+## 统计扩展结果
+
+冻结协议、完整统计、失败分布、成本、复现命令和结论边界见
+[《SmolVLA × LIBERO 统计可信闭环评测》](docs/STATISTICAL_EVALUATION.md)。
+
+### 10 任务基线
+
+固定预训练 checkpoint 和 H=50，每任务官方 init 0–9：
+
+| 指标 | 结果 |
+| --- | ---: |
+| 总成功率 | **58/100（58.0%）** |
+| Wilson 95% CI | **[48.2%, 67.2%]** |
+| 成功步数 mean / p50 / p95 | 104.93 / 107 / 129.15 |
+| 失败右删失 | 42/42 均达到 280 步 |
+| 新增回合单 forward mean / p50 / p95 | 0.538 / 0.534 / 0.630 s |
+| 新增回合峰值推理显存 | 约 0.905 GiB |
+
+### Action Horizon：40 状态严格配对
+
+| H | 成功数 | Wilson 95% CI | 相对 H=50 的 Holm p |
+| ---: | ---: | ---: | ---: |
+| 50 | 12/40（30.0%） | [18.1%, 45.4%] | — |
+| 25 | 20/40（50.0%） | [35.2%, 64.8%] | **0.015625** |
+| 10 | 23/40（57.5%） | [42.2%, 71.5%] | **0.010254** |
+
+H=25 与 H=10 的直接比较为 `p=0.453125`，不能写成显著差异。
+
+[![Task 8 H=50/25/10 配对](media/statistical_horizon_task8_init9.jpg)](media/statistical_horizon_task8_init9.mp4)
+
+Task 8、init 9、环境 seed 1009、策略 seed 1009：H=50/H=25 均在 280 步失败，H=10 在
+89 步成功。源视频、配置和 SHA-256 见
+[媒体 manifest](results/statistical_evaluation/media_manifest.json)。
+
+### 模型适配：40 状态严格配对
+
+| 策略 | 离线验证 loss 变化 | 闭环成功 | 配对结论 |
+| --- | ---: | ---: | --- |
+| 预训练 | — | **23/40** | 对照 |
+| 全量动作专家 | −2.32% | **22/40** | 丢失 1、增加 0，`p=1.0` |
+| LoRA r=16 | −2.49% | **23/40** | 与预训练标签 40/40 一致，`p=1.0` |
+
+Task 5 在三种策略下都为 0/10。LoRA 的价值在本实验中是以少 99.26% 的可训练参数保持成功标签，
+而不是提高闭环成功率。
+
+### 失败与随机性
+
+114 个正式失败中，放置后未稳定满足成功占 48（42.1%）、抓取失败 38（33.3%）、抓取后掉落
+22（19.3%）。所有语义标签均由冻结 taxonomy 和 12 帧 contact sheet 复核：
+
+![失败类型样例](media/statistical_failure_examples.jpg)
+
+固定环境状态、只改变策略 seed 时，20/20 个状态的动作发生变化，3/20 的成功标签变化。因此
+主实验是预注册单 seed 的严格配对结果，不宣称跨 seed 平均效果。
+
+公开轻量结果位于 [`results/statistical_evaluation/`](results/statistical_evaluation/)；原始
+checkpoint、视频、轨迹和完整 contact sheet 保存在 `outputs/` 且不提交 Git。
 
 ## World Model 扩展进度
 
@@ -132,7 +195,10 @@ flowchart LR
 仿真闭环沿用 LeRobot 官方策略和环境处理路径。策略每次预测 50 步动作块，`n_action_steps` 决定
 下一次获取观测并重新推理前实际执行多少步动作。
 
-## 核心结果
+## 早期 3 状态结果（历史）
+
+以下是统计扩展前的 3-state 初始结果，保留用于复现历史和说明实验演进；当前主结论以上方
+40/100-state 扩展为准。
 
 ### 十任务预训练基线
 
@@ -261,7 +327,30 @@ HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl uv run --no-sync python \
 Stage 10 脚本会在训练前核对 Stage 9 的所有控制变量，只保存 LoRA adapter 和 optimizer，并要求
 adapter 重载前后的参数哈希及固定验证 loss 完全一致。
 
-### 4. WM 在线旁路接入
+### 4. 统计扩展、随机性与失败分类
+
+```bash
+PYTHON=/home/jump/projects/lerobot/.venv/bin/python
+
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl \
+  $PYTHON scripts/stage29_statistical_evaluation.py --mode formal
+
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl \
+  $PYTHON scripts/stage29_statistical_evaluation.py --mode randomness
+
+$PYTHON scripts/stage30_analyze_statistical_evaluation.py
+$PYTHON scripts/stage31_prepare_failure_review.py --review-page-size 4 --apply-labels
+
+# PNG 栅格化需要一个本地 CJK 字体；SVG 本身保留字体 fallback
+$PYTHON scripts/stage32_build_statistical_public_artifacts.py \
+  --cjk-font /path/to/NotoSansCJKsc-Regular.otf
+```
+
+Stage 29 按 episode 原子保存记录并校验 resume；重复执行不会重跑已通过协议、视频、轨迹和哈希
+验证的条目。完整命令和文件索引见
+[统计评测报告](docs/STATISTICAL_EVALUATION.md)。
+
+### 5. WM 在线旁路接入
 
 Stage 24 默认先回放核对 18 条 Stage 23 轨迹，再运行 normal 与 0.5× 动作衰减各 90 步的真实
 SmolVLA/LIBERO 闭环。monitor 只输出日志和视频，不拟合 threshold，也不修改动作：
@@ -272,7 +361,7 @@ MUJOCO_GL=egl uv run --no-sync python \
   scripts/wm/stage24_online_sidecar.py
 ```
 
-### 5. 独立 detector 校准与 Test
+### 6. 独立 detector 校准与 Test
 
 Stage 25 排除既往干预状态，严格按 calibration→冻结 threshold→test 的顺序运行，并同时报告直接
 action mismatch 基线：
@@ -283,7 +372,7 @@ MUJOCO_GL=egl uv run --no-sync python \
   scripts/wm/stage25_detector_calibration.py
 ```
 
-### 6. Score-blind 隐藏动力学偏移队列
+### 7. Score-blind 隐藏动力学偏移队列
 
 Stage 26 保持 command 与传给 `env.step` 的动作逐位相同，只在 MuJoCo 内部改变机械臂动力学。
 脚本先完成 3-pair pilot 并冻结准入条件，再补采通过条件的 6-pair discovery cohort；整个阶段
@@ -295,7 +384,7 @@ MUJOCO_GL=egl uv run --no-sync python \
   scripts/wm/stage26_hidden_dynamics_cohort.py
 ```
 
-### 7. 隐藏动力学 Observation Residual
+### 8. 隐藏动力学 Observation Residual
 
 Stage 27 首次在 6 对 discovery 数据上计算冻结 WM residual，并对 no-action dynamics、
 latent persistence、EEF 与像素运动做相同的 episode 内 pre 标准化。它不访问 Stage 25 的
@@ -307,7 +396,7 @@ uv run --no-sync python \
   scripts/wm/stage27_hidden_dynamics_residual.py
 ```
 
-### 8. No-action Residual 独立确认
+### 9. No-action Residual 独立确认
 
 Stage 28 在加载 SmolVLA 前先冻结 Stage 27 的探索性候选与 6 个新确认状态，再采集 nominal /
 hidden-gain 配对轨迹并一次性检验唯一主指标。描述性对照不参与重选：
@@ -322,7 +411,9 @@ MUJOCO_GL=egl uv run --no-sync python \
 
 ```text
 .
-├── scripts/                         # 阶段 1—10 复现脚本与 WM 扩展脚本
+├── protocols/                       # 新结果前冻结的统计协议与 failure taxonomy
+├── annotations/                     # 人工复核标签与 episode 顺序锁
+├── scripts/                         # 复现、统计评测、失败复核与 WM 历史脚本
 ├── docs/                            # 各阶段实验设置、结果和边界
 ├── results/                         # 指标摘要、逐回合 CSV 与验证曲线
 ├── media/                           # 轻量结果图与严格配对视频
@@ -332,6 +423,7 @@ MUJOCO_GL=egl uv run --no-sync python \
 
 详细结果：
 
+- [统计可信闭环评测](docs/STATISTICAL_EVALUATION.md)
 - [十任务基线](docs/STAGE6_RESULTS.md)
 - [动作执行窗口消融](docs/STAGE7_RESULTS.md)
 - [训练链路检查](docs/STAGE8_RESULTS.md)
@@ -358,17 +450,22 @@ MUJOCO_GL=egl uv run --no-sync python \
 - [结果与媒体来源说明](media/README.md)
 - [第三方项目、模型和数据说明](THIRD_PARTY_NOTICES.md)
 
-其中 `results/episodes/` 公开了 30 回合基线、三组执行窗口以及两种微调策略的逐回合结果；
-`results/training/` 公开了两种微调方法在同一留出集上的验证曲线。CSV 中的本机绝对路径已改为
-仓库内相对产物路径，原始 checkpoint、轨迹和批量视频仍由 `.gitignore` 排除。
+其中 `results/statistical_evaluation/` 公开 260 个正式唯一 episode、逐状态配对、置信区间、
+精确检验、随机性、失败分类、成本和媒体来源；`results/episodes/` 保留早期 3-state 结果，
+`results/training/` 公开两种微调方法在同一留出集上的验证曲线。原始 checkpoint、轨迹和批量
+视频仍由 `.gitignore` 排除。
 
 ## 结论边界
 
-- 十任务基线每个任务只有 3 个初始状态，置信区间仍然很宽，不能替代完整官方评测协议。
+- 扩展基线为每任务 10 个初始状态，总体 Wilson 区间仍为 [48.2%, 67.2%]；这不是官方完整
+  benchmark，也不应按 100 个同质独立任务理解。
+- 主实验使用一个预注册策略 seed；随机性审计中 3/20 个状态的成功会随 seed 改变，不能外推成
+  跨 seed 平均成功率。
 - 公开 checkpoint 已经在公开 LIBERO 数据集上训练；本项目的单任务 behavior cloning 主要是在已有
   分布上继续拟合，并没有引入全新的行为数据。
-- 两种微调方式都没有解决 Task 5。结论仅限于工程复现、参数效率以及本次配对实验中观察到的遗忘
-  差异，不能宣称 LoRA 普遍优于完整微调。
+- 两种微调方式在扩展后仍没有解决 Task 5（均 0/10）。LoRA 只保持预训练 23/23 条成功，不代表
+  普遍优于完整微调，也不能写成成功率提升。
+- H=25/H=10 相对 H=50 得到配对证据，但 H=10 与 H=25 不显著；本项目没有实现或验证自适应 H。
 - Stage 25 detector 只针对 executed-action feedback 直接暴露的故障，简单 action mismatch
   更优；Stage 27 的预注册 action-relative residual 在隐藏动力学 discovery 上失败，探索性
   no-action residual 未通过辅助指标族 Holm 校正，且 Stage 28 在新状态上的冻结确认也失败，

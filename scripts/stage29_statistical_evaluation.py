@@ -32,7 +32,6 @@ from lerobot.policies.smolvla.configuration_smolvla import SmolVLAConfig
 from lerobot.policies.smolvla.modeling_smolvla import SmolVLAPolicy
 from lerobot.utils.constants import ACTION
 from lerobot.utils.io_utils import write_video
-
 from stage5_small_benchmark import make_task_env
 from statistical_evaluation_common import (
     EpisodeJob,

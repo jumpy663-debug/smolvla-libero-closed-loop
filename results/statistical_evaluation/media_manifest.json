@@ -1,0 +1,124 @@
+{
+  "failure_examples": {
+    "description_zh": "H=50 失败样例：抓取失败、抓取后掉落、未稳定满足成功、放置位置错误。",
+    "public_contact_sheet": "media/statistical_failure_examples.jpg",
+    "public_contact_sheet_sha256": "e96896bddd2e63274364d4041bc7e00c39c2306fc593d4556389f9f1f83c9d23",
+    "sources": [
+      {
+        "action_horizon": 50,
+        "environment_seed": 1007,
+        "episode_id": "formal-pretrained-h50-task07-init07-env1007-policy1007",
+        "init_state_index": 7,
+        "policy": "pretrained",
+        "policy_seed": 1007,
+        "primary_failure_code": "approach_but_grasp_failed",
+        "source_contact_sheet": "outputs/statistical_evaluation_v1/failure_review/contact_sheets/057_formal-pretrained-h50-task07-init07-env1007-policy1007.png",
+        "source_contact_sheet_sha256": "0c25c63fc50ed1979ed5d26aa59026692cd2ae20bb324611daef39a5d4b1bd21",
+        "source_video": "outputs/statistical_evaluation_v1/videos/formal/pretrained-h50/formal-pretrained-h50-task07-init07-env1007-policy1007.mp4",
+        "source_video_sha256": "5aae3a3d31ad1e22a43dfe2c5f9f923dd92f550c3dccfdf851580fd6057bf13e",
+        "task_id": 7
+      },
+      {
+        "action_horizon": 50,
+        "environment_seed": 1008,
+        "episode_id": "formal-pretrained-h50-task05-init08-env1008-policy1008",
+        "init_state_index": 8,
+        "policy": "pretrained",
+        "policy_seed": 1008,
+        "primary_failure_code": "dropped_after_grasp",
+        "source_contact_sheet": "outputs/statistical_evaluation_v1/failure_review/contact_sheets/053_formal-pretrained-h50-task05-init08-env1008-policy1008.png",
+        "source_contact_sheet_sha256": "a44aaf90f31c58a94f0d51aa2c693fb6fa1d8f8193f0fd63fe238cfedd4e4839",
+        "source_video": "outputs/statistical_evaluation_v1/videos/formal/pretrained-h50/formal-pretrained-h50-task05-init08-env1008-policy1008.mp4",
+        "source_video_sha256": "7763ff32d8a2647c346863be4f80cea77bbd7c364919f69f71fb11eb2d268ab1",
+        "task_id": 5
+      },
+      {
+        "action_horizon": 50,
+        "environment_seed": 1009,
+        "episode_id": "formal-pretrained-h50-task08-init09-env1009-policy1009",
+        "init_state_index": 9,
+        "policy": "pretrained",
+        "policy_seed": 1009,
+        "primary_failure_code": "placed_but_not_stable_success",
+        "source_contact_sheet": "outputs/statistical_evaluation_v1/failure_review/contact_sheets/062_formal-pretrained-h50-task08-init09-env1009-policy1009.png",
+        "source_contact_sheet_sha256": "777a7b6ba7379b319b21a08be6aeb3237600095c27f228bea5f6b091db3b1521",
+        "source_video": "outputs/statistical_evaluation_v1/videos/formal/pretrained-h50/formal-pretrained-h50-task08-init09-env1009-policy1009.mp4",
+        "source_video_sha256": "241f38e844b6533dad0601fe801bd4cc8a8761d421e7631ff961c2f39e87fc5e",
+        "task_id": 8
+      },
+      {
+        "action_horizon": 50,
+        "environment_seed": 1003,
+        "episode_id": "formal-pretrained-h50-task05-init03-env1003-policy1003",
+        "init_state_index": 3,
+        "policy": "pretrained",
+        "policy_seed": 1003,
+        "primary_failure_code": "wrong_placement_location",
+        "source_contact_sheet": "outputs/statistical_evaluation_v1/failure_review/contact_sheets/048_formal-pretrained-h50-task05-init03-env1003-policy1003.png",
+        "source_contact_sheet_sha256": "08c543f0fc07ed8589ed14d00dff221d2de91950e14c2784dffcda39b7a46b43",
+        "source_video": "outputs/statistical_evaluation_v1/videos/formal/pretrained-h50/formal-pretrained-h50-task05-init03-env1003-policy1003.mp4",
+        "source_video_sha256": "a96377362a4060af1b4339880f368f4b80bb27d5ed33e9b214d706eaad111708",
+        "task_id": 5
+      }
+    ]
+  },
+  "horizon_paired_video": {
+    "description_zh": "Task 8、init 9、环境 seed 1009、策略 seed 1009 的 H=50/25/10 严格配对视频。",
+    "public_preview": "media/statistical_horizon_task8_init9.jpg",
+    "public_preview_sha256": "44a3a6c2a79cc507484e3c1848dd7bdc70b8bd63247d86e1012740e6291891c7",
+    "public_video": "media/statistical_horizon_task8_init9.mp4",
+    "public_video_sha256": "eddc398b12f28c727e1984fb4d6642f3e248dd348e3566bed2527c57ce15363a",
+    "sources": [
+      {
+        "action_horizon": 50,
+        "control_steps": 280,
+        "environment_seed": 1009,
+        "episode_id": "formal-pretrained-h50-task08-init09-env1009-policy1009",
+        "init_state_index": 9,
+        "policy": "pretrained",
+        "policy_rng_seed": 1009,
+        "source_video": "outputs/statistical_evaluation_v1/videos/formal/pretrained-h50/formal-pretrained-h50-task08-init09-env1009-policy1009.mp4",
+        "source_video_sha256": "241f38e844b6533dad0601fe801bd4cc8a8761d421e7631ff961c2f39e87fc5e",
+        "success": false,
+        "task_id": 8
+      },
+      {
+        "action_horizon": 25,
+        "control_steps": 280,
+        "environment_seed": 1009,
+        "episode_id": "formal-pretrained-h25-task08-init09-env1009-policy1009",
+        "init_state_index": 9,
+        "policy": "pretrained",
+        "policy_rng_seed": 1009,
+        "source_video": "outputs/statistical_evaluation_v1/videos/formal/pretrained-h25/formal-pretrained-h25-task08-init09-env1009-policy1009.mp4",
+        "source_video_sha256": "b1e24fdac2d945a685b53f5438587268ec22389121e9dfaf937021366060d72a",
+        "success": false,
+        "task_id": 8
+      },
+      {
+        "action_horizon": 10,
+        "control_steps": 89,
+        "environment_seed": 1009,
+        "episode_id": "formal-pretrained-h10-task08-init09-env1009-policy1009",
+        "init_state_index": 9,
+        "policy": "pretrained",
+        "policy_rng_seed": 1009,
+        "source_video": "outputs/statistical_evaluation_v1/videos/formal/pretrained-h10/formal-pretrained-h10-task08-init09-env1009-policy1009.mp4",
+        "source_video_sha256": "df3f3eea4e9851b6099cbbed0014a502a8807ea0268c904554baf04115a85756",
+        "success": true,
+        "task_id": 8
+      }
+    ]
+  },
+  "overview": {
+    "png": "media/statistical_results_overview.png",
+    "png_sha256": "801a156c22ac3f3f287be7af05ff89efa2861f1b5bc01f9d6b522ed8f8f191d9",
+    "rasterization_font_filename": "NotoSansCJKsc-Regular.otf",
+    "statistics_source": "results/statistical_evaluation/statistics.json",
+    "statistics_source_sha256": "f5b3e2b1d1f88dcfbd5bc15649d447f6929d5c8bf9399df5b41f82e607c10bbc",
+    "svg": "media/statistical_results_overview.svg",
+    "svg_sha256": "9aed2cab1a3a5e6a9d8d032bff844b295437f2d04856d9c6ee35012a66aaf9f8"
+  },
+  "protocol_sha256": "5d35f52af86f240c665ffef15a2bff0622474375ba01dec0f60351c3936838b5",
+  "schema_version": 1
+}

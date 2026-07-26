@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<style>text{font-family:'Noto Sans CJK SC','Microsoft YaHei',sans-serif}</style>
+<rect width="1600" height="900" fill="#f6f8fc"/>
+<rect x="36" y="30" width="1528" height="112" rx="24" fill="#172033"/>
+<text x="72" y="78" font-size="34" font-weight="700" fill="#ffffff">SmolVLA × LIBERO：统计可信闭环评测</text>
+<text x="72" y="119" font-size="21" font-weight="400" fill="#cbd5e1">260 个统一正式结果｜严格按初始状态配对｜RTX 4060 8GB｜仿真-only</text>
+<rect x="36" y="166" width="752" height="300" rx="22" fill="#ffffff"/>
+<rect x="812" y="166" width="752" height="300" rx="22" fill="#ffffff"/>
+<rect x="36" y="494" width="752" height="300" rx="22" fill="#ffffff"/>
+<rect x="812" y="494" width="752" height="300" rx="22" fill="#ffffff"/>
+<text x="68" y="207" font-size="24" font-weight="700" fill="#172033">A｜10 任务预训练基线</text>
+<text x="68" y="256" font-size="38" font-weight="700" fill="#176b5b">58/100 = 58.0%</text>
+<text x="68" y="289" font-size="18" font-weight="400" fill="#526079">Wilson 95% CI [48.2%, 67.2%]</text>
+<text x="68" y="326" font-size="17" font-weight="600" fill="#172033">每任务成功数（每项 n=10）</text>
+<rect x="74" y="331" width="42" height="83" rx="6" fill="#3aa68e"/>
+<text x="86" y="435" font-size="14" font-weight="400" fill="#526079">T0</text>
+<text x="88" y="322" font-size="14" font-weight="700" fill="#172033">9</text>
+<rect x="142" y="340" width="42" height="74" rx="6" fill="#3aa68e"/>
+<text x="154" y="435" font-size="14" font-weight="400" fill="#526079">T1</text>
+<text x="156" y="331" font-size="14" font-weight="700" fill="#172033">8</text>
+<rect x="210" y="368" width="42" height="46" rx="6" fill="#3aa68e"/>
+<text x="222" y="435" font-size="14" font-weight="400" fill="#526079">T2</text>
+<text x="224" y="359" font-size="14" font-weight="700" fill="#172033">5</text>
+<rect x="278" y="350" width="42" height="64" rx="6" fill="#3aa68e"/>
+<text x="290" y="435" font-size="14" font-weight="400" fill="#526079">T3</text>
+<text x="292" y="341" font-size="14" font-weight="700" fill="#172033">7</text>
+<rect x="346" y="377" width="42" height="37" rx="6" fill="#3aa68e"/>
+<text x="358" y="435" font-size="14" font-weight="400" fill="#526079">T4</text>
+<text x="360" y="368" font-size="14" font-weight="700" fill="#172033">4</text>
+<rect x="414" y="414" width="42" height="0" rx="6" fill="#3aa68e"/>
+<text x="426" y="435" font-size="14" font-weight="400" fill="#526079">T5</text>
+<text x="428" y="405" font-size="14" font-weight="700" fill="#172033">0</text>
+<rect x="482" y="340" width="42" height="74" rx="6" fill="#3aa68e"/>
+<text x="494" y="435" font-size="14" font-weight="400" fill="#526079">T6</text>
+<text x="496" y="331" font-size="14" font-weight="700" fill="#172033">8</text>
+<rect x="550" y="377" width="42" height="37" rx="6" fill="#3aa68e"/>
+<text x="562" y="435" font-size="14" font-weight="400" fill="#526079">T7</text>
+<text x="564" y="368" font-size="14" font-weight="700" fill="#172033">4</text>
+<rect x="618" y="377" width="42" height="37" rx="6" fill="#3aa68e"/>
+<text x="630" y="435" font-size="14" font-weight="400" fill="#526079">T8</text>
+<text x="632" y="368" font-size="14" font-weight="700" fill="#172033">4</text>
+<rect x="686" y="331" width="42" height="83" rx="6" fill="#3aa68e"/>
+<text x="698" y="435" font-size="14" font-weight="400" fill="#526079">T9</text>
+<text x="700" y="322" font-size="14" font-weight="700" fill="#172033">9</text>
+<text x="844" y="207" font-size="24" font-weight="700" fill="#172033">B｜Action Horizon 严格配对（4×10 状态）</text>
+<text x="850" y="267" font-size="17" font-weight="700" fill="#172033">H50</text>
+<rect x="915" y="242" width="520" height="32" rx="8" fill="#e8edf5"/>
+<rect x="915" y="242" width="156" height="32" rx="8" fill="#d46a6a"/>
+<text x="1448" y="266" font-size="16" font-weight="700" fill="#172033">12/40  30.0%</text>
+<text x="850" y="324" font-size="17" font-weight="700" fill="#172033">H25</text>
+<rect x="915" y="299" width="520" height="32" rx="8" fill="#e8edf5"/>
+<rect x="915" y="299" width="260" height="32" rx="8" fill="#e6a23c"/>
+<text x="1448" y="323" font-size="16" font-weight="700" fill="#172033">20/40  50.0%</text>
+<text x="850" y="381" font-size="17" font-weight="700" fill="#172033">H10</text>
+<rect x="915" y="356" width="520" height="32" rx="8" fill="#e8edf5"/>
+<rect x="915" y="356" width="299" height="32" rx="8" fill="#3aa68e"/>
+<text x="1448" y="380" font-size="16" font-weight="700" fill="#172033">23/40  57.5%</text>
+<text x="850" y="424" font-size="17" font-weight="600" fill="#172033">H50→H25：Holm p=0.0156；H50→H10：p=0.0103</text>
+<text x="850" y="452" font-size="17" font-weight="400" fill="#526079">H25↔H10：p=0.453，不支持“10 优于 25”</text>
+<text x="68" y="535" font-size="24" font-weight="700" fill="#172033">C｜离线 loss 与闭环成功率</text>
+<text x="72" y="595" font-size="17" font-weight="700" fill="#172033">预训练</text>
+<rect x="210" y="570" width="420" height="32" rx="8" fill="#e8edf5"/>
+<rect x="210" y="570" width="241" height="32" rx="8" fill="#5b7fc7"/>
+<text x="642" y="594" font-size="17" font-weight="700" fill="#172033">23/40</text>
+<text x="694" y="594" font-size="15" font-weight="400" fill="#526079">—</text>
+<text x="72" y="657" font-size="17" font-weight="700" fill="#172033">全量专家</text>
+<rect x="210" y="632" width="420" height="32" rx="8" fill="#e8edf5"/>
+<rect x="210" y="632" width="231" height="32" rx="8" fill="#5b7fc7"/>
+<text x="642" y="656" font-size="17" font-weight="700" fill="#172033">22/40</text>
+<text x="694" y="656" font-size="15" font-weight="400" fill="#526079">loss −2.32%</text>
+<text x="72" y="719" font-size="17" font-weight="700" fill="#172033">LoRA r=16</text>
+<rect x="210" y="694" width="420" height="32" rx="8" fill="#e8edf5"/>
+<rect x="210" y="694" width="241" height="32" rx="8" fill="#5b7fc7"/>
+<text x="642" y="718" font-size="17" font-weight="700" fill="#172033">23/40</text>
+<text x="694" y="718" font-size="15" font-weight="400" fill="#526079">loss −2.49%</text>
+<text x="72" y="773" font-size="17" font-weight="600" fill="#172033">配对精确检验均 p=1.0；LoRA 与预训练成功标签 40/40 完全一致</text>
+<text x="844" y="535" font-size="24" font-weight="700" fill="#172033">D｜失败机制与随机性边界</text>
+<text x="848" y="580" font-size="18" font-weight="600" fill="#172033">稳定放置未达成功  48/114（42.1%）</text>
+<text x="848" y="618" font-size="18" font-weight="600" fill="#172033">接近但抓取失败      38/114（33.3%）</text>
+<text x="848" y="656" font-size="18" font-weight="600" fill="#172033">抓取后掉落          22/114（19.3%）</text>
+<text x="848" y="708" font-size="17" font-weight="400" fill="#526079">不同策略 seed：动作变化 20/20，成功变化 3/20</text>
+<text x="848" y="744" font-size="17" font-weight="400" fill="#526079">主实验是预注册单 seed 配对结果，不外推为跨 seed 均值</text>
+<text x="848" y="782" font-size="17" font-weight="600" fill="#172033">114/114 失败均由 12 帧 contact sheet 复核</text>
+<text x="42" y="848" font-size="21" font-weight="700" fill="#172033">结论：缩短 H 相对 H=50 的闭环影响得到配对证据；约 2.3%–2.5% 的离线 loss 改善未转化为成功率提升。</text>
+<text x="42" y="880" font-size="16" font-weight="400" fill="#526079">边界：LIBERO Spatial 本地仿真、固定 checkpoint、固定预注册 seed；protocol 5d35f52af86f…</text>
+</svg>

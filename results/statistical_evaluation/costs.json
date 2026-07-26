@@ -1,0 +1,634 @@
+{
+  "legacy_condition_runtime_sources": [
+    {
+      "per_horizon": null,
+      "runtime": {
+        "benchmark_memory": {
+          "allocated_bytes": 935894528,
+          "peak_allocated_bytes": 1045809152,
+          "peak_reserved_bytes": 1096810496,
+          "reserved_bytes": 1096810496
+        },
+        "benchmark_seconds": 1158.9539479000014,
+        "cuda_capability": [
+          8,
+          9
+        ],
+        "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "effective_control_steps_per_second": 4.512690093921888,
+        "environments_closed_cleanly": true,
+        "memory_after_model_load": {
+          "allocated_bytes": 926235136,
+          "peak_allocated_bytes": 927002112,
+          "peak_reserved_bytes": 950009856,
+          "reserved_bytes": 950009856
+        },
+        "model_inference": {
+          "count": 47,
+          "max": 1.425847557002271,
+          "mean": 0.5791695929787858,
+          "median": 0.5546404870001425,
+          "min": 0.4600001649996557,
+          "total": 27.22097087000293
+        },
+        "model_load_seconds": 5.2694145730019954,
+        "mujoco_gl": "egl",
+        "queued_action_selection": {
+          "count": 2085,
+          "max": 0.004264248000254156,
+          "mean": 0.0014595328028466244,
+          "median": 0.0013051239984633867,
+          "min": 0.0009219850035151467,
+          "total": 3.043125893935212
+        },
+        "seconds_per_episode": 38.63179826333338
+      },
+      "source_csv": "results/episodes/full_spatial_baseline.csv",
+      "source_report": "stage6_full_spatial_benchmark/report.json",
+      "source_report_sha256": "e903f2c9ca78ed61d1a6c733786441dd1ae51a1d48f01608d3c40cb17addeb3a"
+    },
+    {
+      "per_horizon": [
+        {
+          "action_bounds_audit": {
+            "actions_were_clipped": false,
+            "maximum_overflow": 0.06912577152252197,
+            "maximum_underflow": 0.0557636022567749,
+            "outside_count_by_dimension": [
+              0,
+              0,
+              6,
+              0,
+              0,
+              0,
+              1831
+            ],
+            "outside_value_count": 1837,
+            "total_value_count": 21175
+          },
+          "episodes": 12,
+          "horizon": 50,
+          "mean_episode_steps": 252.08333333333334,
+          "median_episode_steps": 280.0,
+          "model_inference": {
+            "count": 24,
+            "max": 0.7218228080018889,
+            "mean": 0.5531775527500334,
+            "median": null,
+            "min": 0.4600001649996557,
+            "note": "Median unavailable because stage 6 stores per-task aggregate latency only.",
+            "total": 13.276261266000802
+          },
+          "per_task": [
+            {
+              "episodes": 3,
+              "steps": [
+                130,
+                280,
+                280
+              ],
+              "success_rate": 0.3333333333333333,
+              "successes": 1,
+              "task_id": 4
+            },
+            {
+              "episodes": 3,
+              "steps": [
+                280,
+                280,
+                280
+              ],
+              "success_rate": 0.0,
+              "successes": 0,
+              "task_id": 5
+            },
+            {
+              "episodes": 3,
+              "steps": [
+                280,
+                280,
+                280
+              ],
+              "success_rate": 0.0,
+              "successes": 0,
+              "task_id": 7
+            },
+            {
+              "episodes": 3,
+              "steps": [
+                95,
+                280,
+                280
+              ],
+              "success_rate": 0.3333333333333333,
+              "successes": 1,
+              "task_id": 8
+            }
+          ],
+          "success_rate": 0.16666666666666666,
+          "success_rate_percent": 16.666666666666668,
+          "successes": 2,
+          "valid_control_steps": 3025,
+          "wall_seconds": 550.6604375089992,
+          "wilson_95_interval": [
+            0.04696514218385378,
+            0.4480308622529734
+          ]
+        },
+        {
+          "action_bounds_audit": {
+            "actions_were_clipped": false,
+            "maximum_overflow": 0.06117808818817139,
+            "maximum_underflow": 0.11290955543518066,
+            "outside_count_by_dimension": [
+              0,
+              0,
+              6,
+              0,
+              0,
+              0,
+              1347
+            ],
+            "outside_value_count": 1353,
+            "total_value_count": 16506
+          },
+          "episodes": 12,
+          "horizon": 25,
+          "mean_episode_steps": 196.5,
+          "median_episode_steps": 206.0,
+          "model_inference": {
+            "count": 48,
+            "max": 1.501619604001462,
+            "mean": 0.5969758585838463,
+            "median": 0.5798125300007086,
+            "min": 0.47671478900156217,
+            "total": 28.65484121202462
+          },
+          "per_task": [
+            {
+              "episodes": 3,
+              "steps": [
+                128,
+                280,
+                132
+              ],
+              "success_rate": 0.6666666666666666,
+              "successes": 2,
+              "task_id": 4
+            },
+            {
+              "episodes": 3,
+              "steps": [
+                280,
+                280,
+                280
+              ],
+              "success_rate": 0.0,
+              "successes": 0,
+              "task_id": 5
+            },
+            {
+              "episodes": 3,
+              "steps": [
+                113,
+                123,
+                280
+              ],
+              "success_rate": 0.6666666666666666,
+              "successes": 2,
+              "task_id": 7
+            },
+            {
+              "episodes": 3,
+              "steps": [
+                91,
+                91,
+                280
+              ],
+              "success_rate": 0.6666666666666666,
+              "successes": 2,
+              "task_id": 8
+            }
+          ],
+          "success_rate": 0.5,
+          "success_rate_percent": 50.0,
+          "successes": 6,
+          "valid_control_steps": 2358,
+          "wall_seconds": 595.9183916939983,
+          "wilson_95_interval": [
+            0.2537815976337061,
+            0.7462184023662939
+          ]
+        },
+        {
+          "action_bounds_audit": {
+            "actions_were_clipped": false,
+            "maximum_overflow": 0.07692563533782959,
+            "maximum_underflow": 0.0839693546295166,
+            "outside_count_by_dimension": [
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              1433
+            ],
+            "outside_value_count": 1438,
+            "total_value_count": 15442
+          },
+          "episodes": 12,
+          "horizon": 10,
+          "mean_episode_steps": 183.83333333333334,
+          "median_episode_steps": 130.0,
+          "model_inference": {
+            "count": 98,
+            "max": 0.7535594109976955,
+            "mean": 0.5531380272245676,
+            "median": 0.5490466729988839,
+            "min": 0.4558394990017405,
+            "total": 54.20752666800763
+          },
+          "per_task": [
+            {
+              "episodes": 3,
+              "steps": [
+                127,
+                280,
+                129
+              ],
+              "success_rate": 0.6666666666666666,
+              "successes": 2,
+              "task_id": 4
+            },
+            {
+              "episodes": 3,
+              "steps": [
+                280,
+                280,
+                280
+              ],
+              "success_rate": 0.0,
+              "successes": 0,
+              "task_id": 5
+            },
+            {
+              "episodes": 3,
+              "steps": [
+                115,
+                116,
+                131
+              ],
+              "success_rate": 1.0,
+              "successes": 3,
+              "task_id": 7
+            },
+            {
+              "episodes": 3,
+              "steps": [
+                91,
+                97,
+                280
+              ],
+              "success_rate": 0.6666666666666666,
+              "successes": 2,
+              "task_id": 8
+            }
+          ],
+          "success_rate": 0.5833333333333334,
+          "success_rate_percent": 58.333333333333336,
+          "successes": 7,
+          "valid_control_steps": 2206,
+          "wall_seconds": 574.6989675669975,
+          "wilson_95_interval": [
+            0.31951131254954973,
+            0.8067396863412435
+          ]
+        }
+      ],
+      "runtime": {
+        "benchmark_memory": {
+          "allocated_bytes": 935875072,
+          "peak_allocated_bytes": 1045809152,
+          "peak_reserved_bytes": 1096810496,
+          "reserved_bytes": 1096810496
+        },
+        "cuda_capability": [
+          8,
+          9
+        ],
+        "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "environments_closed_cleanly": true,
+        "memory_after_model_load": {
+          "allocated_bytes": 926235136,
+          "peak_allocated_bytes": 927002112,
+          "peak_reserved_bytes": 950009856,
+          "reserved_bytes": 950009856
+        },
+        "model_load_seconds": 5.36332695800229,
+        "mujoco_gl": "egl",
+        "new_conditions_wall_seconds": 1173.9553688259984,
+        "queued_action_selection": {
+          "count": 1945,
+          "max": 0.004347050002252217,
+          "mean": 0.0015051389079606657,
+          "median": 0.0013628169981529936,
+          "min": 0.0009136099979514256,
+          "total": 2.927495175983495
+        }
+      },
+      "source_csv": "results/episodes/action_horizon_ablation.csv",
+      "source_report": "stage7_action_horizon_ablation/report.json",
+      "source_report_sha256": "f146b3d24df8c54ba1146bd55e68ad45d20d89c265fa352fdbdb40833461070b"
+    },
+    {
+      "per_horizon": null,
+      "runtime": {
+        "benchmark_memory": {
+          "allocated_bytes": 935875072,
+          "peak_allocated_bytes": 1045809152,
+          "peak_reserved_bytes": 1096810496,
+          "reserved_bytes": 1096810496
+        },
+        "benchmark_seconds": 733.6668602930004,
+        "cuda_capability": [
+          8,
+          9
+        ],
+        "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "effective_control_steps_per_second": 3.2017256429735608,
+        "environments_closed_cleanly": true,
+        "memory_after_model_load": {
+          "allocated_bytes": 926235136,
+          "peak_allocated_bytes": 927002112,
+          "peak_reserved_bytes": 950009856,
+          "reserved_bytes": 950009856
+        },
+        "model_inference": {
+          "count": 112,
+          "max": 2.9648082659987267,
+          "mean": 0.6130648348036759,
+          "median": 0.5828068830014672,
+          "min": 0.4817981279993546,
+          "total": 68.6632614980117
+        },
+        "model_load_seconds": 5.378088190998824,
+        "mujoco_gl": "egl",
+        "queued_action_selection": {
+          "count": 1008,
+          "max": 0.007594481998239644,
+          "mean": 0.0027391379851703984,
+          "median": 0.0025356414989801124,
+          "min": 0.0016128799979924224,
+          "total": 2.7610510890517617
+        },
+        "seconds_per_episode": 61.138905024416694
+      },
+      "source_csv": "results/episodes/expert_only_eval.csv",
+      "source_report": "stage9_task5_finetune_eval/report.json",
+      "source_report_sha256": "a8967ca3f4ede056b23321a3e60f58ac6596f04e1173eeb321395f1bcfe89a47"
+    },
+    {
+      "per_horizon": null,
+      "runtime": {
+        "benchmark_memory": {
+          "allocated_bytes": 938845696,
+          "peak_allocated_bytes": 1048779776,
+          "peak_reserved_bytes": 1096810496,
+          "reserved_bytes": 1096810496
+        },
+        "benchmark_seconds": 662.3981074199983,
+        "cuda_capability": [
+          8,
+          9
+        ],
+        "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "effective_control_steps_per_second": 3.3182461957222085,
+        "environments_closed_cleanly": true,
+        "memory_after_model_load": {
+          "allocated_bytes": 929205760,
+          "peak_allocated_bytes": 932176384,
+          "peak_reserved_bytes": 952107008,
+          "reserved_bytes": 952107008
+        },
+        "model_inference": {
+          "count": 97,
+          "max": 1.5169468079984654,
+          "mean": 0.6869959086806066,
+          "median": 0.6798938350038952,
+          "min": 0.5430630379996728,
+          "total": 66.63860314201884
+        },
+        "model_load_seconds": 4.741634353005793,
+        "mujoco_gl": "egl",
+        "queued_action_selection": {
+          "count": 869,
+          "max": 0.006950104005227331,
+          "mean": 0.0026308813199863884,
+          "median": 0.002439278003294021,
+          "min": 0.0016622469993308187,
+          "total": 2.2862358670681715
+        },
+        "seconds_per_episode": 55.19984228499985
+      },
+      "source_csv": "results/episodes/lora_eval.csv",
+      "source_report": "stage10_task5_lora_eval/report.json",
+      "source_report_sha256": "53404122805afc482d0a0fec9c7a051cbca876f4d8341a873ca546e9f22852ee"
+    }
+  ],
+  "new_condition_runtime": {
+    "expert_only_h10": {
+      "episode_wall_seconds": {
+        "count": 28,
+        "max": 58.50881339500029,
+        "mean": 41.02343429717858,
+        "min": 23.21197154299989,
+        "p50": 31.80422315750002,
+        "p95": 57.68834653910003
+      },
+      "legacy_episodes_with_null_runtime": 12,
+      "new_sequential_episodes": 28,
+      "peak_inference_gpu_memory_bytes": {
+        "count": 28,
+        "max": 972986368.0,
+        "mean": 972986368.0,
+        "min": 972986368.0,
+        "p50": 972986368.0,
+        "p95": 972986368.0
+      },
+      "per_forward_latency_seconds": {
+        "count": 531,
+        "max": 0.5680756430001566,
+        "mean": 0.3229473113521623,
+        "min": 0.2432724390000658,
+        "p50": 0.2925153650003267,
+        "p95": 0.48751798099965526
+      }
+    },
+    "lora_h10": {
+      "episode_wall_seconds": {
+        "count": 28,
+        "max": 59.201561665000554,
+        "mean": 41.41357521560719,
+        "min": 23.42079334400114,
+        "p50": 34.129014902500785,
+        "p95": 58.730427445150326
+      },
+      "legacy_episodes_with_null_runtime": 12,
+      "new_sequential_episodes": 28,
+      "peak_inference_gpu_memory_bytes": {
+        "count": 28,
+        "max": 975956992.0,
+        "mean": 975956992.0,
+        "min": 975956992.0,
+        "p50": 975956992.0,
+        "p95": 975956992.0
+      },
+      "per_forward_latency_seconds": {
+        "count": 528,
+        "max": 0.6865016909996484,
+        "mean": 0.37193026006437346,
+        "min": 0.28853943800095294,
+        "p50": 0.34162291849952453,
+        "p95": 0.523566257099901
+      }
+    },
+    "pretrained_h10": {
+      "episode_wall_seconds": {
+        "count": 28,
+        "max": 64.06725108999944,
+        "mean": 40.25342204799991,
+        "min": 21.964972939999825,
+        "p50": 31.61744099200041,
+        "p95": 56.59974058635021
+      },
+      "legacy_episodes_with_null_runtime": 12,
+      "new_sequential_episodes": 28,
+      "peak_inference_gpu_memory_bytes": {
+        "count": 28,
+        "max": 972986368.0,
+        "mean": 972986368.0,
+        "min": 972986368.0,
+        "p50": 972986368.0,
+        "p95": 972986368.0
+      },
+      "per_forward_latency_seconds": {
+        "count": 527,
+        "max": 0.9358980000006341,
+        "mean": 0.3275611096963695,
+        "min": 0.2421815340003377,
+        "p50": 0.300267237999833,
+        "p95": 0.46938092169984885
+      }
+    },
+    "pretrained_h25": {
+      "episode_wall_seconds": {
+        "count": 28,
+        "max": 59.569356568999865,
+        "mean": 39.86909824682142,
+        "min": 22.12223892700058,
+        "p50": 41.77362215000039,
+        "p95": 53.883220040950164
+      },
+      "legacy_episodes_with_null_runtime": 12,
+      "new_sequential_episodes": 28,
+      "peak_inference_gpu_memory_bytes": {
+        "count": 28,
+        "max": 972986368.0,
+        "mean": 972986368.0,
+        "min": 972986368.0,
+        "p50": 972986368.0,
+        "p95": 972986368.0
+      },
+      "per_forward_latency_seconds": {
+        "count": 237,
+        "max": 0.7549613920000411,
+        "mean": 0.5137113756413725,
+        "min": 0.4085763510001925,
+        "p50": 0.5129445860002306,
+        "p95": 0.6128947027998947
+      }
+    },
+    "pretrained_h50": {
+      "episode_wall_seconds": {
+        "count": 70,
+        "max": 53.22885839799983,
+        "mean": 35.115229835899996,
+        "min": 19.85702512500029,
+        "p50": 30.220440207000365,
+        "p95": 50.639635964450434
+      },
+      "legacy_episodes_with_null_runtime": 30,
+      "new_sequential_episodes": 70,
+      "peak_inference_gpu_memory_bytes": {
+        "count": 70,
+        "max": 972125184.0,
+        "mean": 971791586.7428571,
+        "min": 971786752.0,
+        "p50": 971786752.0,
+        "p95": 971786752.0
+      },
+      "per_forward_latency_seconds": {
+        "count": 285,
+        "max": 1.8720018619997063,
+        "mean": 0.537614869280722,
+        "min": 0.403951632999906,
+        "p50": 0.5343469069998719,
+        "p95": 0.6301912053999332
+      }
+    }
+  },
+  "protocol_sha256": "5d35f52af86f240c665ffef15a2bff0622474375ba01dec0f60351c3936838b5",
+  "schema_version": 1,
+  "training": {
+    "adaptation_control": {
+      "action_horizon": 10,
+      "batch_size": 4,
+      "closed_loop_tasks": [
+        5,
+        4,
+        7,
+        8
+      ],
+      "decay_learning_rate": 1e-06,
+      "episodes_per_task": 3,
+      "peak_learning_rate": 1e-05,
+      "steps": 1000,
+      "task": 5,
+      "train_episodes": 31,
+      "train_frames": 3563,
+      "validation_episodes": 8,
+      "validation_frames": 909,
+      "warmup_steps": 100
+    },
+    "expert_only": {
+      "closed_loop_episodes": 12,
+      "closed_loop_successes": 6,
+      "evaluation_report_sha256": "a8967ca3f4ede056b23321a3e60f58ac6596f04e1173eeb321395f1bcfe89a47",
+      "final_validation_loss": 0.06479698396287858,
+      "initial_validation_loss": 0.06633893284015357,
+      "model_artifact_bytes": 906712520,
+      "peak_allocated_cuda_bytes": 2194676736,
+      "success_to_failure": 1,
+      "trainable_parameters": 99880992,
+      "training_report_sha256": "3fd873727c4b51e89073d6788ad389d58466c3aa4022895afec010992cefd151",
+      "training_seconds": 324.3855546620034
+    },
+    "lora": {
+      "adapter_artifact_bytes": 3002444,
+      "alpha": 16,
+      "closed_loop_episodes": 12,
+      "closed_loop_successes": 7,
+      "dropout": 0.0,
+      "evaluation_report_sha256": "53404122805afc482d0a0fec9c7a051cbca876f4d8341a873ca546e9f22852ee",
+      "final_validation_loss": 0.06468639546073973,
+      "initial_validation_loss": 0.06633893284015357,
+      "peak_allocated_cuda_bytes": 1737131008,
+      "rank": 16,
+      "success_to_failure": 0,
+      "trainable_parameters": 742656,
+      "training_report_sha256": "5af8e3bd35eb2f2993019d0d450410d5928bb671547618d71c3b3272e23df194",
+      "training_seconds": 279.24270375999913
+    }
+  }
+}

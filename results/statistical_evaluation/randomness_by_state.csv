@@ -1,0 +1,21 @@
+task_id,init_state_index,environment_seed,policy_seeds,unique_action_hashes,action_varies_across_policy_seeds,successes,success_varies_across_policy_seeds,steps,steps_vary_across_policy_seeds
+4,0,1000,"[1000, 2000, 3000]",3,True,"[true, false, true]",True,"[124, 280, 123]",True
+4,1,1001,"[1001, 2001, 3001]",3,True,"[false, false, false]",False,"[280, 280, 280]",False
+4,2,1002,"[1002, 2002, 3002]",3,True,"[true, true, true]",False,"[132, 135, 130]",True
+4,3,1003,"[1003, 2003, 3003]",3,True,"[false, false, false]",False,"[280, 280, 280]",False
+4,4,1004,"[1004, 2004, 3004]",3,True,"[true, false, true]",True,"[128, 280, 129]",True
+5,0,1000,"[1000, 2000, 3000]",3,True,"[false, false, false]",False,"[280, 280, 280]",False
+5,1,1001,"[1001, 2001, 3001]",3,True,"[false, false, false]",False,"[280, 280, 280]",False
+5,2,1002,"[1002, 2002, 3002]",3,True,"[false, true, false]",True,"[280, 144, 280]",True
+5,3,1003,"[1003, 2003, 3003]",3,True,"[false, false, false]",False,"[280, 280, 280]",False
+5,4,1004,"[1004, 2004, 3004]",3,True,"[false, false, false]",False,"[280, 280, 280]",False
+7,0,1000,"[1000, 2000, 3000]",3,True,"[true, true, true]",False,"[112, 115, 113]",True
+7,1,1001,"[1001, 2001, 3001]",3,True,"[true, true, true]",False,"[116, 116, 115]",True
+7,2,1002,"[1002, 2002, 3002]",3,True,"[true, true, true]",False,"[126, 127, 127]",True
+7,3,1003,"[1003, 2003, 3003]",3,True,"[true, true, true]",False,"[107, 105, 106]",True
+7,4,1004,"[1004, 2004, 3004]",3,True,"[true, true, true]",False,"[119, 121, 119]",True
+8,0,1000,"[1000, 2000, 3000]",3,True,"[true, true, true]",False,"[93, 91, 90]",True
+8,1,1001,"[1001, 2001, 3001]",3,True,"[true, true, true]",False,"[95, 96, 99]",True
+8,2,1002,"[1002, 2002, 3002]",3,True,"[false, false, false]",False,"[280, 280, 280]",False
+8,3,1003,"[1003, 2003, 3003]",3,True,"[true, true, true]",False,"[97, 97, 96]",True
+8,4,1004,"[1004, 2004, 3004]",3,True,"[false, false, false]",False,"[280, 280, 280]",False

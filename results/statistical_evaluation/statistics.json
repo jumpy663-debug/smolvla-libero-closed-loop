@@ -1,0 +1,1440 @@
+{
+  "experiment_A_expanded_pretrained_baseline": {
+    "censored_failure_steps": {
+      "count": 42,
+      "max": 280.0,
+      "mean": 280.0,
+      "min": 280.0,
+      "p50": 280.0,
+      "p95": 280.0
+    },
+    "episodes": 100,
+    "logical_vlm_forward_count": {
+      "count": 100,
+      "max": 6.0,
+      "mean": 4.03,
+      "min": 2.0,
+      "p50": 3.0,
+      "p95": 6.0
+    },
+    "per_task": [
+      {
+        "episodes": 10,
+        "success_rate": 0.9,
+        "successes": 9,
+        "task_id": 0,
+        "wilson_95_interval": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      {
+        "episodes": 10,
+        "success_rate": 0.8,
+        "successes": 8,
+        "task_id": 1,
+        "wilson_95_interval": [
+          0.49016247153664183,
+          0.9433178485456247
+        ]
+      },
+      {
+        "episodes": 10,
+        "success_rate": 0.5,
+        "successes": 5,
+        "task_id": 2,
+        "wilson_95_interval": [
+          0.236593090512564,
+          0.7634069094874361
+        ]
+      },
+      {
+        "episodes": 10,
+        "success_rate": 0.7,
+        "successes": 7,
+        "task_id": 3,
+        "wilson_95_interval": [
+          0.39677814746114537,
+          0.8922087325936989
+        ]
+      },
+      {
+        "episodes": 10,
+        "success_rate": 0.4,
+        "successes": 4,
+        "task_id": 4,
+        "wilson_95_interval": [
+          0.16818032970623614,
+          0.6873262302663417
+        ]
+      },
+      {
+        "episodes": 10,
+        "success_rate": 0.0,
+        "successes": 0,
+        "task_id": 5,
+        "wilson_95_interval": [
+          0.0,
+          0.2775327998628892
+        ]
+      },
+      {
+        "episodes": 10,
+        "success_rate": 0.8,
+        "successes": 8,
+        "task_id": 6,
+        "wilson_95_interval": [
+          0.49016247153664183,
+          0.9433178485456247
+        ]
+      },
+      {
+        "episodes": 10,
+        "success_rate": 0.4,
+        "successes": 4,
+        "task_id": 7,
+        "wilson_95_interval": [
+          0.16818032970623614,
+          0.6873262302663417
+        ]
+      },
+      {
+        "episodes": 10,
+        "success_rate": 0.4,
+        "successes": 4,
+        "task_id": 8,
+        "wilson_95_interval": [
+          0.16818032970623614,
+          0.6873262302663417
+        ]
+      },
+      {
+        "episodes": 10,
+        "success_rate": 0.9,
+        "successes": 9,
+        "task_id": 9,
+        "wilson_95_interval": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      }
+    ],
+    "runtime_measurement_scope": {
+      "episode_wall_seconds": {
+        "count": 70,
+        "max": 53.22885839799983,
+        "mean": 35.115229835899996,
+        "min": 19.85702512500029,
+        "p50": 30.220440207000365,
+        "p95": 50.639635964450434
+      },
+      "legacy_episodes_with_null_runtime": 30,
+      "new_sequential_episodes": 70,
+      "peak_inference_gpu_memory_bytes": {
+        "count": 70,
+        "max": 972125184.0,
+        "mean": 971791586.7428571,
+        "min": 971786752.0,
+        "p50": 971786752.0,
+        "p95": 971786752.0
+      },
+      "per_forward_latency_seconds": {
+        "count": 285,
+        "max": 1.8720018619997063,
+        "mean": 0.537614869280722,
+        "min": 0.403951632999906,
+        "p50": 0.5343469069998719,
+        "p95": 0.6301912053999332
+      }
+    },
+    "steps_to_success": {
+      "count": 58,
+      "max": 140.0,
+      "mean": 104.93103448275862,
+      "min": 75.0,
+      "p50": 107.0,
+      "p95": 129.15
+    },
+    "success_rate": 0.58,
+    "successes": 58,
+    "wilson_95_interval": [
+      0.4820648670304296,
+      0.6720161732564526
+    ]
+  },
+  "experiment_B_action_horizon": {
+    "conditions": {
+      "h10": {
+        "censored_failure_steps": {
+          "count": 17,
+          "max": 280.0,
+          "mean": 280.0,
+          "min": 280.0,
+          "p50": 280.0,
+          "p95": 280.0
+        },
+        "episodes": 40,
+        "logical_vlm_forward_count": {
+          "count": 40,
+          "max": 28.0,
+          "mean": 18.775,
+          "min": 9.0,
+          "p50": 13.0,
+          "p95": 28.0
+        },
+        "per_task": [
+          {
+            "episodes": 10,
+            "success_rate": 0.6,
+            "successes": 6,
+            "task_id": 4,
+            "wilson_95_interval": [
+              0.31267376973365824,
+              0.8318196702937638
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.0,
+            "successes": 0,
+            "task_id": 5,
+            "wilson_95_interval": [
+              0.0,
+              0.2775327998628892
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.9,
+            "successes": 9,
+            "task_id": 7,
+            "wilson_95_interval": [
+              0.5958499732047615,
+              0.9821237869049271
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.8,
+            "successes": 8,
+            "task_id": 8,
+            "wilson_95_interval": [
+              0.49016247153664183,
+              0.9433178485456247
+            ]
+          }
+        ],
+        "runtime_measurement_scope": {
+          "episode_wall_seconds": {
+            "count": 28,
+            "max": 64.06725108999944,
+            "mean": 40.25342204799991,
+            "min": 21.964972939999825,
+            "p50": 31.61744099200041,
+            "p95": 56.59974058635021
+          },
+          "legacy_episodes_with_null_runtime": 12,
+          "new_sequential_episodes": 28,
+          "peak_inference_gpu_memory_bytes": {
+            "count": 28,
+            "max": 972986368.0,
+            "mean": 972986368.0,
+            "min": 972986368.0,
+            "p50": 972986368.0,
+            "p95": 972986368.0
+          },
+          "per_forward_latency_seconds": {
+            "count": 527,
+            "max": 0.9358980000006341,
+            "mean": 0.3275611096963695,
+            "min": 0.2421815340003377,
+            "p50": 0.300267237999833,
+            "p95": 0.46938092169984885
+          }
+        },
+        "steps_to_success": {
+          "count": 23,
+          "max": 237.0,
+          "mean": 115.73913043478261,
+          "min": 86.0,
+          "p50": 115.0,
+          "p95": 130.8
+        },
+        "success_rate": 0.575,
+        "successes": 23,
+        "wilson_95_interval": [
+          0.42195068541991065,
+          0.7149060744004962
+        ]
+      },
+      "h25": {
+        "censored_failure_steps": {
+          "count": 20,
+          "max": 280.0,
+          "mean": 280.0,
+          "min": 280.0,
+          "p50": 280.0,
+          "p95": 280.0
+        },
+        "episodes": 40,
+        "logical_vlm_forward_count": {
+          "count": 40,
+          "max": 12.0,
+          "mean": 8.475,
+          "min": 4.0,
+          "p50": 9.0,
+          "p95": 12.0
+        },
+        "per_task": [
+          {
+            "episodes": 10,
+            "success_rate": 0.6,
+            "successes": 6,
+            "task_id": 4,
+            "wilson_95_interval": [
+              0.31267376973365824,
+              0.8318196702937638
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.0,
+            "successes": 0,
+            "task_id": 5,
+            "wilson_95_interval": [
+              0.0,
+              0.2775327998628892
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.7,
+            "successes": 7,
+            "task_id": 7,
+            "wilson_95_interval": [
+              0.39677814746114537,
+              0.8922087325936989
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.7,
+            "successes": 7,
+            "task_id": 8,
+            "wilson_95_interval": [
+              0.39677814746114537,
+              0.8922087325936989
+            ]
+          }
+        ],
+        "runtime_measurement_scope": {
+          "episode_wall_seconds": {
+            "count": 28,
+            "max": 59.569356568999865,
+            "mean": 39.86909824682142,
+            "min": 22.12223892700058,
+            "p50": 41.77362215000039,
+            "p95": 53.883220040950164
+          },
+          "legacy_episodes_with_null_runtime": 12,
+          "new_sequential_episodes": 28,
+          "peak_inference_gpu_memory_bytes": {
+            "count": 28,
+            "max": 972986368.0,
+            "mean": 972986368.0,
+            "min": 972986368.0,
+            "p50": 972986368.0,
+            "p95": 972986368.0
+          },
+          "per_forward_latency_seconds": {
+            "count": 237,
+            "max": 0.7549613920000411,
+            "mean": 0.5137113756413725,
+            "min": 0.4085763510001925,
+            "p50": 0.5129445860002306,
+            "p95": 0.6128947027998947
+          }
+        },
+        "steps_to_success": {
+          "count": 20,
+          "max": 139.0,
+          "mean": 111.75,
+          "min": 87.0,
+          "p50": 115.0,
+          "p95": 132.35
+        },
+        "success_rate": 0.5,
+        "successes": 20,
+        "wilson_95_interval": [
+          0.35199526933465386,
+          0.6480047306653461
+        ]
+      },
+      "h50": {
+        "censored_failure_steps": {
+          "count": 28,
+          "max": 280.0,
+          "mean": 280.0,
+          "min": 280.0,
+          "p50": 280.0,
+          "p95": 280.0
+        },
+        "episodes": 40,
+        "logical_vlm_forward_count": {
+          "count": 40,
+          "max": 6.0,
+          "mean": 5.0,
+          "min": 2.0,
+          "p50": 6.0,
+          "p95": 6.0
+        },
+        "per_task": [
+          {
+            "episodes": 10,
+            "success_rate": 0.4,
+            "successes": 4,
+            "task_id": 4,
+            "wilson_95_interval": [
+              0.16818032970623614,
+              0.6873262302663417
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.0,
+            "successes": 0,
+            "task_id": 5,
+            "wilson_95_interval": [
+              0.0,
+              0.2775327998628892
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.4,
+            "successes": 4,
+            "task_id": 7,
+            "wilson_95_interval": [
+              0.16818032970623614,
+              0.6873262302663417
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.4,
+            "successes": 4,
+            "task_id": 8,
+            "wilson_95_interval": [
+              0.16818032970623614,
+              0.6873262302663417
+            ]
+          }
+        ],
+        "runtime_measurement_scope": {
+          "episode_wall_seconds": {
+            "count": 28,
+            "max": 53.22885839799983,
+            "mean": 41.35487888757142,
+            "min": 21.658120972000688,
+            "p50": 47.31430962750005,
+            "p95": 52.938473402450036
+          },
+          "legacy_episodes_with_null_runtime": 12,
+          "new_sequential_episodes": 28,
+          "peak_inference_gpu_memory_bytes": {
+            "count": 28,
+            "max": 971786752.0,
+            "mean": 971786752.0,
+            "min": 971786752.0,
+            "p50": 971786752.0,
+            "p95": 971786752.0
+          },
+          "per_forward_latency_seconds": {
+            "count": 135,
+            "max": 0.7494227289998889,
+            "mean": 0.5386338448889175,
+            "min": 0.403951632999906,
+            "p50": 0.5405871259999913,
+            "p95": 0.6325694260999626
+          }
+        },
+        "steps_to_success": {
+          "count": 12,
+          "max": 140.0,
+          "mean": 116.33333333333333,
+          "min": 94.0,
+          "p50": 119.0,
+          "p95": 139.45
+        },
+        "success_rate": 0.3,
+        "successes": 12,
+        "wilson_95_interval": [
+          0.18074845229746528,
+          0.45430018818144935
+        ]
+      }
+    },
+    "paired_comparisons": [
+      {
+        "both_fail": 20,
+        "both_success": 12,
+        "discordant_pairs": 8,
+        "experiment": "B_action_horizon",
+        "first": "h50",
+        "first_only_success": 0,
+        "holm_adjusted_p_value": 0.015625,
+        "paired_continuous": {
+          "actual_vlm_forward_count_available_pairs": {
+            "confidence_interval_95": [
+              2.607142857142857,
+              4.607142857142857
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 3.642857142857143,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "control_steps_all_pairs": {
+            "confidence_interval_95": [
+              -57.475625,
+              -14.775
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -35.025,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "episode_wall_seconds_available_pairs": {
+            "confidence_interval_95": [
+              -5.658071226648202,
+              2.016547912563426
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -1.4857806407499896,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "logical_vlm_forward_count": {
+            "confidence_interval_95": [
+              2.575,
+              4.325
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 3.475,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "steps_to_success_both_succeed": {
+            "confidence_interval_95": [
+              -5.333333333333333,
+              -0.9166666666666666
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -3.0833333333333335,
+            "pairs": 12,
+            "resamples": 10000,
+            "seed": 20260727
+          }
+        },
+        "raw_p_value": 0.0078125,
+        "second": "h25",
+        "second_only_success": 8
+      },
+      {
+        "both_fail": 16,
+        "both_success": 11,
+        "discordant_pairs": 13,
+        "experiment": "B_action_horizon",
+        "first": "h50",
+        "first_only_success": 1,
+        "holm_adjusted_p_value": 0.01025390625,
+        "paired_continuous": {
+          "actual_vlm_forward_count_available_pairs": {
+            "confidence_interval_95": [
+              11.178571428571429,
+              16.892857142857142
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 14.0,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "control_steps_all_pairs": {
+            "confidence_interval_95": [
+              -70.775,
+              -21.124375000000008
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -45.35,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "episode_wall_seconds_available_pairs": {
+            "confidence_interval_95": [
+              -6.343666571249199,
+              3.8069277046463483
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -1.1014568395714994,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "logical_vlm_forward_count": {
+            "confidence_interval_95": [
+              11.425,
+              16.15
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 13.775,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "steps_to_success_both_succeed": {
+            "confidence_interval_95": [
+              -7.454545454545454,
+              -0.8181818181818182
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -3.8181818181818183,
+            "pairs": 11,
+            "resamples": 10000,
+            "seed": 20260727
+          }
+        },
+        "raw_p_value": 0.00341796875,
+        "second": "h10",
+        "second_only_success": 12
+      },
+      {
+        "both_fail": 15,
+        "both_success": 18,
+        "discordant_pairs": 7,
+        "experiment": "B_action_horizon",
+        "first": "h25",
+        "first_only_success": 2,
+        "holm_adjusted_p_value": 0.453125,
+        "paired_continuous": {
+          "actual_vlm_forward_count_available_pairs": {
+            "confidence_interval_95": [
+              7.964285714285714,
+              12.75
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 10.357142857142858,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "control_steps_all_pairs": {
+            "confidence_interval_95": [
+              -30.275624999999998,
+              8.62562499999999
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -10.325,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "episode_wall_seconds_available_pairs": {
+            "confidence_interval_95": [
+              -3.8670850955170195,
+              4.705323429894578
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 0.3843238011784901,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "logical_vlm_forward_count": {
+            "confidence_interval_95": [
+              8.4,
+              12.2
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 10.3,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "steps_to_success_both_succeed": {
+            "confidence_interval_95": [
+              -2.2777777777777777,
+              1.0
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -0.6111111111111112,
+            "pairs": 18,
+            "resamples": 10000,
+            "seed": 20260727
+          }
+        },
+        "raw_p_value": 0.453125,
+        "second": "h10",
+        "second_only_success": 5
+      }
+    ]
+  },
+  "experiment_C_policy_adaptation": {
+    "conditions": {
+      "expert_only": {
+        "censored_failure_steps": {
+          "count": 18,
+          "max": 280.0,
+          "mean": 280.0,
+          "min": 280.0,
+          "p50": 280.0,
+          "p95": 280.0
+        },
+        "episodes": 40,
+        "logical_vlm_forward_count": {
+          "count": 40,
+          "max": 28.0,
+          "mean": 19.25,
+          "min": 9.0,
+          "p50": 14.0,
+          "p95": 28.0
+        },
+        "per_task": [
+          {
+            "episodes": 10,
+            "success_rate": 0.6,
+            "successes": 6,
+            "task_id": 4,
+            "wilson_95_interval": [
+              0.31267376973365824,
+              0.8318196702937638
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.0,
+            "successes": 0,
+            "task_id": 5,
+            "wilson_95_interval": [
+              0.0,
+              0.2775327998628892
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.8,
+            "successes": 8,
+            "task_id": 7,
+            "wilson_95_interval": [
+              0.49016247153664183,
+              0.9433178485456247
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.8,
+            "successes": 8,
+            "task_id": 8,
+            "wilson_95_interval": [
+              0.49016247153664183,
+              0.9433178485456247
+            ]
+          }
+        ],
+        "runtime_measurement_scope": {
+          "episode_wall_seconds": {
+            "count": 28,
+            "max": 58.50881339500029,
+            "mean": 41.02343429717858,
+            "min": 23.21197154299989,
+            "p50": 31.80422315750002,
+            "p95": 57.68834653910003
+          },
+          "legacy_episodes_with_null_runtime": 12,
+          "new_sequential_episodes": 28,
+          "peak_inference_gpu_memory_bytes": {
+            "count": 28,
+            "max": 972986368.0,
+            "mean": 972986368.0,
+            "min": 972986368.0,
+            "p50": 972986368.0,
+            "p95": 972986368.0
+          },
+          "per_forward_latency_seconds": {
+            "count": 531,
+            "max": 0.5680756430001566,
+            "mean": 0.3229473113521623,
+            "min": 0.2432724390000658,
+            "p50": 0.2925153650003267,
+            "p95": 0.48751798099965526
+          }
+        },
+        "steps_to_success": {
+          "count": 22,
+          "max": 262.0,
+          "mean": 115.68181818181819,
+          "min": 87.0,
+          "p50": 112.5,
+          "p95": 131.95
+        },
+        "success_rate": 0.55,
+        "successes": 22,
+        "wilson_95_interval": [
+          0.39829091798932054,
+          0.6929469218909508
+        ]
+      },
+      "lora": {
+        "censored_failure_steps": {
+          "count": 17,
+          "max": 280.0,
+          "mean": 280.0,
+          "min": 280.0,
+          "p50": 280.0,
+          "p95": 280.0
+        },
+        "episodes": 40,
+        "logical_vlm_forward_count": {
+          "count": 40,
+          "max": 28.0,
+          "mean": 18.8,
+          "min": 9.0,
+          "p50": 13.0,
+          "p95": 28.0
+        },
+        "per_task": [
+          {
+            "episodes": 10,
+            "success_rate": 0.6,
+            "successes": 6,
+            "task_id": 4,
+            "wilson_95_interval": [
+              0.31267376973365824,
+              0.8318196702937638
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.0,
+            "successes": 0,
+            "task_id": 5,
+            "wilson_95_interval": [
+              0.0,
+              0.2775327998628892
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.9,
+            "successes": 9,
+            "task_id": 7,
+            "wilson_95_interval": [
+              0.5958499732047615,
+              0.9821237869049271
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.8,
+            "successes": 8,
+            "task_id": 8,
+            "wilson_95_interval": [
+              0.49016247153664183,
+              0.9433178485456247
+            ]
+          }
+        ],
+        "runtime_measurement_scope": {
+          "episode_wall_seconds": {
+            "count": 28,
+            "max": 59.201561665000554,
+            "mean": 41.41357521560719,
+            "min": 23.42079334400114,
+            "p50": 34.129014902500785,
+            "p95": 58.730427445150326
+          },
+          "legacy_episodes_with_null_runtime": 12,
+          "new_sequential_episodes": 28,
+          "peak_inference_gpu_memory_bytes": {
+            "count": 28,
+            "max": 975956992.0,
+            "mean": 975956992.0,
+            "min": 975956992.0,
+            "p50": 975956992.0,
+            "p95": 975956992.0
+          },
+          "per_forward_latency_seconds": {
+            "count": 528,
+            "max": 0.6865016909996484,
+            "mean": 0.37193026006437346,
+            "min": 0.28853943800095294,
+            "p50": 0.34162291849952453,
+            "p95": 0.523566257099901
+          }
+        },
+        "steps_to_success": {
+          "count": 23,
+          "max": 247.0,
+          "mean": 115.65217391304348,
+          "min": 87.0,
+          "p50": 114.0,
+          "p95": 130.9
+        },
+        "success_rate": 0.575,
+        "successes": 23,
+        "wilson_95_interval": [
+          0.42195068541991065,
+          0.7149060744004962
+        ]
+      },
+      "pretrained": {
+        "censored_failure_steps": {
+          "count": 17,
+          "max": 280.0,
+          "mean": 280.0,
+          "min": 280.0,
+          "p50": 280.0,
+          "p95": 280.0
+        },
+        "episodes": 40,
+        "logical_vlm_forward_count": {
+          "count": 40,
+          "max": 28.0,
+          "mean": 18.775,
+          "min": 9.0,
+          "p50": 13.0,
+          "p95": 28.0
+        },
+        "per_task": [
+          {
+            "episodes": 10,
+            "success_rate": 0.6,
+            "successes": 6,
+            "task_id": 4,
+            "wilson_95_interval": [
+              0.31267376973365824,
+              0.8318196702937638
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.0,
+            "successes": 0,
+            "task_id": 5,
+            "wilson_95_interval": [
+              0.0,
+              0.2775327998628892
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.9,
+            "successes": 9,
+            "task_id": 7,
+            "wilson_95_interval": [
+              0.5958499732047615,
+              0.9821237869049271
+            ]
+          },
+          {
+            "episodes": 10,
+            "success_rate": 0.8,
+            "successes": 8,
+            "task_id": 8,
+            "wilson_95_interval": [
+              0.49016247153664183,
+              0.9433178485456247
+            ]
+          }
+        ],
+        "runtime_measurement_scope": {
+          "episode_wall_seconds": {
+            "count": 28,
+            "max": 64.06725108999944,
+            "mean": 40.25342204799991,
+            "min": 21.964972939999825,
+            "p50": 31.61744099200041,
+            "p95": 56.59974058635021
+          },
+          "legacy_episodes_with_null_runtime": 12,
+          "new_sequential_episodes": 28,
+          "peak_inference_gpu_memory_bytes": {
+            "count": 28,
+            "max": 972986368.0,
+            "mean": 972986368.0,
+            "min": 972986368.0,
+            "p50": 972986368.0,
+            "p95": 972986368.0
+          },
+          "per_forward_latency_seconds": {
+            "count": 527,
+            "max": 0.9358980000006341,
+            "mean": 0.3275611096963695,
+            "min": 0.2421815340003377,
+            "p50": 0.300267237999833,
+            "p95": 0.46938092169984885
+          }
+        },
+        "steps_to_success": {
+          "count": 23,
+          "max": 237.0,
+          "mean": 115.73913043478261,
+          "min": 86.0,
+          "p50": 115.0,
+          "p95": 130.8
+        },
+        "success_rate": 0.575,
+        "successes": 23,
+        "wilson_95_interval": [
+          0.42195068541991065,
+          0.7149060744004962
+        ]
+      }
+    },
+    "paired_comparisons": [
+      {
+        "both_fail": 17,
+        "both_success": 22,
+        "discordant_pairs": 1,
+        "experiment": "C_policy_adaptation",
+        "first": "pretrained",
+        "first_only_success": 1,
+        "holm_adjusted_p_value": 1.0,
+        "paired_continuous": {
+          "actual_vlm_forward_count_available_pairs": {
+            "confidence_interval_95": [
+              -0.03571428571428571,
+              0.42857142857142855
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 0.14285714285714285,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "control_steps_all_pairs": {
+            "confidence_interval_95": [
+              -0.5,
+              12.25
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 4.075,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "episode_wall_seconds_available_pairs": {
+            "confidence_interval_95": [
+              -0.18745005328275474,
+              1.5765617247688202
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 0.770012249178665,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "logical_vlm_forward_count": {
+            "confidence_interval_95": [
+              0.0,
+              1.275
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 0.475,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "steps_to_success_both_succeed": {
+            "confidence_interval_95": [
+              -1.2272727272727273,
+              3.5
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 0.6363636363636364,
+            "pairs": 22,
+            "resamples": 10000,
+            "seed": 20260727
+          }
+        },
+        "raw_p_value": 1.0,
+        "second": "expert_only",
+        "second_only_success": 0
+      },
+      {
+        "both_fail": 17,
+        "both_success": 23,
+        "discordant_pairs": 0,
+        "experiment": "C_policy_adaptation",
+        "first": "pretrained",
+        "first_only_success": 0,
+        "holm_adjusted_p_value": 1.0,
+        "paired_continuous": {
+          "actual_vlm_forward_count_available_pairs": {
+            "confidence_interval_95": [
+              0.0,
+              0.10714285714285714
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 0.03571428571428571,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "control_steps_all_pairs": {
+            "confidence_interval_95": [
+              -0.6,
+              0.625
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -0.05,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "episode_wall_seconds_available_pairs": {
+            "confidence_interval_95": [
+              0.4036294988986185,
+              1.8597395538563477
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 1.1601531676072747,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "logical_vlm_forward_count": {
+            "confidence_interval_95": [
+              -0.05,
+              0.1
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 0.025,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "steps_to_success_both_succeed": {
+            "confidence_interval_95": [
+              -1.0434782608695652,
+              1.0869565217391304
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -0.08695652173913043,
+            "pairs": 23,
+            "resamples": 10000,
+            "seed": 20260727
+          }
+        },
+        "raw_p_value": 1.0,
+        "second": "lora",
+        "second_only_success": 0
+      },
+      {
+        "both_fail": 17,
+        "both_success": 22,
+        "discordant_pairs": 1,
+        "experiment": "C_policy_adaptation",
+        "first": "expert_only",
+        "first_only_success": 0,
+        "holm_adjusted_p_value": 1.0,
+        "paired_continuous": {
+          "actual_vlm_forward_count_available_pairs": {
+            "confidence_interval_95": [
+              -0.32142857142857145,
+              0.03571428571428571
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -0.10714285714285714,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "control_steps_all_pairs": {
+            "confidence_interval_95": [
+              -12.250625,
+              0.275
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -4.125,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "episode_wall_seconds_available_pairs": {
+            "confidence_interval_95": [
+              -0.197631918341146,
+              1.0027834100234694
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": 0.3901409184286097,
+            "pairs": 28,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "logical_vlm_forward_count": {
+            "confidence_interval_95": [
+              -1.275,
+              0.0
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -0.45,
+            "pairs": 40,
+            "resamples": 10000,
+            "seed": 20260727
+          },
+          "steps_to_success_both_succeed": {
+            "confidence_interval_95": [
+              -2.272727272727273,
+              0.7272727272727273
+            ],
+            "difference_direction": "second minus first",
+            "mean_difference": -0.5,
+            "pairs": 22,
+            "resamples": 10000,
+            "seed": 20260727
+          }
+        },
+        "raw_p_value": 1.0,
+        "second": "lora",
+        "second_only_success": 1
+      }
+    ]
+  },
+  "failure_taxonomy": {
+    "annotation_unit": "failed episode",
+    "by_condition": {
+      "expert_only_h10_core_tasks": {
+        "confirmed_annotations": 18,
+        "counts": {
+          "approach_but_grasp_failed": 7,
+          "dropped_after_grasp": 3,
+          "no_effective_approach": 0,
+          "object_or_target_misidentified": 0,
+          "other": 0,
+          "placed_but_not_stable_success": 8,
+          "repetition_or_control_oscillation": 0,
+          "simulation_numeric_or_environment_error": 0,
+          "timeout_with_progress": 0,
+          "wrong_placement_location": 0
+        },
+        "failures": 18,
+        "fraction_of_failures": {
+          "approach_but_grasp_failed": 0.3888888888888889,
+          "dropped_after_grasp": 0.16666666666666666,
+          "no_effective_approach": 0.0,
+          "object_or_target_misidentified": 0.0,
+          "other": 0.0,
+          "placed_but_not_stable_success": 0.4444444444444444,
+          "repetition_or_control_oscillation": 0.0,
+          "simulation_numeric_or_environment_error": 0.0,
+          "timeout_with_progress": 0.0,
+          "wrong_placement_location": 0.0
+        }
+      },
+      "lora_h10_core_tasks": {
+        "confirmed_annotations": 17,
+        "counts": {
+          "approach_but_grasp_failed": 4,
+          "dropped_after_grasp": 4,
+          "no_effective_approach": 0,
+          "object_or_target_misidentified": 0,
+          "other": 0,
+          "placed_but_not_stable_success": 8,
+          "repetition_or_control_oscillation": 0,
+          "simulation_numeric_or_environment_error": 0,
+          "timeout_with_progress": 1,
+          "wrong_placement_location": 0
+        },
+        "failures": 17,
+        "fraction_of_failures": {
+          "approach_but_grasp_failed": 0.23529411764705882,
+          "dropped_after_grasp": 0.23529411764705882,
+          "no_effective_approach": 0.0,
+          "object_or_target_misidentified": 0.0,
+          "other": 0.0,
+          "placed_but_not_stable_success": 0.47058823529411764,
+          "repetition_or_control_oscillation": 0.0,
+          "simulation_numeric_or_environment_error": 0.0,
+          "timeout_with_progress": 0.058823529411764705,
+          "wrong_placement_location": 0.0
+        }
+      },
+      "pretrained_h10_core_tasks": {
+        "confirmed_annotations": 17,
+        "counts": {
+          "approach_but_grasp_failed": 7,
+          "dropped_after_grasp": 3,
+          "no_effective_approach": 0,
+          "object_or_target_misidentified": 0,
+          "other": 0,
+          "placed_but_not_stable_success": 7,
+          "repetition_or_control_oscillation": 0,
+          "simulation_numeric_or_environment_error": 0,
+          "timeout_with_progress": 0,
+          "wrong_placement_location": 0
+        },
+        "failures": 17,
+        "fraction_of_failures": {
+          "approach_but_grasp_failed": 0.4117647058823529,
+          "dropped_after_grasp": 0.17647058823529413,
+          "no_effective_approach": 0.0,
+          "object_or_target_misidentified": 0.0,
+          "other": 0.0,
+          "placed_but_not_stable_success": 0.4117647058823529,
+          "repetition_or_control_oscillation": 0.0,
+          "simulation_numeric_or_environment_error": 0.0,
+          "timeout_with_progress": 0.0,
+          "wrong_placement_location": 0.0
+        }
+      },
+      "pretrained_h25_core_tasks": {
+        "confirmed_annotations": 20,
+        "counts": {
+          "approach_but_grasp_failed": 8,
+          "dropped_after_grasp": 7,
+          "no_effective_approach": 0,
+          "object_or_target_misidentified": 0,
+          "other": 0,
+          "placed_but_not_stable_success": 5,
+          "repetition_or_control_oscillation": 0,
+          "simulation_numeric_or_environment_error": 0,
+          "timeout_with_progress": 0,
+          "wrong_placement_location": 0
+        },
+        "failures": 20,
+        "fraction_of_failures": {
+          "approach_but_grasp_failed": 0.4,
+          "dropped_after_grasp": 0.35,
+          "no_effective_approach": 0.0,
+          "object_or_target_misidentified": 0.0,
+          "other": 0.0,
+          "placed_but_not_stable_success": 0.25,
+          "repetition_or_control_oscillation": 0.0,
+          "simulation_numeric_or_environment_error": 0.0,
+          "timeout_with_progress": 0.0,
+          "wrong_placement_location": 0.0
+        }
+      },
+      "pretrained_h50_all_tasks": {
+        "confirmed_annotations": 42,
+        "counts": {
+          "approach_but_grasp_failed": 12,
+          "dropped_after_grasp": 5,
+          "no_effective_approach": 0,
+          "object_or_target_misidentified": 1,
+          "other": 0,
+          "placed_but_not_stable_success": 20,
+          "repetition_or_control_oscillation": 0,
+          "simulation_numeric_or_environment_error": 0,
+          "timeout_with_progress": 1,
+          "wrong_placement_location": 3
+        },
+        "failures": 42,
+        "fraction_of_failures": {
+          "approach_but_grasp_failed": 0.2857142857142857,
+          "dropped_after_grasp": 0.11904761904761904,
+          "no_effective_approach": 0.0,
+          "object_or_target_misidentified": 0.023809523809523808,
+          "other": 0.0,
+          "placed_but_not_stable_success": 0.47619047619047616,
+          "repetition_or_control_oscillation": 0.0,
+          "simulation_numeric_or_environment_error": 0.0,
+          "timeout_with_progress": 0.023809523809523808,
+          "wrong_placement_location": 0.07142857142857142
+        }
+      },
+      "pretrained_h50_core_tasks": {
+        "confirmed_annotations": 28,
+        "counts": {
+          "approach_but_grasp_failed": 9,
+          "dropped_after_grasp": 5,
+          "no_effective_approach": 0,
+          "object_or_target_misidentified": 0,
+          "other": 0,
+          "placed_but_not_stable_success": 10,
+          "repetition_or_control_oscillation": 0,
+          "simulation_numeric_or_environment_error": 0,
+          "timeout_with_progress": 1,
+          "wrong_placement_location": 3
+        },
+        "failures": 28,
+        "fraction_of_failures": {
+          "approach_but_grasp_failed": 0.32142857142857145,
+          "dropped_after_grasp": 0.17857142857142858,
+          "no_effective_approach": 0.0,
+          "object_or_target_misidentified": 0.0,
+          "other": 0.0,
+          "placed_but_not_stable_success": 0.35714285714285715,
+          "repetition_or_control_oscillation": 0.0,
+          "simulation_numeric_or_environment_error": 0.0,
+          "timeout_with_progress": 0.03571428571428571,
+          "wrong_placement_location": 0.10714285714285714
+        }
+      }
+    },
+    "overall": {
+      "confirmed_annotations": 114,
+      "counts": {
+        "approach_but_grasp_failed": 38,
+        "dropped_after_grasp": 22,
+        "no_effective_approach": 0,
+        "object_or_target_misidentified": 1,
+        "other": 0,
+        "placed_but_not_stable_success": 48,
+        "repetition_or_control_oscillation": 0,
+        "simulation_numeric_or_environment_error": 0,
+        "timeout_with_progress": 2,
+        "wrong_placement_location": 3
+      },
+      "failures": 114,
+      "fraction_of_failures": {
+        "approach_but_grasp_failed": 0.3333333333333333,
+        "dropped_after_grasp": 0.19298245614035087,
+        "no_effective_approach": 0.0,
+        "object_or_target_misidentified": 0.008771929824561403,
+        "other": 0.0,
+        "placed_but_not_stable_success": 0.42105263157894735,
+        "repetition_or_control_oscillation": 0.0,
+        "simulation_numeric_or_environment_error": 0.0,
+        "timeout_with_progress": 0.017543859649122806,
+        "wrong_placement_location": 0.02631578947368421
+      }
+    },
+    "primary_code_only": true,
+    "status": "passed"
+  },
+  "limitations": [
+    "Legacy states 0-2 use the frozen historical batch=3 policy RNG stream; new states 3-9 use batch=1 state-specific policy seeds. Every within-state condition comparison preserves its own frozen RNG contract.",
+    "Per-episode latency, wall time, actual VLM calls, and peak memory are null for legacy rows and are not imputed or rerun.",
+    "LIBERO tasks are heterogeneous; pooled intervals supplement rather than replace per-task results.",
+    "All results are local simulation measurements, not physical-robot evaluation or the official paper benchmark."
+  ],
+  "protocol_sha256": "5d35f52af86f240c665ffef15a2bff0622474375ba01dec0f60351c3936838b5",
+  "randomness_audit": {
+    "policy_seeds_per_unit": 3,
+    "same_seed_reproducibility_evidence": {
+      "environment_seed": 180815,
+      "init_state_index": 15,
+      "new_repeat_required": false,
+      "passed": true,
+      "policy_seed": 180815,
+      "source": "results/wm/stage19_balanced_cohort/report.json",
+      "source_sha256": "7a3f04d71ccbf48d7d0253ee4b5746425a78acfaca023d2de9865d6f26f68558",
+      "task_id": 8
+    },
+    "status": "passed",
+    "task_state_units": 20,
+    "units_with_action_variation": 20,
+    "units_with_step_variation": 12,
+    "units_with_success_variation": 3
+  },
+  "schema_version": 1,
+  "statistical_unit": "official LIBERO initial state within task",
+  "status": "passed"
+}
