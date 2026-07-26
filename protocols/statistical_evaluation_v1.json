@@ -1,0 +1,554 @@
+{
+  "schema_version": 1,
+  "protocol_id": "smolvla-libero-statistical-evaluation-v1",
+  "status": "frozen",
+  "frozen_at_utc": "2026-07-26T17:00:08Z",
+  "frozen_before_new_results": true,
+  "source_git_commit": "dfbbbaeca48d778137532a3420b325f937b22a87",
+  "research_questions": [
+    "Does a lower offline imitation or flow-matching validation loss reliably improve closed-loop success?",
+    "Does a shorter action horizon, and therefore more frequent visual feedback and replanning, affect closed-loop behavior more directly than the observed small validation-loss reduction?"
+  ],
+  "claim_policy": {
+    "hypothesis_only_before_analysis": "Lower offline loss does not guarantee higher closed-loop success; action horizon and feedback frequency may affect closed-loop behavior more directly.",
+    "result_contingent": true,
+    "no_outcome_driven_state_replacement": true,
+    "no_outcome_driven_metric_change": true,
+    "no_failed_episode_deletion": true,
+    "no_new_technical_direction_if_unsupported": true
+  },
+  "environment": {
+    "suite": "libero_spatial",
+    "official_initial_states_available_per_task": 50,
+    "task_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "core_task_ids": [
+      4,
+      5,
+      7,
+      8
+    ],
+    "observation_type": "pixels_agent_pos",
+    "camera_names": [
+      "agentview_image",
+      "robot0_eye_in_hand_image"
+    ],
+    "camera_mapping": {
+      "agentview_image": "camera1",
+      "robot0_eye_in_hand_image": "camera2"
+    },
+    "empty_camera_count": 1,
+    "observation_resolution": [
+      360,
+      360
+    ],
+    "control_mode": "relative",
+    "maximum_control_steps": 280,
+    "success_criterion": "LIBERO environment is_success reported through the terminal info of the closed-loop episode",
+    "simulation_only": true,
+    "hardware": "NVIDIA GeForce RTX 4060 Laptop GPU, 8 GB",
+    "mujoco_gl": "egl",
+    "offline_environment_variables": {
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "MUJOCO_GL": "egl"
+    }
+  },
+  "randomness": {
+    "main_environment_seed_formula": "1000 + init_state_index",
+    "new_sequential_policy_seed_formula": "1000 + init_state_index",
+    "legacy_vectorized_policy_rng_contract": {
+      "torch_seed_formula": "1000 + task_id",
+      "episode_batch_size": 3,
+      "note": "Legacy CSV seed is the per-environment reset seed. The historical scripts seeded the policy RNG once per three-state task batch, so no fabricated per-state policy seed is assigned to legacy rows."
+    },
+    "policy_rng_identical_across_compared_policies_and_horizons_within_each_task_state_and_source": true,
+    "seed_reset_before_every_episode": [
+      "torch.manual_seed",
+      "torch.cuda.manual_seed_all",
+      "numpy.random.seed"
+    ],
+    "audit": {
+      "policy": "pretrained",
+      "action_horizon": 10,
+      "task_ids": [
+        4,
+        5,
+        7,
+        8
+      ],
+      "initial_state_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "environment_seed_formula": "1000 + init_state_index",
+      "policy_seed_formulas": [
+        "1000 + init_state_index",
+        "2000 + init_state_index",
+        "3000 + init_state_index"
+      ],
+      "same_seed_reproducibility_evidence": {
+        "source": "results/wm/stage19_balanced_cohort/report.json",
+        "source_sha256": "7a3f04d71ccbf48d7d0253ee4b5746425a78acfaca023d2de9865d6f26f68558",
+        "task_id": 8,
+        "init_state_index": 15,
+        "environment_seed": 180815,
+        "policy_seed": 180815,
+        "passed": true,
+        "new_repeat_required": false
+      },
+      "same_seed_reproducibility_fields": [
+        "initial_observation_sha256",
+        "action_sha256",
+        "success",
+        "steps"
+      ],
+      "different_seed_variation_fields": [
+        "action_sha256",
+        "success",
+        "steps"
+      ],
+      "maximum_unique_episode_runs": 60,
+      "formal_main_seed_rows_reused_in_randomness_audit": {
+        "initial_state_indices": [
+          3,
+          4
+        ],
+        "episodes": 8
+      },
+      "legacy_rows_excluded_from_randomness_main_seed_reuse": {
+        "initial_state_indices": [
+          0,
+          1,
+          2
+        ],
+        "reason": "The legacy rows used a three-environment batched policy RNG stream and cannot stand in for the preregistered sequential policy-seed audit."
+      },
+      "maximum_additional_episode_runs_after_main_experiment_reuse": 52,
+      "interpretation": "The environment seed remains fixed within a task-state pair while only the policy sampling seed changes. This estimates flow-matching policy sampling variation and cannot replace the main paired result."
+    }
+  },
+  "models": {
+    "backbone": {
+      "repo_id": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+      "revision": "7b375e1b73b11138ff12fe22c8f2822d8fe03467",
+      "relative_path_under_asset_root": "stage3_single_inference/backbone",
+      "weights_file": "model.safetensors",
+      "weights_sha256": "b9bfd456c9472c0acd5719d6e514c4b859891af205ee1a736552fd3497b8b0c3"
+    },
+    "pretrained": {
+      "repo_id": "lerobot/smolvla_libero",
+      "revision": "31d453f7edd78c839a8bbc39744a292686daf0de",
+      "relative_path_under_asset_root": "stage2_checkpoint/checkpoint",
+      "weights_file": "model.safetensors",
+      "weights_sha256": "9a9f6413e42c0f332fccbce9a0dc796af2790f82cf002f791cdbf7e01e1afca8",
+      "checkpoint_selection_frozen": true
+    },
+    "expert_only": {
+      "relative_path_under_asset_root": "stage9_task5_finetune/checkpoint_final/pretrained_model",
+      "weights_file": "model.safetensors",
+      "weights_sha256": "6b21f5191e0ad03aa33313a51a62825df0dcd54d4d03f460a4df58a77f07904d",
+      "training_report_relative_path_under_asset_root": "stage9_task5_finetune/report.json",
+      "training_report_sha256": "3fd873727c4b51e89073d6788ad389d58466c3aa4022895afec010992cefd151",
+      "checkpoint_selection_frozen": true
+    },
+    "lora": {
+      "base_model": "pretrained",
+      "rank": 16,
+      "alpha": 16,
+      "dropout": 0.0,
+      "relative_path_under_asset_root": "stage10_task5_lora/checkpoint_final/adapter",
+      "weights_file": "adapter_model.safetensors",
+      "weights_sha256": "dace1f30189b02beecd7995632e44875e7f6da88cb4feda23123a9ac6eb42ce7",
+      "training_report_relative_path_under_asset_root": "stage10_task5_lora/report.json",
+      "training_report_sha256": "5af8e3bd35eb2f2993019d0d450410d5928bb671547618d71c3b3272e23df194",
+      "load_unmerged": true,
+      "checkpoint_selection_frozen": true
+    }
+  },
+  "experiments": {
+    "expanded_pretrained_baseline": {
+      "experiment_id": "A",
+      "policies": [
+        "pretrained"
+      ],
+      "task_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "initial_state_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "action_horizons": [
+        50
+      ],
+      "episode_count": 100,
+      "legacy_reused_episode_count": 30,
+      "new_episode_count": 70
+    },
+    "paired_action_horizon": {
+      "experiment_id": "B",
+      "policies": [
+        "pretrained"
+      ],
+      "task_ids": [
+        4,
+        5,
+        7,
+        8
+      ],
+      "initial_state_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "action_horizons": [
+        50,
+        25,
+        10
+      ],
+      "condition_episode_count": 120,
+      "legacy_reused_condition_episode_count": 36,
+      "new_unique_episode_count_after_experiment_A_reuse": 56,
+      "pairwise_comparisons": [
+        [
+          50,
+          25
+        ],
+        [
+          50,
+          10
+        ],
+        [
+          25,
+          10
+        ]
+      ]
+    },
+    "paired_policy_adaptation": {
+      "experiment_id": "C",
+      "policies": [
+        "pretrained",
+        "expert_only",
+        "lora"
+      ],
+      "task_ids": [
+        4,
+        5,
+        7,
+        8
+      ],
+      "initial_state_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "action_horizons": [
+        10
+      ],
+      "condition_episode_count": 120,
+      "legacy_reused_condition_episode_count": 36,
+      "new_unique_episode_count_after_experiment_B_reuse": 56,
+      "pairwise_comparisons": [
+        [
+          "pretrained",
+          "expert_only"
+        ],
+        [
+          "pretrained",
+          "lora"
+        ],
+        [
+          "expert_only",
+          "lora"
+        ]
+      ]
+    },
+    "unique_formal_episode_count": 260,
+    "legacy_reused_unique_episode_count": 78,
+    "new_unique_episode_count": 182
+  },
+  "legacy_reuse": {
+    "allowed_only_for_exact_task_state_seed_checkpoint_horizon_and_max_steps_match": true,
+    "legacy_initial_state_indices": [
+      0,
+      1,
+      2
+    ],
+    "sources": [
+      {
+        "path": "results/episodes/full_spatial_baseline.csv",
+        "sha256": "d61829aae1d9e35aa179cec6edac2d755d12f99b54962deb9cfd1abd8bc64823",
+        "policy": "pretrained",
+        "action_horizon": 50,
+        "task_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "episodes": 30,
+        "source_report_relative_path_under_asset_root": "stage6_full_spatial_benchmark/report.json",
+        "source_report_sha256": "e903f2c9ca78ed61d1a6c733786441dd1ae51a1d48f01608d3c40cb17addeb3a"
+      },
+      {
+        "path": "results/episodes/action_horizon_ablation.csv",
+        "sha256": "3495f69d94fc8eefa1538ea47bdfb56eaf492db24133bf3074a41917b9371d8e",
+        "policy": "pretrained",
+        "action_horizons": [
+          50,
+          25,
+          10
+        ],
+        "task_ids": [
+          4,
+          5,
+          7,
+          8
+        ],
+        "episodes": 36,
+        "source_report_relative_path_under_asset_root": "stage7_action_horizon_ablation/report.json",
+        "source_report_sha256": "f146b3d24df8c54ba1146bd55e68ad45d20d89c265fa352fdbdb40833461070b",
+        "deduplication_note": "The 12 H=50 rows duplicate the corresponding rows in full_spatial_baseline.csv and are imported only once."
+      },
+      {
+        "path": "results/episodes/expert_only_eval.csv",
+        "sha256": "d99a99f8be31db21e30cd1135dcaeb671763b0f13af75eabf0c55b8436471ea7",
+        "policy": "expert_only",
+        "action_horizon": 10,
+        "task_ids": [
+          4,
+          5,
+          7,
+          8
+        ],
+        "episodes": 12,
+        "source_report_relative_path_under_asset_root": "stage9_task5_finetune_eval/report.json",
+        "source_report_sha256": "a8967ca3f4ede056b23321a3e60f58ac6596f04e1173eeb321395f1bcfe89a47"
+      },
+      {
+        "path": "results/episodes/lora_eval.csv",
+        "sha256": "6a1fdaec7911b828c7f97bfcdfbae5567d4ffdb3f3bb7e555ee7adc4f37942ef",
+        "policy": "lora",
+        "action_horizon": 10,
+        "task_ids": [
+          4,
+          5,
+          7,
+          8
+        ],
+        "episodes": 12,
+        "source_report_relative_path_under_asset_root": "stage10_task5_lora_eval/report.json",
+        "source_report_sha256": "53404122805afc482d0a0fec9c7a051cbca876f4d8341a873ca546e9f22852ee"
+      }
+    ],
+    "legacy_metric_availability": {
+      "success": true,
+      "control_steps": true,
+      "logical_vlm_forward_count": "derived as ceil(control_steps / action_horizon)",
+      "episode_wall_seconds": false,
+      "per_forward_latency_seconds": false,
+      "peak_inference_gpu_memory_bytes": "available only at source-run condition level"
+    },
+    "missing_legacy_runtime_metrics_policy": "Do not rerun completed legacy episodes. Report runtime distributions over newly executed sequential episodes with availability counts, and keep legacy runtime fields null rather than imputing them."
+  },
+  "episode_record": {
+    "batch_size": 1,
+    "resume_key_fields": [
+      "policy",
+      "task_id",
+      "init_state_index",
+      "environment_seed",
+      "policy_seed",
+      "action_horizon"
+    ],
+    "required_fields": [
+      "protocol_sha256",
+      "source",
+      "policy",
+      "task_id",
+      "task_name",
+      "init_state_index",
+      "environment_seed",
+      "policy_seed",
+      "action_horizon",
+      "maximum_control_steps",
+      "success",
+      "control_steps",
+      "censored",
+      "logical_vlm_forward_count",
+      "actual_vlm_forward_count",
+      "inference_latency_mean_seconds",
+      "inference_latency_p50_seconds",
+      "inference_latency_p95_seconds",
+      "episode_wall_seconds",
+      "peak_inference_gpu_memory_bytes",
+      "initial_observation_sha256",
+      "action_sha256",
+      "video_path",
+      "video_sha256"
+    ],
+    "large_artifact_policy": "Videos, raw checkpoints, and large trajectories remain under outputs/ and are gitignored. Only scripts, protocol files, lightweight CSV/JSON, Chinese documentation, figures, and selected media may be committed."
+  },
+  "pipeline_validation": {
+    "must_pass_before_formal_collection": true,
+    "excluded_from_all_formal_statistics": true,
+    "policy": "pretrained",
+    "task_id": 0,
+    "init_state_index": 49,
+    "environment_seed": 99049,
+    "policy_seed": 99049,
+    "action_horizon": 50,
+    "maximum_control_steps": 30,
+    "required_checks": [
+      "offline asset loading",
+      "official initial-state selection",
+      "finite action generation",
+      "VLM forward instrumentation",
+      "video encoding and decoding",
+      "artifact hashing",
+      "atomic episode record write",
+      "resume validation"
+    ]
+  },
+  "statistics": {
+    "primary_statistical_unit": "official LIBERO initial state within task",
+    "control_steps_or_overlapping_windows_are_not_independent_samples": true,
+    "success_interval": {
+      "method": "Wilson score interval",
+      "confidence_level": 0.95,
+      "z": 1.959963984540054
+    },
+    "paired_binary_test": {
+      "method": "two-sided exact McNemar test, implemented as an exact binomial test on discordant pairs",
+      "zero_discordant_p_value": 1.0,
+      "familywise_adjustment": "Holm adjustment within each three-comparison experiment family",
+      "report": [
+        "both_fail",
+        "first_only_success",
+        "second_only_success",
+        "both_success",
+        "discordant_pairs",
+        "raw_p_value",
+        "holm_adjusted_p_value"
+      ]
+    },
+    "paired_continuous_interval": {
+      "method": "pair-level percentile bootstrap of the mean paired difference",
+      "resamples": 10000,
+      "confidence_level": 0.95,
+      "random_seed": 20260727,
+      "metrics": [
+        "control_steps for all pairs, with failures censored at 280 by design",
+        "steps-to-success for pairs where both conditions succeed",
+        "logical_vlm_forward_count",
+        "actual_vlm_forward_count when available for both conditions",
+        "episode_wall_seconds when available for both conditions"
+      ]
+    },
+    "latency_summary": [
+      "mean",
+      "p50",
+      "p95"
+    ],
+    "success_reporting": [
+      "overall",
+      "per task"
+    ],
+    "adaptation_transition_reporting": [
+      "pretrained success preserved",
+      "pretrained success lost",
+      "new success",
+      "both fail"
+    ],
+    "significance_boundary": "Do not describe a small raw success-count difference as a significant improvement unless the frozen paired analysis supports it."
+  },
+  "failure_annotation": {
+    "taxonomy_path": "protocols/failure_taxonomy_v1.json",
+    "semantic_label_source": "human review of the formal episode video or contact sheet",
+    "automatic_fields_may_be_precomputed": true,
+    "unreliable_semantic_labels_must_be_pending": true,
+    "all_formal_failures_require_rows": true,
+    "representative_media_must_record_task_state_seed_policy_horizon_and_sha256": true
+  },
+  "resource_plan": {
+    "new_formal_episode_estimate": 182,
+    "new_randomness_episode_upper_bound": 52,
+    "estimated_formal_runtime_hours": [
+      2.5,
+      3.5
+    ],
+    "estimated_randomness_runtime_minutes": [
+      25,
+      45
+    ],
+    "estimated_new_disk_megabytes": [
+      50,
+      150
+    ],
+    "conservative_new_disk_upper_bound_megabytes": 1024,
+    "no_cloud_gpu": true,
+    "no_model_retraining": true
+  },
+  "excluded_scope": [
+    "world model development",
+    "detector development",
+    "shield development",
+    "residual or threshold searches",
+    "large-model pretraining",
+    "cloud GPU rental",
+    "uncontrolled hyperparameter search",
+    "adaptive action horizon implementation"
+  ]
+}

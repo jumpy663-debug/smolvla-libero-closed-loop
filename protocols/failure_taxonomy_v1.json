@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "taxonomy_id": "libero-closed-loop-failure-taxonomy-v1",
+  "status": "frozen",
+  "frozen_at_utc": "2026-07-26T17:00:08Z",
+  "frozen_before_new_results": true,
+  "annotation_unit": "one formal failed episode",
+  "primary_label_cardinality": 1,
+  "categories": [
+    {
+      "code": "no_effective_approach",
+      "label_zh": "未有效接近目标",
+      "definition_zh": "回合结束前，末端执行器没有形成朝向正确操作对象的有效、持续接近。"
+    },
+    {
+      "code": "approach_but_grasp_failed",
+      "label_zh": "接近但抓取失败",
+      "definition_zh": "末端执行器已接近正确对象，但未形成有效抓取；不包括抓住后掉落。"
+    },
+    {
+      "code": "dropped_after_grasp",
+      "label_zh": "成功抓取后掉落",
+      "definition_zh": "对象曾被明确抬起或随夹爪运动，随后在满足放置成功条件前掉落。"
+    },
+    {
+      "code": "object_or_target_misidentified",
+      "label_zh": "操作对象或目标位置识别错误",
+      "definition_zh": "策略持续作用于错误对象，或明显朝错误的目标位置规划。"
+    },
+    {
+      "code": "wrong_placement_location",
+      "label_zh": "放置位置错误",
+      "definition_zh": "正确对象被抓取并释放，但最终位置明显不符合任务指定目标。"
+    },
+    {
+      "code": "placed_but_not_stable_success",
+      "label_zh": "已放置但未稳定满足成功条件",
+      "definition_zh": "对象到达目标附近或短暂满足几何关系，但未稳定触发环境成功判据。"
+    },
+    {
+      "code": "repetition_or_control_oscillation",
+      "label_zh": "重复动作或控制振荡",
+      "definition_zh": "回合主要失败模式是重复无效动作、往返运动或明显闭环振荡。"
+    },
+    {
+      "code": "timeout_with_progress",
+      "label_zh": "超时但仍有任务进展",
+      "definition_zh": "达到 280 步上限时仍未成功，但已完成可辨识的正确子目标进展，且不更符合其他类别。"
+    },
+    {
+      "code": "simulation_numeric_or_environment_error",
+      "label_zh": "仿真、数值或环境异常",
+      "definition_zh": "失败由仿真异常、非有限值、环境崩溃、渲染/控制错误或非策略行为问题主导。"
+    },
+    {
+      "code": "other",
+      "label_zh": "其他",
+      "definition_zh": "不符合上述类别；必须填写具体备注，不能只写“其他”。"
+    }
+  ],
+  "annotation_fields": [
+    "episode_id",
+    "policy",
+    "task_id",
+    "task_name",
+    "init_state_index",
+    "environment_seed",
+    "policy_seed",
+    "action_horizon",
+    "success",
+    "control_steps",
+    "primary_failure_code",
+    "label_source",
+    "review_status",
+    "reviewer",
+    "notes_zh",
+    "video_path",
+    "video_sha256",
+    "contact_sheet_path",
+    "contact_sheet_sha256",
+    "automatic_progress_fields_json"
+  ],
+  "allowed_label_sources": [
+    "human_video",
+    "human_contact_sheet",
+    "automatic_environment_error",
+    "pending_human_review"
+  ],
+  "allowed_review_status": [
+    "confirmed",
+    "pending",
+    "not_applicable_success"
+  ],
+  "rules": [
+    "Every formal failed episode has exactly one row.",
+    "Semantic categories require human video or contact-sheet review unless a simulator or numeric error is directly logged.",
+    "Automatic trajectory features may support review but do not silently assign semantic categories.",
+    "Uncertain cases remain pending_human_review instead of receiving a fabricated label.",
+    "The other category requires a non-empty Chinese note."
+  ]
+}
