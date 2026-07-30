@@ -1,8 +1,0 @@
-{
-  "batch_size": 256,
-  "device": "cuda",
-  "device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
-  "evaluation_seconds": 12.68921664499976,
-  "peak_gpu_memory_bytes": 190401024,
-  "schema_version": 1
-}

@@ -271,8 +271,8 @@ episode、seed、源视频和哈希在
 - [test_statistical_evaluation.py](../tests/test_statistical_evaluation.py)：协议规模、resume 漂移、
   统计函数、taxonomy、采样端点和标签顺序锁测试。
 
-本阶段没有训练新 VLM，没有实现自适应 H，也没有继续 WM detector/shield/residual 路线。已有 WM
-负结果原样保留。
+本阶段没有训练新 VLM，也没有实现自适应 H。已终止的 WM 实验实现与展示已从当前工作树移除；
+冻结统计协议引用的最小同-seed 证据仍保留，以维持哈希审计。
 
 ## 复现命令
 

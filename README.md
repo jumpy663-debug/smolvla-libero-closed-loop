@@ -85,89 +85,6 @@ Task 5 在三种策略下都为 0/10。LoRA 的价值在本实验中是以少 99
 公开轻量结果位于 [`results/statistical_evaluation/`](results/statistical_evaluation/)；原始
 checkpoint、视频、轨迹和完整 contact sheet 保存在 `outputs/` 且不提交 Git。
 
-## World Model 扩展进度
-
-当前已完成 WM 阶段 0—18：冻结 `v0.1.0` 闭环基线，审计 432 个 LIBERO Spatial 专家
-episode，生成按任务分层、episode 级互斥的 346/43/43 训练/验证/测试划分，并跑通冻结
-DINOv2-S/14 双相机表征 pilot 及全量缓存。最终以 episode 级原子分片处理 389 个
-train/validation episode、47,822 帧和 95,644 张图像，完整缓存约 1.10 GiB；389/389 shard
-通过 resume、哈希、模态对齐和确定性重算验证。在此基础上训练 0.566M 参数的一步 latent
-dynamics：严格同初始化、同 batch schedule 下，动作条件模型相对 no-action 降低 0.697%
-validation raw MSE，正确动作相对置零/打乱动作分别改善 1.961%/3.470%；episode-cluster
-bootstrap 95% CI 为 `[0.484%, 0.916%]`。冻结 checkpoint 的 oracle-state 递归评测进一步
-发现，动作模型相对 no-action 的优势从 H1 的 0.570% 增至 H25 的 5.852%，但 H25 绝对误差
-已经是 teacher-forced 的 5.30 倍，且 Task 1 出现负增益。43 个 test episode 始终零进入。
-现有 78 个旧闭环 rollout 因缺少同步双相机观测和 proprioception，仅作为回采索引；现已按
-其中 H=10 的 Task 4/5/7/8 条件重新采集 12 个完整观测回合，得到 7 成功/5 失败、2,206 个
-控制步和 2,199 条有效 WM transition，12 个 success 与 steps 均精确复现旧结果。冻结模型
-在每回合共同前 80 个起点上的 H10 error 对失败取得 pooled AUROC 0.829，但精确置换
-`p=0.164`、task-centered AUROC 仅 0.486；因此只视为受任务混淆影响的初步信号，而不是已
-校准 failure detector。为构造新的 score-blind 队列，又在 Task 4/5/7/8 上固定扫描官方初始
-状态 3—14，共得到 48 个 episode、27 成功/21 失败；Task 4 与 7 达到每任务至少 3 成功/3
-失败，Task 5 为 0/12 成功、Task 8 仅 2 个失败，因此严格拒绝生成四任务 calibration/test
-选集。随后按预注册修订将 Task 5 固定为 stress set，并完整扫描 Task 8 状态 15—26；扩展块
-12/12 全部成功，使 Task 8 在状态 3—26 上达到 22 成功/2 失败，仍不足 3 个失败，因此再次
-拒绝冻结三任务选集，并停止机会性搜索自然失败。随后构建同任务/初始状态/seed 的配对执行器
-故障 pilot：经 12 条独立 fresh-reset 筛选后冻结 6 对状态，从步 50 起持续丢弃机械臂运动命令，
-得到 **6/6 nominal 成功、6/6 dropout 失败**；629 MiB 完整观测中同时保存 commanded 与
-executed action，且六对干预前轨迹逐位一致。冻结 WM 随后在预注册 H10 pre/post 窗口上完成
-配对评分：绝对 commanded-error 的差分之差均值为 **−0.0400**、仅 3/6 同向、精确
-`p=0.656`，因此拒绝直接作为 failure detector；诊断性的 fault-post
-`commanded error − executed error` 为 **+0.1619**、6/6 同向，但 Holm 校正后
-`p=0.125`，只保留为需要新数据验证的机制假设。为避免同数据发现与验证，随后排除 Stage 20
-筛选过的全部状态，score-blind 回采 6 个新 pair：0.5× 动作衰减与 3-step 动作延迟均产生
-6/6 非零 mismatch，同时三条件 **18/18 回合成功**；像素运动分别保留 nominal 的 84.1% 和
-94.5%，形成尚未查看 WM 分数的独立确认集。冻结 WM 首次评分后，pair 内平均的
-`commanded error − executed error` 为 **+0.01532**、5/6 同向、单侧精确 `p=0.03125`，
-95% CI `[+0.00491, +0.02428]`，通过预注册确认；但 3-step 延迟单独仅 `p=0.078`，且确认
-效应只有强 dropout 发现效应的 9.46%，因此结论限于 action mismatch 候选信号，不宣称已得到
-自然 failure detector 或在线 shield。最后将冻结 DINOv2 与 latent dynamics 作为只记录的
-sidecar 接入真实 SmolVLA/LIBERO 循环：18 条历史轨迹的 1,080 个注册窗口在线/离线最大分数差
-仅 **2.205×10⁻⁶**；一组正常/0.5× 衰减的 90 步实时配对中，控制输出均与原轨迹逐位一致，
-post gap 分别为 **0.00000 / +0.04018**，在线编码和 WM 评分各约 14 ms。
-随后排除所有既往干预筛选状态，用 6 个 calibration pair 冻结 `0.024414` threshold，再在
-6 个留出 test pair 上取得正常 **0/6 误报**、0.5× 衰减 **5/6 检出**、零样本 3-step delay
-**4/6 检出**；但直接 action mismatch 基线为两类故障 **6/6、0 步延迟**，明确否证了在当前
-标签直接暴露设定下继续把 WM detector 包装成 shield 的合理性。为消除这种标签泄漏，本阶段
-进一步把故障移入 MuJoCo 内部并保持 action 接口逐位相同：score-blind 3-pair pilot 中，
-0.5× arm actuator gain 为 **3/3 通过**，10× joint damping 只有 **1/3 通过**；冻结门控后
-得到 6 对隐藏动力学 discovery 数据，全部通过配对检查，H10 EEF 分叉中位数为 **15.26 mm**、
-observation 60 双相机像素 MAE 中位数为 **11.543**。15 条轨迹共 0 个 action-interface
-mismatch，且该阶段 WM 加载与评分数均为 0。冻结 WM 随后首次对 6 对 hidden-dynamics
-discovery 数据评分：预注册的 `action-conditioned error − no-action error` 只有
-**4/6 同向、+0.132σ、p=0.296875**，明确拒绝；探索性的 no-action latent residual 为
-**6/6 同向、+0.631σ、raw p=0.015625**，但在 5 个辅助指标中事后选择后 Holm
-`p=0.078125`，只能冻结为下一批新数据候选。随后在生成新轨迹前冻结该候选，并对 6 个未参与
-hidden-dynamics discovery 的状态做独立确认；结果只有 **4/6 同向、−0.052σ、
-p=0.640625**，因此候选没有复现，按协议停止进入 threshold、事件级报警和 shield。描述性的
-latent persistence 虽为 6/6，但本阶段禁止确认后重选指标，不能用它替换失败主指标。详见
-[数据审计](docs/WM_STAGE11_DATA_AUDIT.md)与
-[冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)、
-[全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)、
-[动作条件 Next-Latent Baseline](docs/WM_STAGE14_NEXT_LATENT_BASELINE.md)、
-[多步 Latent Rollout](docs/WM_STAGE15_MULTISTEP_ROLLOUT.md)、
-[完整观测闭环回采](docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md)、
-[闭环失败信号探索](docs/WM_STAGE17_FAILURE_SIGNAL.md)、
-[未见初始状态标签筛选](docs/WM_STAGE18_INITIAL_STATE_SCOUT.md)、
-[平衡队列修订](docs/WM_STAGE19_BALANCED_COHORT.md)与
-[配对动作干预完整观测回采](docs/WM_STAGE20_PAIRED_INTERVENTIONS.md)、
-[冻结 WM 配对干预评分](docs/WM_STAGE21_PAIRED_WM_SCORING.md)、
-[独立温和干预确认集](docs/WM_STAGE22_CONFIRMATORY_INTERVENTIONS.md)、
-[独立确认 action-sensitivity](docs/WM_STAGE23_CONFIRMATORY_WM_SCORING.md)与
-[在线旁路接入](docs/WM_STAGE24_ONLINE_SIDECAR.md)、
-[独立 detector 校准](docs/WM_STAGE25_DETECTOR_CALIBRATION.md)与
-[隐藏动力学偏移队列](docs/WM_STAGE26_HIDDEN_DYNAMICS_COHORT.md)、
-[隐藏动力学 Observation Residual](docs/WM_STAGE27_HIDDEN_DYNAMICS_RESIDUAL.md)与
-[No-action Residual 独立确认](docs/WM_STAGE28_HIDDEN_DYNAMICS_CONFIRMATION.md)。
-
-![Stage 25 独立 detector 校准](media/wm_stage25_detector_calibration.svg)
-
-![Stage 26 隐藏动力学偏移队列](media/wm_stage26_hidden_dynamics_cohort.svg)
-
-![Stage 27 隐藏动力学 Observation Residual](media/wm_stage27_hidden_dynamics_residual.svg)
-
-![Stage 28 No-action Residual 独立确认](media/wm_stage28_confirm_hidden_dynamics_residual.svg)
-
 ## 系统闭环
 
 ```mermaid
@@ -178,12 +95,6 @@ flowchart LR
     A --> C[50 步动作块]
     C --> H[执行前 H 步动作<br/>H = 50 / 25 / 10]
     H --> E
-
-    E -. 双相机 + state .-> W[冻结 DINOv2 + latent WM]
-    H -. commanded action .-> W
-    E -. executed feedback .-> W
-    W --> G[H10 gap 日志<br/>不修改动作]
-    G --> T[冻结 threshold<br/>连续 3 窗口报警]
 
     D[Task 5 demonstrations] --> F{微调方式}
     F --> X[动作专家微调<br/>99.9M 可训练参数]
@@ -350,70 +261,13 @@ Stage 29 按 episode 原子保存记录并校验 resume；重复执行不会重�
 验证的条目。完整命令和文件索引见
 [统计评测报告](docs/STATISTICAL_EVALUATION.md)。
 
-### 5. WM 在线旁路接入
-
-Stage 24 默认先回放核对 18 条 Stage 23 轨迹，再运行 normal 与 0.5× 动作衰减各 90 步的真实
-SmolVLA/LIBERO 闭环。monitor 只输出日志和视频，不拟合 threshold，也不修改动作：
-
-```bash
-HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
-MUJOCO_GL=egl uv run --no-sync python \
-  scripts/wm/stage24_online_sidecar.py
-```
-
-### 6. 独立 detector 校准与 Test
-
-Stage 25 排除既往干预状态，严格按 calibration→冻结 threshold→test 的顺序运行，并同时报告直接
-action mismatch 基线：
-
-```bash
-HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
-MUJOCO_GL=egl uv run --no-sync python \
-  scripts/wm/stage25_detector_calibration.py
-```
-
-### 7. Score-blind 隐藏动力学偏移队列
-
-Stage 26 保持 command 与传给 `env.step` 的动作逐位相同，只在 MuJoCo 内部改变机械臂动力学。
-脚本先完成 3-pair pilot 并冻结准入条件，再补采通过条件的 6-pair discovery cohort；整个阶段
-不加载或评分 WM：
-
-```bash
-HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
-MUJOCO_GL=egl uv run --no-sync python \
-  scripts/wm/stage26_hidden_dynamics_cohort.py
-```
-
-### 8. 隐藏动力学 Observation Residual
-
-Stage 27 首次在 6 对 discovery 数据上计算冻结 WM residual，并对 no-action dynamics、
-latent persistence、EEF 与像素运动做相同的 episode 内 pre 标准化。它不访问 Stage 25 的
-留出 test，也不拟合 detector threshold：
-
-```bash
-HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
-uv run --no-sync python \
-  scripts/wm/stage27_hidden_dynamics_residual.py
-```
-
-### 9. No-action Residual 独立确认
-
-Stage 28 在加载 SmolVLA 前先冻结 Stage 27 的探索性候选与 6 个新确认状态，再采集 nominal /
-hidden-gain 配对轨迹并一次性检验唯一主指标。描述性对照不参与重选：
-
-```bash
-HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
-MUJOCO_GL=egl uv run --no-sync python \
-  scripts/wm/stage28_confirm_hidden_dynamics_residual.py
-```
-
 ## 项目结构
 
 ```text
 .
 ├── protocols/                       # 新结果前冻结的统计协议与 failure taxonomy
 ├── annotations/                     # 人工复核标签与 episode 顺序锁
-├── scripts/                         # 复现、统计评测、失败复核与 WM 历史脚本
+├── scripts/                         # 复现、统计评测与失败复核脚本
 ├── docs/                            # 各阶段实验设置、结果和边界
 ├── results/                         # 指标摘要、逐回合 CSV 与验证曲线
 ├── media/                           # 轻量结果图与严格配对视频
@@ -429,24 +283,6 @@ MUJOCO_GL=egl uv run --no-sync python \
 - [训练链路检查](docs/STAGE8_RESULTS.md)
 - [动作专家微调](docs/STAGE9_RESULTS.md)
 - [LoRA 对照](docs/STAGE10_RESULTS.md)
-- [WM 阶段 0—1：数据审计与确定性划分](docs/WM_STAGE11_DATA_AUDIT.md)
-- [WM 阶段 2：冻结视觉表征 Pilot](docs/WM_STAGE12_REPRESENTATION_PILOT.md)
-- [WM 阶段 3：全量连续特征缓存](docs/WM_STAGE13_FULL_FEATURE_CACHE.md)
-- [WM 阶段 4：动作条件 Next-Latent Baseline](docs/WM_STAGE14_NEXT_LATENT_BASELINE.md)
-- [WM 阶段 5：多步 Latent Rollout](docs/WM_STAGE15_MULTISTEP_ROLLOUT.md)
-- [WM 阶段 6：完整观测闭环回采](docs/WM_STAGE16_CLOSED_LOOP_RECOLLECTION.md)
-- [WM 阶段 7：闭环失败信号探索](docs/WM_STAGE17_FAILURE_SIGNAL.md)
-- [WM 阶段 8：未见初始状态标签筛选](docs/WM_STAGE18_INITIAL_STATE_SCOUT.md)
-- [WM 阶段 9：平衡队列修订与可行性审计](docs/WM_STAGE19_BALANCED_COHORT.md)
-- [WM 阶段 10：配对动作干预完整观测回采](docs/WM_STAGE20_PAIRED_INTERVENTIONS.md)
-- [WM 阶段 11：冻结 WM 配对干预评分](docs/WM_STAGE21_PAIRED_WM_SCORING.md)
-- [WM 阶段 12：独立温和干预确认集](docs/WM_STAGE22_CONFIRMATORY_INTERVENTIONS.md)
-- [WM 阶段 13：独立确认 action-sensitivity](docs/WM_STAGE23_CONFIRMATORY_WM_SCORING.md)
-- [WM 阶段 14：在线旁路接入](docs/WM_STAGE24_ONLINE_SIDECAR.md)
-- [WM 阶段 15：独立 detector 校准](docs/WM_STAGE25_DETECTOR_CALIBRATION.md)
-- [WM 阶段 16：隐藏动力学偏移队列](docs/WM_STAGE26_HIDDEN_DYNAMICS_COHORT.md)
-- [WM 阶段 17：隐藏动力学 Observation Residual](docs/WM_STAGE27_HIDDEN_DYNAMICS_RESIDUAL.md)
-- [WM 阶段 18：No-action Residual 独立确认](docs/WM_STAGE28_HIDDEN_DYNAMICS_CONFIRMATION.md)
 - [结果与媒体来源说明](media/README.md)
 - [第三方项目、模型和数据说明](THIRD_PARTY_NOTICES.md)
 
@@ -466,10 +302,6 @@ MUJOCO_GL=egl uv run --no-sync python \
 - 两种微调方式在扩展后仍没有解决 Task 5（均 0/10）。LoRA 只保持预训练 23/23 条成功，不代表
   普遍优于完整微调，也不能写成成功率提升。
 - H=25/H=10 相对 H=50 得到配对证据，但 H=10 与 H=25 不显著；本项目没有实现或验证自适应 H。
-- Stage 25 detector 只针对 executed-action feedback 直接暴露的故障，简单 action mismatch
-  更优；Stage 27 的预注册 action-relative residual 在隐藏动力学 discovery 上失败，探索性
-  no-action residual 未通过辅助指标族 Holm 校正，且 Stage 28 在新状态上的冻结确认也失败，
-  因此当前 residual 路线不支持 detector、online shield 或 recovery 结论。
 - 当前只有仿真闭环，没有覆盖真机感知、标定、控制延迟和安全问题。
 
 这些限制被明确保留，因为它们决定了实验结果能够支持哪些结论。
